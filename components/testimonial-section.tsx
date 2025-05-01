@@ -16,7 +16,7 @@ export default function TestimonialSection() {
         <div className="md:w-1/2">
           {/* Testimonial chat bubbles will go here */}
           <div className="flex gap-4 mb-6 hover:bg-yellow-400 transition duration-300 ease-in-out rounded-2xl p-4">
-            <Image src="/avatar-1.png" alt="Testimonial" width={48} height={48} className="rounded-full h-12 w-12" />
+            <Image src="/andi.png" alt="Testimonial" width={48} height={48} className="rounded-full h-12 w-12" />
             <div className="bg-white rounded-2xl p-4 max-w-md">
               <p className="text-gray-700">"Layanan ini sangat membantu kami meningkatkan efisiensi operasional. Platformnya mudah digunakan dan fitur-fiturnya sangat mendukung kebutuhan tim kami."</p>
               <p className="text-gray-500 text-sm mt-2">Andi Saputra - CEO, PT Solusi Digital</p>
@@ -25,7 +25,7 @@ export default function TestimonialSection() {
           </div>
 
           <div className="flex gap-4 mb-6 hover:bg-yellow-400 transition duration-300 ease-in-out rounded-2xl p-4">
-            <Image src="/avatar-2.png" alt="Testimonial" width={48} height={48} className="rounded-full h-12 w-12" />
+            <Image src="/budi.png" alt="Testimonial" width={48} height={48} className="rounded-full h-12 w-12" />
             <div className="bg-white rounded-2xl p-4 max-w-md">
               <p className="text-gray-700">"Sangat puas dengan hasil yang diberikan. Layanan pelanggan sangat responsif dan solusi yang ditawarkan sesuai dengan kebutuhan perusahaan kami."</p>
               <p className="text-gray-500 text-sm mt-2">Budi Santoso - Marketing Director, PT Global Makmur Utama</p>
@@ -34,7 +34,7 @@ export default function TestimonialSection() {
           </div>
 
           <div className="flex gap-4 mb-6 hover:bg-yellow-400 transition duration-300 ease-in-out rounded-2xl p-4">
-            <Image src="/avatar-3.png" alt="Testimonial" width={48} height={48} className="rounded-full h-12 w-12" />
+            <Image src="/dewi.png" alt="Testimonial" width={48} height={48} className="rounded-full h-12 w-12" />
             <div className="bg-white rounded-2xl p-4 max-w-md">
               <p className="text-gray-700">"Proses integrasi yang sangat mulus dan fitur yang sangat membantu kami dalam mengelola proyek lebih efisien. Sangat direkomendasikan!"</p>
               <p className="text-gray-500 text-sm mt-2">Citra Dewi - Project Manager, Innovate Supply Solutions</p>
@@ -43,7 +43,7 @@ export default function TestimonialSection() {
           </div>
 
           <div className="flex gap-4 mb-6 hover:bg-yellow-400 transition duration-300 ease-in-out rounded-2xl p-4">
-            <Image src="/avatar-2.png" alt="Testimonial" width={48} height={48} className="rounded-full h-12 w-12" />
+            <Image src="/fahri.png" alt="Testimonial" width={48} height={48} className="rounded-full h-12 w-12" />
             <div className="bg-white rounded-2xl p-4 max-w-md">
               <p className="text-gray-700">"Aplikasi ini benar-benar meningkatkan produktivitas tim kami. Fitur yang disediakan sangat sesuai dengan yang kami butuhkan!"</p>
               <p className="text-gray-500 text-sm mt-2">Fahri Alamsyah - CTO, TechnoWorks</p>
@@ -52,7 +52,7 @@ export default function TestimonialSection() {
           </div>
 
           <div className="flex gap-4 hover:bg-yellow-400 transition duration-300 ease-in-out rounded-2xl p-4">
-            <Image src="/avatar-3.png" alt="Testimonial" width={48} height={48} className="rounded-full h-12 w-12" />
+            <Image src="/rina.png" alt="Testimonial" width={48} height={48} className="rounded-full h-12 w-12" />
             <div className="bg-white rounded-2xl p-4 max-w-md">
               <p className="text-gray-700">"Kami sangat puas dengan pengalaman menggunakan layanan ini. Alur kerja yang terstruktur membuat tim lebih efisien dalam menyelesaikan tugas."</p>
               <p className="text-gray-500 text-sm mt-2">Rina Kurniawati - Operations Lead, NextGen Digital</p>

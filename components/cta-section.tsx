@@ -18,7 +18,7 @@ export default function CTASection() {
               bisa. Kita siap untuk bantu perkembanganmu, gak perlu ragu buat nanya, kami siap melayani dan gratis
               pokoknya.
             </p>
-            <Link href="/konsultasi" className="inline-block bg-primary px-6 py-3 rounded-md font-bold">
+            <Link href="/kontak" className="inline-block bg-primary px-6 py-3 rounded-md font-bold">
               Konsultasi Sekarang, Gratis!
             </Link>
           </div>

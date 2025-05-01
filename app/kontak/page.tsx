@@ -72,7 +72,7 @@ export default function KontakPage() {
             <div className="space-y-6">
               <div>
                 <p className="font-medium mb-1">Phone</p>
-                <p className="text-gray-600">0811-1111-1111</p>
+                <p className="text-gray-600">0812-8189-2625</p>
               </div>
 
               <div>
@@ -83,9 +83,9 @@ export default function KontakPage() {
               <div>
                 <p className="font-medium mb-1">Office</p>
                 <p className="text-gray-600">
-                  Jl. in aja dulu, no 12A
+                  {/* Jl. in aja dulu, no 12A */}
                   <br />
-                  Jakarta Timur, Jakarta
+                  Jakarta Pusat, DKI Jakarta
                 </p>
               </div>
             </div>
