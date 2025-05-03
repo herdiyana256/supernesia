@@ -62,7 +62,7 @@ export default function TestimonialSection() {
         </div>
 
         <div className="md:w-1/2 flex justify-center items-center">
-          <Image src="/testimonial.jpg" alt="Testimonial" width={300} height={300} className="w-auto h-auto" />
+          <Image src="/testimonial.png" alt="Testimonial" width={300} height={300} className="w-auto h-auto" />
         </div>
       </div>
     </section>
