@@ -74,9 +74,10 @@ export default function HeroSection() {
           </h1>
           <p className="text-gray-600 dark:text-gray-300 mb-8 max-w-md">{t.description}</p>
           <div className="flex flex-wrap gap-4">
-            <Link href="/kontak" className="bg-primary px-6 py-3 font-bold rounded-md">
-              {t.consultation}
-            </Link>
+          <Link href="/kontak" className="bg-primary px-6 py-3 font-bold rounded-md text-black">
+  {t.consultation}
+</Link>
+
             <a
               href="#portfolio-section"
               onClick={scrollToPortfolio}
