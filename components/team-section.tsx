@@ -70,7 +70,8 @@ export default function TeamSection() {
                     </div>
                   )}
                 </div>
-                <h3 className="text-xl font-bold">{member.name}</h3>
+                {/* Add text-black to ensure name stays black in dark mode */}
+                <h3 className="text-xl font-bold text-black dark:text-black">{member.name}</h3>
                 <p className="text-secondary font-medium">{member.role}</p>
                 <p className="text-gray-600 mt-2">{member.description}</p>
               </div>
