@@ -57,7 +57,7 @@ export default function ServicesSection() {
             Konsultasi strategis untuk menyelaraskan inisiatif teknologi dengan tujuan bisnis Anda.
           </p>
           <div className="flex justify-end">
-            <Link href="/layanan/web-development" className="text-black">
+            <Link href="/layanan/web-development" className="text-secondary">
               <ArrowUpRight size={24} />
             </Link>
           </div>
