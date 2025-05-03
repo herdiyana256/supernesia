@@ -14,9 +14,10 @@ export default function ClientLogos() {
       <div className="container-custom">
         <div className="flex flex-wrap justify-center items-center gap-8 md:gap-16">
           {logos.map((logo, index) => (
-            <div key={index} className="w-24 md:w-32 h-12 relative grayscale hover:grayscale-0 transition-all">
-              <Image src={logo.src || "/placeholder.svg"} alt={logo.name} fill className="object-contain" />
-            </div>
+           <div key={index} className="w-24 md:w-32 h-12 relative transition-all">
+           <Image src={logo.src || "/placeholder.svg"} alt={logo.name} fill className="object-contain" />
+         </div>
+         
           ))}
         </div>
       </div>
