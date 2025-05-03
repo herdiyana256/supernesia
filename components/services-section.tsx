@@ -1,14 +1,12 @@
-"use client"  // Add this directive at the top of the file
+"use client"
 
 import { ArrowUpRight } from "lucide-react"
 import Link from "next/link"
 import { useState } from "react"
 
 export default function ServicesSection() {
-  // State to keep track of the clicked category
   const [selectedCategory, setSelectedCategory] = useState(null)
 
-  // Function to handle category click
   const handleCategoryClick = (category) => {
     setSelectedCategory(category)
   }
@@ -29,13 +27,16 @@ export default function ServicesSection() {
       </div>
 
       <div className="grid md:grid-cols-3 gap-6">
+        {/* Mobile App */}
         <div
           className={`bg-white border border-gray-200 rounded-xl p-6 hover:bg-yellow-400 transition-all duration-300 ease-in-out ${
             selectedCategory === "mobile" ? "bg-yellow-400" : ""
           }`}
           onClick={() => handleCategoryClick("mobile")}
         >
-          <h3 className="text-xl font-bold mb-2 border-b border-gray-200 pb-4">Mobile & Desktop App</h3>
+          <h3 className="text-xl font-bold mb-2 border-b border-gray-200 pb-4 text-black dark:text-black">
+            Mobile & Desktop App
+          </h3>
           <p className="text-gray-600 mb-12">
             Konsultasi strategis untuk menyelaraskan inisiatif teknologi dengan tujuan bisnis Anda.
           </p>
@@ -46,13 +47,16 @@ export default function ServicesSection() {
           </div>
         </div>
 
+        {/* Web Development */}
         <div
           className={`bg-white border border-gray-200 rounded-xl p-6 hover:bg-yellow-400 transition-all duration-300 ease-in-out ${
             selectedCategory === "web" ? "bg-yellow-400" : ""
           }`}
           onClick={() => handleCategoryClick("web")}
         >
-          <h3 className="text-xl font-bold mb-2 border-b border-gray-200 pb-4">Web Development</h3>
+          <h3 className="text-xl font-bold mb-2 border-b border-gray-200 pb-4 text-black dark:text-black">
+            Web Development
+          </h3>
           <p className="text-gray-700 mb-12">
             Konsultasi strategis untuk menyelaraskan inisiatif teknologi dengan tujuan bisnis Anda.
           </p>
@@ -63,13 +67,16 @@ export default function ServicesSection() {
           </div>
         </div>
 
+        {/* Custom Software */}
         <div
           className={`bg-white border border-gray-200 rounded-xl p-6 hover:bg-yellow-400 transition-all duration-300 ease-in-out ${
             selectedCategory === "custom" ? "bg-yellow-400" : ""
           }`}
           onClick={() => handleCategoryClick("custom")}
         >
-          <h3 className="text-xl font-bold mb-2 border-b border-gray-200 pb-4">Custom Software Development</h3>
+          <h3 className="text-xl font-bold mb-2 border-b border-gray-200 pb-4 text-black dark:text-black">
+            Custom Software Development
+          </h3>
           <p className="text-gray-600 mb-12">
             Konsultasi strategis untuk menyelaraskan inisiatif teknologi dengan tujuan bisnis Anda.
           </p>
