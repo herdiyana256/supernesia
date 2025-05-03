@@ -1,24 +1,36 @@
 import { NextResponse } from "next/server"
+import nodemailer from "nodemailer"
 
 export async function POST(request: Request) {
   try {
+    // Ambil data JSON dari request body
     const data = await request.json()
 
-    // Dalam implementasi sebenarnya, di sini Anda akan menggunakan
-    // library seperti nodemailer untuk mengirim email ke herdiyanitdev@gmail.com
+    // Setup transporter Nodemailer menggunakan kredensial dari .env.local
+    const transporter = nodemailer.createTransport({
+      service: "gmail",  // Gunakan Gmail sebagai penyedia email
+      auth: {
+        user: process.env.EMAIL_USER,  // Email pengirim dari .env.local
+        pass: process.env.EMAIL_PASS,  // App password atau password akun email
+      },
+    })
 
-    console.log("Email data:", {
-      to: "herdiyanitdev@gmail.com",
-      subject: `Pesan dari ${data.name}: ${data.subject}`,
-      body: `
+    // Setup email yang akan dikirim
+    const mailOptions = {
+      from: data.email,  // Email pengirim yang diisi di form
+      to: "herdiyanitdev@gmail.com",  // Email penerima (perwakilan Supernesia)
+      subject: `Pesan dari ${data.name}: ${data.subject}`,  // Subjek email
+      text: `
         Nama: ${data.name}
         Email: ${data.email}
         Telepon: ${data.phone}
         Pesan: ${data.message}
-      `,
-    })
+      `,  // Isi email
+    }
 
-    // Simulasi pengiriman email berhasil
+    // Kirim email
+    await transporter.sendMail(mailOptions)
+
     return NextResponse.json({ success: true })
   } catch (error) {
     console.error("Error sending email:", error)
