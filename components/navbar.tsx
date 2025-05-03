@@ -88,7 +88,7 @@ export default function Navbar() {
         <div className="flex items-center justify-between">
           <Link href="/" className="flex items-center">
             <Image
-              src="/SUPERNESIA_LOGOS.png"
+              src="/footer.png"
               alt="Supernesia"
               width={180}
               height={45}

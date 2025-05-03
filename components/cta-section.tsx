@@ -8,8 +8,8 @@ export default function CTASection() {
         <div className="grid md:grid-cols-2 gap-8 items-center">
           <div>
             <p className="text-secondary font-medium mb-2">AYO BERGERAK</p>
-            <h2 className="text-5xl md:text-6xl font-black leading-tight mb-4">
-              SEGERA HUBUNGI KAMI UNTUK
+            <h2 className="text-5xl md:text-6xl font-black leading-tight mb-4 text-black">
+            SEGERA HUBUNGI KAMI UNTUK
               <br />
               PERUBAHAN YANG SUPER!!!!!
             </h2>

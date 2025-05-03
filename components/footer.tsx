@@ -9,7 +9,7 @@ export default function Footer() {
         <div className="grid md:grid-cols-4 gap-8">
           <div>
             <div className="mb-4">
-              <Image src="/SUPERNESIA_LOGOS.png" alt="Supernesia" width={150} height={40} className="h-8 w-auto" />
+              <Image src="/footer.png" alt="Supernesia" width={150} height={40} className="h-8 w-auto" />
             </div>
             <p className="text-sm mb-4">Memberdayakan bisnis dengan solusi transformasi digital strategis sejak 2025</p>
             <div className="flex space-x-4">
@@ -71,7 +71,7 @@ export default function Footer() {
             <h3 className="font-bold text-xl mb-4">Perusahaan</h3>
             <ul className="space-y-2">
               <li>
-                <Link href="#" className="text-sm hover:text-primary transition-colors">
+                <Link href="/" className="text-sm hover:text-primary transition-colors">
                   Tentang Kami
                 </Link>
               </li>
