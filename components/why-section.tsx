@@ -1,19 +1,18 @@
 export default function WhySection() {
   return (
     <section className="py-16 px-4 md:px-12 lg:px-20 bg-primary rounded-3xl mx-4 md:mx-12 lg:mx-20 my-16">
-     <div className="text-center mb-8">
-  <h2 className="text-2xl font-bold mb-2 text-black">WHY CHOOSE US</h2>
-  <h1 className="text-5xl md:text-6xl font-black text-black">
-    KENAPA <span className="text-secondary">SUPERNESIA</span>
-    <br />
-    ADALAH <span className="text-black">SOLUSI?</span>
-  </h1>
-</div>
-
+      <div className="text-center mb-8">
+        <h2 className="text-2xl font-bold mb-2 text-black">WHY CHOOSE US</h2>
+        <h1 className="text-5xl md:text-6xl font-black text-black">
+          KENAPA <span className="text-secondary">SUPERNESIA</span>
+          <br />
+          ADALAH <span className="text-black">SOLUSI?</span>
+        </h1>
+      </div>
 
       <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mt-12">
         <div className="bg-white p-6 rounded-xl">
-          <h3 className="text-lg font-bold flex items-center mb-3">
+          <h3 className="text-lg font-bold flex items-center mb-3 text-black dark:text-black">
             <span className="text-secondary mr-2">🔧</span> Support After Sales
           </h3>
           <p className="text-gray-600">
@@ -23,7 +22,7 @@ export default function WhySection() {
         </div>
 
         <div className="bg-white p-6 rounded-xl">
-          <h3 className="text-lg font-bold flex items-center mb-3">
+          <h3 className="text-lg font-bold flex items-center mb-3 text-black dark:text-black">
             <span className="text-secondary mr-2">⚡</span> Fitur Sesuai Kebutuhan
           </h3>
           <p className="text-gray-600">
@@ -33,7 +32,7 @@ export default function WhySection() {
         </div>
 
         <div className="bg-white p-6 rounded-xl">
-          <h3 className="text-lg font-bold flex items-center mb-3">
+          <h3 className="text-lg font-bold flex items-center mb-3 text-black dark:text-black">
             <span className="text-secondary mr-2">✂️</span> Bisa Custom Bebas
           </h3>
           <p className="text-gray-600">
@@ -43,7 +42,7 @@ export default function WhySection() {
         </div>
 
         <div className="bg-white p-6 rounded-xl">
-          <h3 className="text-lg font-bold flex items-center mb-3">
+          <h3 className="text-lg font-bold flex items-center mb-3 text-black dark:text-black">
             <span className="text-secondary mr-2">✨</span> Harga Terjangkau, Value Maksimal
           </h3>
           <p className="text-gray-600">
@@ -55,7 +54,7 @@ export default function WhySection() {
 
       <div className="grid md:grid-cols-2 gap-6 mt-6">
         <div className="bg-white p-6 rounded-xl">
-          <h3 className="text-lg font-bold flex items-center mb-3">
+          <h3 className="text-lg font-bold flex items-center mb-3 text-black dark:text-black">
             <span className="text-secondary mr-2">🎨</span> Desain Eksklusif untuk UMKM
           </h3>
           <p className="text-gray-600">
@@ -65,7 +64,7 @@ export default function WhySection() {
         </div>
 
         <div className="bg-white p-6 rounded-xl">
-          <h3 className="text-lg font-bold flex items-center mb-3">
+          <h3 className="text-lg font-bold flex items-center mb-3 text-black dark:text-black">
             <span className="text-secondary mr-2">🚀</span> Proses Cepat & Gampang
           </h3>
           <p className="text-gray-600">
