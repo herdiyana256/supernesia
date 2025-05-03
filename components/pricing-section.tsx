@@ -288,9 +288,12 @@ const mobilePlans = [
   },
 ]
 
+
+
 export default function PricingSection() {
   const [activeTab, setActiveTab] = useState("web")
   const [language, setLanguage] = useState("ID")
+  const [expandedPlans, setExpandedPlans] = useState<Record<string, boolean>>({})
 
   // Listen for language changes
   useEffect(() => {
@@ -324,6 +327,13 @@ export default function PricingSection() {
       default:
         return webPlans
     }
+  }
+
+  const togglePlanDetails = (planName: string) => {
+    setExpandedPlans(prev => ({
+      ...prev,
+      [planName]: !prev[planName]
+    }))
   }
 
   const plans = getCurrentPlans()
@@ -367,76 +377,124 @@ export default function PricingSection() {
       </div>
 
       <div className="grid md:grid-cols-3 gap-6">
-        {plans.map((plan, index) => (
-          <div
-            key={index}
-            className={`border ${
-              plan.popular ? "bg-primary" : "bg-white dark:bg-gray-800"
-            } rounded-xl p-6 relative shadow-sm hover:shadow-md transition-shadow flex flex-col h-full`}
-          >
-            {plan.popular && (
-              <span className="absolute top-4 right-4 bg-secondary text-white px-3 py-1 rounded-full text-sm font-medium">
-                Popular
-              </span>
-            )}
+        {plans.map((plan, index) => {
+          const isExpanded = expandedPlans[plan.name]
+          const featuresToShow = isExpanded ? plan.features : plan.features.slice(0, 5)
+          const benefitsToShow = isExpanded ? (plan.benefits || []) : (plan.benefits || []).slice(0, 2)
+          const shouldShowFeaturesToggle = plan.features.length > 5
+          const shouldShowBenefitsToggle = plan.benefits && plan.benefits.length > 2
+          
+          return (
+            <div
+              key={index}
+              className={`border ${
+                plan.popular ? "bg-primary" : "bg-white dark:bg-gray-800"
+              } rounded-xl p-6 relative shadow-sm hover:shadow-md transition-shadow flex flex-col h-full`}
+            >
+              {plan.popular && (
+                <span className="absolute top-4 right-4 bg-secondary text-white px-3 py-1 rounded-full text-sm font-medium">
+                  Popular
+                </span>
+              )}
 
-            <div className="flex-1">
-              <h3 className="text-xl font-bold mb-2 dark:text-black">{plan.name}</h3>
-              <p className={`text-sm mb-4 ${plan.popular ? "text-gray-800" : "text-gray-600 dark:text-gray-300"}`}>
-                {plan.description}
-              </p>
+              <div className="flex-1">
+                <h3 className="text-xl font-bold mb-2 dark:text-black">{plan.name}</h3>
+                <p className={`text-sm mb-4 ${plan.popular ? "text-gray-800" : "text-gray-600 dark:text-gray-300"}`}>
+                  {plan.description}
+                </p>
 
-              <div
-                className={`text-4xl font-bold mb-6 ${plan.popular ? "text-gray-800" : "text-gray-800 dark:text-white"}`}
-              >
-                {plan.price}
-              </div>
+                <div
+                  className={`text-4xl font-bold mb-6 ${plan.popular ? "text-gray-800" : "text-gray-800 dark:text-white"}`}
+                >
+                  {plan.price}
+                </div>
 
-              <div className="mb-6">
-                <h4 className={`font-bold mb-3 ${plan.popular ? "text-gray-800" : "text-gray-800 dark:text-white"}`}>
-                  {t.features}
-                </h4>
-                <ul className="space-y-2">
-                  {plan.features.map((feature, idx) => (
-                    <li key={idx} className="flex items-start gap-2">
-                      <Check className="h-5 w-5 text-green-500 flex-shrink-0 mt-0.5" />
-                      <span className={plan.popular ? "text-gray-800" : "text-gray-700 dark:text-gray-300"}>
-                        {feature}
-                      </span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              {plan.benefits && (
                 <div className="mb-6">
-                  <h4 className={`font-bold mb-3 ${plan.popular ? "text-gray-800" : "text-gray-800 dark:text-white"}`}>
-                    {t.superBenefits}
-                  </h4>
+                  <div className="flex justify-between items-center">
+                    <h4 className={`font-bold mb-3 ${plan.popular ? "text-gray-800" : "text-gray-800 dark:text-white"}`}>
+                      {t.features}
+                    </h4>
+                    {shouldShowFeaturesToggle && (
+                      <button 
+                        onClick={() => togglePlanDetails(plan.name)}
+                        className="text-sm text-secondary hover:underline flex items-center gap-1"
+                      >
+                        {isExpanded ? (
+                          <>
+                            <span>{t.hideDetails}</span>
+                            <ChevronUp className="h-4 w-4" />
+                          </>
+                        ) : (
+                          <>
+                            <span>{t.viewDetails}</span>
+                            <ChevronDown className="h-4 w-4" />
+                          </>
+                        )}
+                      </button>
+                    )}
+                  </div>
                   <ul className="space-y-2">
-                    {plan.benefits.map((benefit, idx) => (
+                    {featuresToShow.map((feature, idx) => (
                       <li key={idx} className="flex items-start gap-2">
-                        <Check className="h-5 w-5 text-secondary flex-shrink-0 mt-0.5" />
+                        <Check className="h-5 w-5 text-green-500 flex-shrink-0 mt-0.5" />
                         <span className={plan.popular ? "text-gray-800" : "text-gray-700 dark:text-gray-300"}>
-                          {benefit}
+                          {feature}
                         </span>
                       </li>
                     ))}
                   </ul>
                 </div>
-              )}
-            </div>
 
-            <Link
-              href="/order"
-              className={`block text-center ${
-                plan.popular ? "bg-white text-black" : "bg-primary text-black dark:text-black"
-              } border border-black/10 px-6 py-2 rounded-md font-bold hover:bg-opacity-90 transition-colors mt-auto`}
-            >
-              {t.orderNow}
-            </Link>
-          </div>
-        ))}
+                {plan.benefits && plan.benefits.length > 0 && (
+                  <div className="mb-6">
+                    <div className="flex justify-between items-center">
+                      <h4 className={`font-bold mb-3 ${plan.popular ? "text-gray-800" : "text-gray-800 dark:text-white"}`}>
+                        {t.superBenefits}
+                      </h4>
+                      {shouldShowBenefitsToggle && (
+                        <button 
+                          onClick={() => togglePlanDetails(plan.name)}
+                          className="text-sm text-secondary hover:underline flex items-center gap-1"
+                        >
+                          {isExpanded ? (
+                            <>
+                              <span>{t.hideDetails}</span>
+                              <ChevronUp className="h-4 w-4" />
+                            </>
+                          ) : (
+                            <>
+                              <span>{t.viewDetails}</span>
+                              <ChevronDown className="h-4 w-4" />
+                            </>
+                          )}
+                        </button>
+                      )}
+                    </div>
+                    <ul className="space-y-2">
+                      {benefitsToShow.map((benefit, idx) => (
+                        <li key={idx} className="flex items-start gap-2">
+                          <Check className="h-5 w-5 text-secondary flex-shrink-0 mt-0.5" />
+                          <span className={plan.popular ? "text-gray-800" : "text-gray-700 dark:text-gray-300"}>
+                            {benefit}
+                          </span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+              </div>
+
+              <Link
+                href="/order"
+                className={`block text-center ${
+                  plan.popular ? "bg-white text-black" : "bg-primary text-black dark:text-black"
+                } border border-black/10 px-6 py-2 rounded-md font-bold hover:bg-opacity-90 transition-colors mt-auto`}
+              >
+                {t.orderNow}
+              </Link>
+            </div>
+          )
+        })}
       </div>
     </section>
   )
