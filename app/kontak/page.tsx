@@ -1,12 +1,9 @@
-"use client"
-
-import type React from "react"
-import { useState } from "react"
-import Navbar from "@/components/navbar"
-import Footer from "@/components/footer"
-import WhatsappCTA from "@/components/whatsapp-cta"
-import SupernesiaChatbot from "@/components/supernesia-chatbot"
-import { ArrowRight } from "lucide-react"
+import { useState } from "react";
+import Navbar from "@/components/navbar";
+import Footer from "@/components/footer";
+import WhatsappCTA from "@/components/whatsapp-cta";
+import SupernesiaChatbot from "@/components/supernesia-chatbot";
+import { ArrowRight } from "lucide-react";
 
 export default function KontakPage() {
   const [formData, setFormData] = useState({
@@ -15,49 +12,51 @@ export default function KontakPage() {
     phone: "",
     subject: "",
     message: "",
-  })
-
-  const [isSubmitting, setIsSubmitting] = useState(false)
-  const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle")
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle");
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target
-    setFormData((prev) => ({ ...prev, [name]: value }))
-  }
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setIsSubmitting(true)
-    setSubmitStatus("idle")
+    e.preventDefault();
+    setIsSubmitting(true);
+    setSubmitStatus("idle");
 
     try {
+      // Kirim request ke API endpoint untuk mengirim email
       const response = await fetch("/api/send-email", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(formData),
-      })
+        body: JSON.stringify(formData), // Kirim data form dalam format JSON
+      });
 
-      if (!response.ok) {
-        throw new Error("Gagal mengirim email")
+      const result = await response.json();
+
+      if (response.ok) {
+        setSubmitStatus("success");
+        setFormData({
+          name: "",
+          email: "",
+          phone: "",
+          subject: "",
+          message: "",
+        });
+      } else {
+        throw new Error(result.error || "Failed to send email");
       }
-
-      setSubmitStatus("success")
-      setFormData({
-        name: "",
-        email: "",
-        phone: "",
-        subject: "",
-        message: "",
-      })
     } catch (error) {
-      console.error("Error sending email:", error)
-      setSubmitStatus("error")
+      console.error("Error sending email:", error);
+      setSubmitStatus("error");
     } finally {
-      setIsSubmitting(false)
+      setIsSubmitting(false);
     }
-  }
+  };
 
   return (
     <main>
@@ -67,14 +66,10 @@ export default function KontakPage() {
       <section className="py-16 px-4 md:px-12 lg:px-20">
         <div className="grid md:grid-cols-2 gap-12 items-center">
           <div>
-            <h1 className="text-6xl md:text-7xl font-black leading-tight mb-6">
-              LET'S GET
-              <br />
-              IN TOUCH
-            </h1>
+            <h1 className="text-6xl md:text-7xl font-black leading-tight mb-6">LET'S GET IN TOUCH</h1>
             <p className="text-xl font-bold mb-8">Jangan ragu untuk mengatakan "Hello"</p>
-
             <div className="space-y-6">
+              {/* Kontak Info */}
               <div>
                 <p className="font-medium mb-1">Phone</p>
                 <p className="text-gray-600">0812-8189-2625</p>
@@ -85,9 +80,7 @@ export default function KontakPage() {
               </div>
               <div>
                 <p className="font-medium mb-1">Office</p>
-                <p className="text-gray-600">
-                  Jakarta Pusat, DKI Jakarta
-                </p>
+                <p className="text-gray-600">Jakarta Pusat, DKI Jakarta</p>
               </div>
             </div>
           </div>
@@ -104,15 +97,16 @@ export default function KontakPage() {
             <div className="bg-gray-900 rounded-xl p-8">
               <h2 className="text-2xl font-bold text-white mb-6">CONTACT</h2>
 
-              {submitStatus === "success" ? (
+              {submitStatus === "success" && (
                 <div className="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded mb-4">
                   <p>Pesan Anda telah berhasil dikirim! Kami akan segera menghubungi Anda.</p>
                 </div>
-              ) : submitStatus === "error" ? (
+              )}
+              {submitStatus === "error" && (
                 <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
                   <p>Terjadi kesalahan saat mengirim pesan. Silakan coba lagi nanti.</p>
                 </div>
-              ) : null}
+              )}
 
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid md:grid-cols-2 gap-6">
@@ -184,9 +178,7 @@ export default function KontakPage() {
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className={`bg-primary text-black font-bold py-3 px-8 rounded-md hover:bg-primary/90 transition-colors ${
-                    isSubmitting ? "opacity-70 cursor-not-allowed" : ""
-                  }`}
+                  className={`bg-primary text-black font-bold py-3 px-8 rounded-md hover:bg-primary/90 transition-colors ${isSubmitting ? "opacity-70 cursor-not-allowed" : ""}`}
                 >
                   {isSubmitting ? "Mengirim..." : "Kirim Pesan"}
                 </button>
@@ -199,5 +191,5 @@ export default function KontakPage() {
       <WhatsappCTA />
       <Footer />
     </main>
-  )
+  );
 }
