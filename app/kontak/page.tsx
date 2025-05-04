@@ -1,8 +1,6 @@
 "use client"
 
-import type React from "react"
-
-import { useState } from "react"
+import React, { useState } from "react"
 import Navbar from "@/components/navbar"
 import Footer from "@/components/footer"
 import WhatsappCTA from "@/components/whatsapp-cta"
@@ -31,21 +29,26 @@ export default function KontakPage() {
     setSubmitStatus("idle")
 
     try {
-      // Simulasi pengiriman email
-      // Dalam implementasi sebenarnya, ini akan mengirim ke API endpoint yang menggunakan SMTP
-      console.log("Sending email to herdiyanitdev@gmail.com with data:", formData)
-
-      // Simulasi delay untuk demo
-      await new Promise((resolve) => setTimeout(resolve, 1000))
-
-      setSubmitStatus("success")
-      setFormData({
-        name: "",
-        email: "",
-        phone: "",
-        subject: "",
-        message: "",
+      const response = await fetch("/api/send-email", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
       })
+
+      if (response.ok) {
+        setSubmitStatus("success")
+        setFormData({
+          name: "",
+          email: "",
+          phone: "",
+          subject: "",
+          message: "",
+        })
+      } else {
+        throw new Error("Gagal mengirim email.")
+      }
     } catch (error) {
       console.error("Error sending email:", error)
       setSubmitStatus("error")
@@ -83,7 +86,6 @@ export default function KontakPage() {
               <div>
                 <p className="font-medium mb-1">Office</p>
                 <p className="text-gray-600">
-                  {/* Jl. in aja dulu, no 12A */}
                   <br />
                   Jakarta Pusat, DKI Jakarta
                 </p>
@@ -103,22 +105,21 @@ export default function KontakPage() {
             <div className="bg-gray-900 rounded-xl p-8">
               <h2 className="text-2xl font-bold text-white mb-6">CONTACT</h2>
 
-              {submitStatus === "success" ? (
+              {submitStatus === "success" && (
                 <div className="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded mb-4">
                   <p>Pesan Anda telah berhasil dikirim! Kami akan segera menghubungi Anda.</p>
                 </div>
-              ) : submitStatus === "error" ? (
+              )}
+              {submitStatus === "error" && (
                 <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
                   <p>Terjadi kesalahan saat mengirim pesan. Silakan coba lagi nanti.</p>
                 </div>
-              ) : null}
+              )}
 
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid md:grid-cols-2 gap-6">
                   <div>
-                    <label htmlFor="name" className="text-primary mb-2 block">
-                      Name
-                    </label>
+                    <label htmlFor="name" className="text-primary mb-2 block">Name</label>
                     <input
                       type="text"
                       id="name"
@@ -130,9 +131,7 @@ export default function KontakPage() {
                     />
                   </div>
                   <div>
-                    <label htmlFor="email" className="text-primary mb-2 block">
-                      Email
-                    </label>
+                    <label htmlFor="email" className="text-primary mb-2 block">Email</label>
                     <input
                       type="email"
                       id="email"
@@ -147,9 +146,7 @@ export default function KontakPage() {
 
                 <div className="grid md:grid-cols-2 gap-6">
                   <div>
-                    <label htmlFor="phone" className="text-primary mb-2 block">
-                      Phone
-                    </label>
+                    <label htmlFor="phone" className="text-primary mb-2 block">Phone</label>
                     <input
                       type="tel"
                       id="phone"
@@ -160,9 +157,7 @@ export default function KontakPage() {
                     />
                   </div>
                   <div>
-                    <label htmlFor="subject" className="text-primary mb-2 block">
-                      Subject
-                    </label>
+                    <label htmlFor="subject" className="text-primary mb-2 block">Subject</label>
                     <input
                       type="text"
                       id="subject"
@@ -176,9 +171,7 @@ export default function KontakPage() {
                 </div>
 
                 <div>
-                  <label htmlFor="message" className="text-primary mb-2 block">
-                    Jelaskan kebutuhanmu
-                  </label>
+                  <label htmlFor="message" className="text-primary mb-2 block">Jelaskan kebutuhanmu</label>
                   <textarea
                     id="message"
                     name="message"
