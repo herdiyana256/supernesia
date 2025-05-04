@@ -1,6 +1,7 @@
 "use client"
 
-import React, { useState } from "react"
+import type React from "react"
+import { useState } from "react"
 import Navbar from "@/components/navbar"
 import Footer from "@/components/footer"
 import WhatsappCTA from "@/components/whatsapp-cta"
@@ -15,6 +16,7 @@ export default function KontakPage() {
     subject: "",
     message: "",
   })
+
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle")
 
@@ -37,18 +39,18 @@ export default function KontakPage() {
         body: JSON.stringify(formData),
       })
 
-      if (response.ok) {
-        setSubmitStatus("success")
-        setFormData({
-          name: "",
-          email: "",
-          phone: "",
-          subject: "",
-          message: "",
-        })
-      } else {
-        throw new Error("Gagal mengirim email.")
+      if (!response.ok) {
+        throw new Error("Gagal mengirim email")
       }
+
+      setSubmitStatus("success")
+      setFormData({
+        name: "",
+        email: "",
+        phone: "",
+        subject: "",
+        message: "",
+      })
     } catch (error) {
       console.error("Error sending email:", error)
       setSubmitStatus("error")
@@ -77,16 +79,13 @@ export default function KontakPage() {
                 <p className="font-medium mb-1">Phone</p>
                 <p className="text-gray-600">0812-8189-2625</p>
               </div>
-
               <div>
                 <p className="font-medium mb-1">Email</p>
                 <p className="text-gray-600">hello@supernesia.com</p>
               </div>
-
               <div>
                 <p className="font-medium mb-1">Office</p>
                 <p className="text-gray-600">
-                  <br />
                   Jakarta Pusat, DKI Jakarta
                 </p>
               </div>
@@ -105,16 +104,15 @@ export default function KontakPage() {
             <div className="bg-gray-900 rounded-xl p-8">
               <h2 className="text-2xl font-bold text-white mb-6">CONTACT</h2>
 
-              {submitStatus === "success" && (
+              {submitStatus === "success" ? (
                 <div className="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded mb-4">
                   <p>Pesan Anda telah berhasil dikirim! Kami akan segera menghubungi Anda.</p>
                 </div>
-              )}
-              {submitStatus === "error" && (
+              ) : submitStatus === "error" ? (
                 <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
                   <p>Terjadi kesalahan saat mengirim pesan. Silakan coba lagi nanti.</p>
                 </div>
-              )}
+              ) : null}
 
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid md:grid-cols-2 gap-6">
