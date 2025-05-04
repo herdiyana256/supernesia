@@ -1,3 +1,5 @@
+"use client";  // Menandai komponen ini untuk dijalankan di sisi klien
+
 import { useState } from "react";
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
