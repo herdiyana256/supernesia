@@ -1,0 +1,11 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://supernesia.id
+
+# Sitemaps
+Sitemap: https://supernesia.id/sitemap.xml
+Sitemap: https://supernesia.id/my-custom-sitemap-1.xml
+Sitemap: https://supernesia.id/my-custom-sitemap-2.xml

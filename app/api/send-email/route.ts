@@ -18,7 +18,7 @@ export async function POST(request: Request) {
     // Setup email yang akan dikirim
     const mailOptions = {
       from: data.email,  // Email pengirim yang diisi di form
-      to: "herdiyanitdev@gmail.com",  // Email penerima (perwakilan Supernesia)
+      to: "supernesi619@gmail.com",  // Email penerima (perwakilan Supernesia)
       subject: `Pesan dari ${data.name}: ${data.subject}`,  // Subjek email
       text: `
         Nama: ${data.name}
