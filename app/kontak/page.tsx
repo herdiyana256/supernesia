@@ -67,36 +67,37 @@ export default function KontakPage() {
 
       <section className="py-16 px-4 md:px-12 lg:px-20">
         <div className="grid md:grid-cols-2 gap-12 items-center">
-          <div>
-            <h1 className="text-6xl md:text-7xl font-black leading-tight mb-6">LET'S GET IN TOUCH</h1>
-            <p className="text-xl font-bold mb-8">Jangan ragu untuk mengatakan "Hello"</p>
-            <div className="space-y-6">
-  {/* Kontak Info */}
-  <div>
-    <p className="font-medium mb-1">Phone</p>
-    <a
-      href="https://wa.me/6281281892625"
-      target="_blank"
-      rel="noopener noreferrer"
-      className="text-gray-600 hover:underline"
-    >
-      0812-8189-2625
-    </a>
-  </div>
+        <div>
+  <h1 className="text-6xl md:text-7xl font-black leading-tight mb-6">LET'S GET IN TOUCH</h1>
+  <p className="text-xl font-bold mb-8">Jangan ragu untuk mengatakan "Hello"</p>
+  <div className="space-y-6">
+    {/* Kontak Info */}
+    <div>
+      <p className="font-medium mb-1">Phone</p>
+      <a
+        href="https://wa.me/6281281892625"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="text-gray-600 hover:underline"
+      >
+        0812-8189-2625
+      </a>
+    </div>
 
-  <div>
-    <p className="font-medium mb-1">Email</p>
-    <a
-      href="mailto:info@supernesia.com"
-      className="text-gray-600 hover:underline"
-    >
-      info@supernesia.com
-    </a>
-  </div>
+    <div>
+      <p className="font-medium mb-1">Email</p>
+      <a
+        href="mailto:info@supernesia.id"
+        className="text-gray-600 hover:underline"
+      >
+        info@supernesia.id
+      </a>
+    </div>
 
-  <div>
-    <p className="font-medium mb-1">Office</p>
-    <p className="text-gray-600">Jakarta Pusat, DKI Jakarta</p>
+    <div>
+      <p className="font-medium mb-1">Office</p>
+      <p className="text-gray-600">Jakarta Pusat, DKI Jakarta</p>
+    </div>
   </div>
 </div>
 
