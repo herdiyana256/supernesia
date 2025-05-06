@@ -16,7 +16,7 @@ export async function POST(request: Request) {
     });
 
     const mailOptions = {
-      from: `"${data.name}" <info@supernesia.com>`, // Tetap pakai pengirim resmi
+      from: `"${data.name}" <info@supernesia.id>`, // Tetap pakai pengirim resmi
       to: ["supernesia619@gmail.com", "herdiyanitdev@gmail.com"], // Banyak penerima
       replyTo: data.email, // Agar tombol balas ke pengirim form
       subject: `Pesan dari ${data.name}: ${data.subject}`,
