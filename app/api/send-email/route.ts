@@ -3,37 +3,51 @@ import nodemailer from "nodemailer";
 
 export async function POST(request: Request) {
   try {
+    // Mengambil data dari form
     const data = await request.json();
 
+    // Validasi data (jika diperlukan)
+    if (!data.name || !data.email || !data.subject || !data.message) {
+      return NextResponse.json(
+        { error: "Semua kolom wajib diisi." },
+        { status: 400 }
+      );
+    }
+
+    // Setup transporter untuk mengirim email
     const transporter = nodemailer.createTransport({
       host: "smtp.hostinger.com",
       port: 465,
       secure: true,
       auth: {
-        user: process.env.EMAIL_USER, // "info@supernesia.id"
-        pass: process.env.EMAIL_PASS  // dari .env.local
+        user: process.env.EMAIL_USER, // pastikan emailnya benar
+        pass: process.env.EMAIL_PASS,  // pastikan passwordnya benar
       },
       tls: {
-        rejectUnauthorized: false
-      }
+        rejectUnauthorized: false, // Bisa diubah jika diperlukan
+      },
     });
 
+    // Setup email
     const mailOptions = {
-      from: 'info@supernesia.id', // HARUS sama dengan EMAIL_USER (jangan diubah!)
-      to: 'info@supernesia.id',   // Kirim ke inbox Supernesia
-      replyTo: data.email,        // Supaya balasan diarahkan ke email klien
+      from: process.env.EMAIL_USER,  // Email pengirim
+      to: "info@supernesia.id",      // Email tujuan (juga bisa diubah)
+      replyTo: data.email,           // Balasan dikirim ke email pengirim
       subject: `Pesan dari ${data.name}: ${data.subject}`,
       text: `Nama: ${data.name}
 Email: ${data.email}
 Telepon: ${data.phone}
-Pesan: ${data.message}`
+Pesan: ${data.message}`,
     };
 
-    await transporter.sendMail(mailOptions);
+    // Kirim email
+    const info = await transporter.sendMail(mailOptions);
 
-    return NextResponse.json({ success: true });
+    // Tanggapan jika email berhasil dikirim
+    return NextResponse.json({ success: true, messageId: info.messageId });
   } catch (error: any) {
     console.error("Error sending email:", error);
-    return NextResponse.json({ error: error.message }, { status: 500 });
+    // Menampilkan error lebih rinci
+    return NextResponse.json({ error: error.message || "Internal server error" }, { status: 500 });
   }
 }

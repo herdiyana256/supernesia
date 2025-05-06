@@ -22,24 +22,22 @@ export default function KontakPage() {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
-
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
     setSubmitStatus("idle");
-
+  
     try {
-      // Kirim request ke API endpoint untuk mengirim email
       const response = await fetch("/api/send-email", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(formData), // Kirim data form dalam format JSON
+        body: JSON.stringify(formData),
       });
-
+  
       const result = await response.json();
-
+  
       if (response.ok) {
         setSubmitStatus("success");
         setFormData({
@@ -50,7 +48,9 @@ export default function KontakPage() {
           message: "",
         });
       } else {
-        throw new Error(result.error || "Failed to send email");
+        // Menampilkan pesan error dari server
+        setSubmitStatus("error");
+        console.error("Error from server:", result.error);
       }
     } catch (error) {
       console.error("Error sending email:", error);
@@ -59,6 +59,7 @@ export default function KontakPage() {
       setIsSubmitting(false);
     }
   };
+  
 
   return (
     <main>
