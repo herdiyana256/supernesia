@@ -71,21 +71,35 @@ export default function KontakPage() {
             <h1 className="text-6xl md:text-7xl font-black leading-tight mb-6">LET'S GET IN TOUCH</h1>
             <p className="text-xl font-bold mb-8">Jangan ragu untuk mengatakan "Hello"</p>
             <div className="space-y-6">
-              {/* Kontak Info */}
-              <div>
-                <p className="font-medium mb-1">Phone</p>
-                <p className="text-gray-600">0812-8189-2625</p>
-              </div>
-              <div>
-                <p className="font-medium mb-1">Email</p>
-                <p className="text-gray-600">hello@supernesia.com</p>
-              </div>
-              <div>
-                <p className="font-medium mb-1">Office</p>
-                <p className="text-gray-600">Jakarta Pusat, DKI Jakarta</p>
-              </div>
-            </div>
-          </div>
+  {/* Kontak Info */}
+  <div>
+    <p className="font-medium mb-1">Phone</p>
+    <a
+      href="https://wa.me/6281281892625"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="text-gray-600 hover:underline"
+    >
+      0812-8189-2625
+    </a>
+  </div>
+
+  <div>
+    <p className="font-medium mb-1">Email</p>
+    <a
+      href="mailto:info@supernesia.com"
+      className="text-gray-600 hover:underline"
+    >
+      info@supernesia.com
+    </a>
+  </div>
+
+  <div>
+    <p className="font-medium mb-1">Office</p>
+    <p className="text-gray-600">Jakarta Pusat, DKI Jakarta</p>
+  </div>
+</div>
+
 
           <div>
             <div className="flex items-center mb-8">

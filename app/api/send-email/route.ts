@@ -3,40 +3,35 @@ import nodemailer from "nodemailer";
 
 export async function POST(request: Request) {
   try {
-    // Ambil data JSON dari request body
     const data = await request.json();
 
-    // Setup transporter Nodemailer menggunakan kredensial dari .env.local
     const transporter = nodemailer.createTransport({
-      service: "gmail",  // Gunakan Gmail sebagai penyedia email
+      host: "smtp.hostinger.com", // Gunakan SMTP dari Hostinger/Niagahoster
+      port: 465,
+      secure: true,
       auth: {
-        user: process.env.EMAIL_USER,  // Email pengirim dari .env.local
-        pass: process.env.EMAIL_PASS,  // App password atau password akun email
-      },
-      tls: {
-        rejectUnauthorized: false,  // Pastikan koneksi TLS dapat diterima
+        user: process.env.EMAIL_USER, // Email dari .env
+        pass: process.env.EMAIL_PASS, // Password dari .env
       },
     });
 
-    // Setup email yang akan dikirim
     const mailOptions = {
-      from: data.email,  // Email pengirim yang diisi di form
-      to: "supernesia619@gmail.com",  // Email penerima (perwakilan Supernesia)
-      subject: `Pesan dari ${data.name}: ${data.subject}`,  // Subjek email
-      text: `
-        Nama: ${data.name}
-        Email: ${data.email}
-        Telepon: ${data.phone}
-        Pesan: ${data.message}
-      `,  // Isi email
+      from: `"${data.name}" <info@supernesia.com>`, // Tetap pakai pengirim resmi
+      to: ["supernesia619@gmail.com", "herdiyanitdev@gmail.com"], // Banyak penerima
+      replyTo: data.email, // Agar tombol balas ke pengirim form
+      subject: `Pesan dari ${data.name}: ${data.subject}`,
+      text: `Nama: ${data.name}
+    Email: ${data.email}
+    Telepon: ${data.phone}
+    Pesan: ${data.message}`,
     };
+    
 
-    // Kirim email
     await transporter.sendMail(mailOptions);
 
     return NextResponse.json({ success: true });
-  } catch (error) {
+  } catch (error: any) {
     console.error("Error sending email:", error);
-    return NextResponse.json({ error: error.message }, { status: 500 });  // Tampilkan detail error
+    return NextResponse.json({ error: error.message }, { status: 500 });
   }
 }
