@@ -71,6 +71,9 @@ export default function KontakPage() {
         <div>
   <h1 className="text-6xl md:text-7xl font-black leading-tight mb-6">LET'S GET IN TOUCH</h1>
   <p className="text-xl font-bold mb-8">Jangan ragu untuk mengatakan "Hello"</p>
+  <p>  Silakan hubungi kami untuk informasi lebih lanjut atau konsultasi; kami siap membantu kebutuhan Anda dengan profesional dan responsif.
+</p>
+<br />
   <div className="space-y-6">
     {/* Kontak Info */}
     <div>
@@ -96,11 +99,26 @@ export default function KontakPage() {
     </div>
 
     <div>
-      <p className="font-medium mb-1">Office</p>
-      <p className="text-gray-600">Jakarta Pusat, DKI Jakarta</p>
-    </div>
-  </div>
-</div>
+                <p className="font-medium mb-1">Head Office</p>
+                <p className="text-gray-600">
+                  Wirausaha Building, Jalan HR Rasuna Said, Kuningan, Jakarta Selatan 12920
+                </p>
+              </div>
+
+              <div className="mt-4 rounded overflow-hidden shadow-lg">
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.3772447608194!2d106.82853571097047!3d-6.213877660839031!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f4088c56757d%3A0x253f935e5b0a44fd!2sGedung%20Wirausaha!5e0!3m2!1sid!2sid!4v1748183082352!5m2!1sid!2sid"
+                  width="100%"
+                  height="250"
+                  style={{ border: 0 }}
+                  allowFullScreen
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  title="Lokasi Head Office"
+                ></iframe>
+              </div>
+            </div>
+          </div>
 
 
           <div>

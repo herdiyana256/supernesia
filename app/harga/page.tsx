@@ -135,7 +135,7 @@ const softwarePlans = [
     name: "SuperNeo",
     description:
       "Paket ini cocok untuk bisnis kecil yang membutuhkan solusi software sederhana untuk operasional internal.",
-    price: "Rp.12.500.000",
+price: "Hubungi kami untuk penawaran khusus.",
     features: [
       "1 modul utama",
       "Dashboard admin sederhana",
@@ -154,7 +154,7 @@ const softwarePlans = [
     name: "SuperPro",
     description:
       "Paket ini ideal untuk bisnis menengah yang membutuhkan sistem terintegrasi dengan beberapa modul fungsional.",
-    price: "Rp.35.000.000",
+price: "Hubungi kami untuk penawaran khusus.",
     features: [
       "3 modul fungsional",
       "Dashboard admin lengkap",
@@ -181,7 +181,7 @@ const softwarePlans = [
     name: "SuperPremium",
     description:
       "Paket ini sempurna untuk perusahaan yang membutuhkan sistem enterprise dengan fitur lengkap dan skalabilitas tinggi.",
-    price: "Rp.75.000.000",
+price: "Hubungi kami untuk penawaran khusus.",
     features: [
       "Modul tak terbatas",
       "Dashboard admin enterprise",
