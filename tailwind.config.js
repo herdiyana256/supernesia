@@ -18,8 +18,10 @@ module.exports = {
     },
     extend: {
       fontFamily: {
-        sans: ["ui-sans-serif", "system-ui", "sans-serif"],
-        anton: ["var(--font-anton)"],
+        sans: ["var(--font-nunito)", "ui-sans-serif", "system-ui", "sans-serif"], // default body pakai Nunito
+        bebasNeue: ["var(--font-bebas-neue)", "cursive"], // untuk navbar Bebas Neue
+        // anton tetap bisa kamu hapus atau simpan jika masih ada kebutuhan
+        // anton: ["var(--font-anton)"],
       },
       fontSize: {
         base: "1.125rem", // 18px

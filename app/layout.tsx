@@ -1,12 +1,20 @@
 import type { Metadata } from "next"
-import { Anton } from "next/font/google"
+import { Bebas_Neue, Nunito } from "next/font/google"
 import "./globals.css"
 import SupernesiaChatbot from "@/components/supernesia-chatbot"
 
-const anton = Anton({
+// Import Bebas Neue dengan weight 400 (Regular)
+const bebasNeue = Bebas_Neue({
   subsets: ["latin"],
   weight: "400",
-  variable: "--font-anton",
+  variable: "--font-bebas-neue",
+})
+
+// Import Nunito dengan weight 400 (Regular)
+const nunito = Nunito({
+  subsets: ["latin"],
+  weight: "400",
+  variable: "--font-nunito",
 })
 
 export const metadata: Metadata = {
@@ -20,15 +28,14 @@ export const metadata: Metadata = {
   robots: "index, follow",
   icons: {
     icon: [
-            { url: "/favicon.ico", sizes: "16x16", type: "image/ico" },
+      { url: "/favicon.ico", sizes: "16x16", type: "image/ico" },
       { url: "/favicon_16.png", sizes: "16x16", type: "image/png" },
-      { url: "/favicon_32.png", sizes: "32x32", type: "image/png" }
+      { url: "/favicon_32.png", sizes: "32x32", type: "image/png" },
     ],
     shortcut: "/favicon_32.png",
     apple: "/apple-touch-icon.png",
   },
-};
-
+}
 
 export default function RootLayout({
   children,
@@ -36,11 +43,17 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-<html lang="id" className={`${anton.variable} scroll-smooth`}>
+    <html
+      lang="id"
+      className={`${bebasNeue.variable} ${nunito.variable} scroll-smooth`}
+    >
       <head>
-        <meta name="google-site-verification" content="rDv4azVm7pImPiuru4Q-YvU6yrYRuVHpUzLaUTTb1Ho" />
+        <meta
+          name="google-site-verification"
+          content="rDv4azVm7pImPiuru4Q-YvU6yrYRuVHpUzLaUTTb1Ho"
+        />
       </head>
-<body className="font-sans text-base leading-relaxed">
+      <body className="font-sans text-base leading-relaxed font-body">
         {children}
         <SupernesiaChatbot />
       </body>
