@@ -36,11 +36,11 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="id" className="scroll-smooth">
+<html lang="id" className={`${anton.variable} scroll-smooth`}>
       <head>
         <meta name="google-site-verification" content="rDv4azVm7pImPiuru4Q-YvU6yrYRuVHpUzLaUTTb1Ho" />
       </head>
-      <body className={`${anton.variable} font-sans`}>
+<body className="font-sans text-base leading-relaxed">
         {children}
         <SupernesiaChatbot />
       </body>

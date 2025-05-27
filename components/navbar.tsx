@@ -83,7 +83,7 @@ export default function Navbar() {
   const t = translations[language as keyof typeof translations]
 
   return (
-    <header className="py-3 px-4 md:px-12 lg:px-20 sticky top-0 z-50 bg-white dark:bg-gray-900">
+<header className="font-anton py-3 px-4 md:px-12 lg:px-20 sticky top-0 z-50 bg-white dark:bg-gray-900">
       <div className="max-w-7xl mx-auto">
         <div className="flex items-center justify-between">
           <Link href="/" className="flex items-center">

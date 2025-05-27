@@ -18,7 +18,11 @@ module.exports = {
     },
     extend: {
       fontFamily: {
-        sans: ["var(--font-plus-jakarta-sans)"],
+        sans: ["ui-sans-serif", "system-ui", "sans-serif"],
+        anton: ["var(--font-anton)"],
+      },
+      fontSize: {
+        base: "1.125rem", // 18px
       },
       colors: {
         border: "hsl(var(--border))",
