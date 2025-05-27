@@ -12,7 +12,7 @@ const translations = {
     transform: "TRANSFORMASIKAN",
     business: "BISNISMU JADI",
     more: "LEBIH",
-    super: "Super",
+    super: "SUPER",
     description: "Jasa pembuatan Website & Aplikasi untuk UMKM atau Bisnis yang mau naik kelas.",
     consultation: "Konsultasi Gratis",
     portfolio: "Hasil Karya Kami",
@@ -21,7 +21,7 @@ const translations = {
     transform: "TRANSFORM",
     business: "YOUR BUSINESS TO BE",
     more: "MORE",
-    super: "Super",
+    super: "SUPER",
     description: "Website & Application development services for SMEs or Businesses that want to level up.",
     consultation: "Free Consultation",
     portfolio: "Our Portfolio",
@@ -61,22 +61,37 @@ export default function HeroSection() {
   }
 
   return (
-    <section className="py-8 px-4 md:px-12 lg:px-20">
-      <div className="grid md:grid-cols-2 gap-8 items-center">
-        <div>
-          <h1 className="text-5xl md:text-6xl font-black leading-tight mb-6">
-            {t.transform}
-            <br />
-            {t.business}
-            <br />
-            {t.more}
-            <div className="bg-secondary text-white inline-block px-4 py-1 mt-2 rounded-md">{t.super}</div>
-          </h1>
-          <p className="text-gray-600 dark:text-gray-300 mb-8 max-w-md">{t.description}</p>
-          <div className="flex flex-wrap gap-4">
-          <Link href="/kontak" className="bg-primary px-6 py-3 font-bold rounded-md text-black">
-  {t.consultation}
-</Link>
+  <section className="py-8 px-4 md:px-12 lg:px-20">
+    <div className="grid md:grid-cols-2 gap-8 items-center">
+      <div>
+   <h1 className="text-5xl md:text-6xl font-black leading-tight mb-6">
+  {t.transform}
+  <br />
+  {language === "EN" ? (
+    <span className="font-black dark:text-white text-black">
+      {t.business} {t.more} {t.super}
+    </span>
+  ) : (
+    <>
+      {t.business}
+      <br />
+      <span className="font-black dark:text-white text-black">
+        {t.more} {t.super}
+      </span>
+    </>
+  )}
+</h1>
+
+
+
+        <p className="text-gray-600 dark:text-gray-300 mb-8 max-w-md">{t.description}</p>
+        <div className="flex flex-wrap gap-4">
+          <Link
+            href="/kontak"
+            className="bg-primary px-6 py-3 font-bold rounded-md text-black"
+          >
+            {t.consultation}
+          </Link>
 
             <a
               href="#portfolio-section"
