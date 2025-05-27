@@ -17,7 +17,7 @@ export default function WhySection() {
           </h3>
           <p className="text-gray-600">
             Website udah jadi? Tenang, kita tetap standby bantuin kalo ada kendala teknis, update konten, atau
-            pengembangan lebih lanjut. Gak ditinggal gitu aja, nyet! 😊
+            pengembangan lebih lanjut.
           </p>
         </div>
 

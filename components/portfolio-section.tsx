@@ -112,6 +112,15 @@ const portfolioItems = [
     description:
       "Aplikasi ibadah untuk menyediakan waktu sholat, arah kiblat, serta materi keagamaan seperti doa dan tafsir.",
   },
+  {
+  id: 9,
+  image: "/Astronesia.png",
+  title: "Astronesia AI",
+  categories: ["Web Development", "Fun", "Astrology", "AI Tools"],
+  description:
+    "Aplikasi Web horoskop harian yang didukung AI untuk memberikan prediksi personal berdasarkan zodiak dan tanggal lahir, dengan mode fun atau serius sesuai preferensi pengguna.",
+},
+
 ];
 
 

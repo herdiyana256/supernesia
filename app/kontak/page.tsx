@@ -70,7 +70,7 @@ export default function KontakPage() {
         <div className="grid md:grid-cols-2 gap-12 items-center">
         <div>
   <h1 className="text-6xl md:text-7xl font-black leading-tight mb-6">LET'S GET IN TOUCH</h1>
-  <p className="text-xl font-bold mb-8">Jangan ragu untuk mengatakan "Hello"</p>
+  <p className="text-xl font-bold mb-8">Jangan ragu untuk mengatakan "Hello, Supernesia!"</p>
   <p>  Silakan hubungi kami untuk informasi lebih lanjut atau konsultasi; kami siap membantu kebutuhan Anda dengan profesional dan responsif.
 </p>
 <br />
@@ -101,8 +101,7 @@ export default function KontakPage() {
     <div>
                 <p className="font-medium mb-1">Head Office</p>
                 <p className="text-gray-600">
-                  Wirausaha Building, Jalan HR Rasuna Said, Kuningan, Jakarta Selatan 12920
-                </p>
+          Gedung Wirausaha Lantai 1 Unit 104, Jalan HR Rasuna Said Kav. C-5 RT 003/RW 001 Kelurahan Karet, Kecamatan Setia Budi, Kota Jakarta Selatan, 12920                </p>
               </div>
 
               <div className="mt-4 rounded overflow-hidden shadow-lg">

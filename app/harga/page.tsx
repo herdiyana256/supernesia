@@ -214,7 +214,7 @@ const mobilePlans = [
   {
     name: "SuperNeo",
     description: "Paket ini cocok untuk bisnis yang ingin memiliki aplikasi mobile sederhana dengan fitur dasar.",
-    price: "Rp.15.000.000",
+price: "Hubungi kami untuk penawaran khusus.",
     features: [
       "Aplikasi untuk 1 platform (Android/iOS)",
       "5 halaman/screen utama",
@@ -237,7 +237,7 @@ const mobilePlans = [
     name: "SuperPro",
     description:
       "Paket ini ideal untuk bisnis yang membutuhkan aplikasi mobile dengan fitur lengkap untuk kedua platform.",
-    price: "Rp.45.000.000",
+price: "Hubungi kami untuk penawaran khusus.",
     features: [
       "Aplikasi untuk Android & iOS",
       "10 halaman/screen",
@@ -264,7 +264,7 @@ const mobilePlans = [
     name: "SuperPremium",
     description:
       "Paket ini sempurna untuk perusahaan yang membutuhkan aplikasi enterprise dengan fitur canggih dan performa tinggi.",
-    price: "Rp.85.000.000",
+price: "Hubungi kami untuk penawaran khusus.",
     features: [
       "Aplikasi untuk Android, iOS & Web",
       "Screen tak terbatas",
