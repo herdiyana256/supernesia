@@ -74,77 +74,63 @@ export default function Navbar() {
     }
   }
 
-  // Determine active path
+  // Improved active path detection
   const isActive = (path: string) => {
-    return pathname === path
+    if (path === "/") {
+      return pathname === "/"
+    }
+    return pathname.startsWith(path)
   }
 
   // Get current translations
   const t = translations[language as keyof typeof translations]
 
+  // Navigation items
+  const navigationItems = [
+    { href: "/", label: t.home },
+    { href: "/layanan", label: t.services },
+    { href: "/harga", label: t.pricing },
+    { href: "/tentang", label: t.about },
+    { href: "/kontak", label: t.contact },
+  ]
+
   return (
-<header className="font-bebasNeue py-3 px-4 md:px-12 lg:px-20 sticky top-0 z-50 bg-white dark:bg-gray-900">
+    <header className="font-bebasNeue px-4 md:px-12 lg:px-20 sticky top-0 z-50 bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700">
       <div className="max-w-7xl mx-auto">
-        <div className="flex items-center justify-between">
-          <Link href="/" className="flex items-center">
+        <div className="flex items-center justify-between h-16 md:h-18 lg:h-20">
+          {/* Logo with Dark/Light Mode Support - Compact */}
+          <Link href="/" className="flex items-center flex-shrink-0">
             <Image
-              src="/footer.png"
+              src={isDarkMode ? "/SUPERNESIA_LOGOS_MODE_DARK.png" : "/SUPERNESIA_LOGOS.png"}
               alt="Supernesia"
-              width={180}
-              height={45}
-              className="h-12 w-auto"
+              width={280}
+              height={70}
+              className="h-12 md:h-14 lg:h-16 w-auto object-contain max-w-none"
               priority
             />
           </Link>
 
-          <div className="hidden md:flex items-center justify-between flex-1 ml-8">
+          <div className="hidden md:flex items-center justify-between flex-1 ml-16">
             <div className="flex items-center space-x-1 bg-gray-100 dark:bg-gray-800 rounded-full px-1 py-1 mx-auto">
-              <Link
-                href="/"
-                className={`px-6 py-2 font-medium transition-colors rounded-full border border-gray-200/30 ${
-                  isActive("/") ? "bg-primary text-black" : "hover:bg-gray-200 dark:hover:bg-gray-700"
-                }`}
-              >
-                {t.home}
-              </Link>
-              <Link
-                href="/layanan"
-                className={`px-6 py-2 font-medium transition-colors rounded-full border border-gray-200/30 ${
-                  isActive("/layanan") ? "bg-primary text-black" : "hover:bg-gray-200 dark:hover:bg-gray-700"
-                }`}
-              >
-                {t.services}
-              </Link>
-              <Link
-                href="/harga"
-                className={`px-6 py-2 font-medium transition-colors rounded-full border border-gray-200/30 ${
-                  isActive("/harga") ? "bg-primary text-black" : "hover:bg-gray-200 dark:hover:bg-gray-700"
-                }`}
-              >
-                {t.pricing}
-              </Link>
-              <Link
-                href="/tentang"
-                className={`px-6 py-2 font-medium transition-colors rounded-full border border-gray-200/30 ${
-                  isActive("/tentang") ? "bg-primary text-black" : "hover:bg-gray-200 dark:hover:bg-gray-700"
-                }`}
-              >
-                {t.about}
-              </Link>
-              <Link
-                href="/kontak"
-                className={`px-6 py-2 font-medium transition-colors rounded-full border border-gray-200/30 ${
-                  isActive("/kontak") ? "bg-primary text-black" : "hover:bg-gray-200 dark:hover:bg-gray-700"
-                }`}
-              >
-                {t.contact}
-              </Link>
+              {navigationItems.map(({ href, label }) => (
+                <Link
+                  key={href}
+                  href={href}
+                  className={`px-6 py-2 font-medium transition-all duration-200 rounded-full border border-gray-200/30 ${
+                    isActive(href)
+                      ? "bg-[#e9e15b] text-black shadow-sm"
+                      : "text-gray-700 dark:text-gray-300 hover:bg-[#e9e15b]/20 hover:text-black dark:hover:text-black"
+                  }`}
+                >
+                  {label}
+                </Link>
+              ))}
             </div>
 
             <div className="flex items-center space-x-4 ml-8">
               <button
                 onClick={toggleDarkMode}
-                className="p-2 rounded-full bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300"
+                className="p-2 rounded-full bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
                 aria-label={isDarkMode ? "Switch to light mode" : "Switch to dark mode"}
               >
                 {isDarkMode ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
@@ -152,14 +138,17 @@ export default function Navbar() {
 
               <button
                 onClick={toggleLanguage}
-                className="p-2 rounded-full bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 flex items-center"
+                className="p-2 rounded-full bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 flex items-center hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
                 aria-label="Toggle language"
               >
                 <Globe className="h-5 w-5" />
                 <span className="ml-1 text-xs font-bold">{language}</span>
               </button>
 
-              <Link href="/kontak" className="bg-primary px-6 py-2 font-medium rounded-full">
+              <Link
+                href="/kontak"
+                className="bg-[#e9e15b] hover:bg-[#e9e15b]/80 px-6 py-2 font-medium rounded-full text-black transition-colors"
+              >
                 {t.register}
               </Link>
             </div>
@@ -169,7 +158,7 @@ export default function Navbar() {
           <div className="md:hidden flex items-center space-x-3">
             <button
               onClick={toggleDarkMode}
-              className="p-2 rounded-full bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300"
+              className="p-2 rounded-full bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
               aria-label={isDarkMode ? "Switch to light mode" : "Switch to dark mode"}
             >
               {isDarkMode ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
@@ -177,14 +166,18 @@ export default function Navbar() {
 
             <button
               onClick={toggleLanguage}
-              className="p-2 rounded-full bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 flex items-center"
+              className="p-2 rounded-full bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 flex items-center hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
               aria-label="Toggle language"
             >
               <Globe className="h-5 w-5" />
               <span className="ml-1 text-xs font-bold">{language}</span>
             </button>
 
-            <button className="p-2" onClick={() => setIsMenuOpen(!isMenuOpen)}>
+            <button
+              className="p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-colors"
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              aria-label="Toggle menu"
+            >
               <Menu className="h-6 w-6" />
             </button>
           </div>
@@ -192,36 +185,28 @@ export default function Navbar() {
 
         {/* Mobile Navigation */}
         {isMenuOpen && (
-          <div className="md:hidden bg-white dark:bg-gray-900 py-4 px-4 shadow-md mt-2 rounded-lg">
+          <div className="md:hidden bg-white dark:bg-gray-900 py-4 px-4 shadow-md mt-4 rounded-lg border border-gray-200 dark:border-gray-700">
             <nav className="flex flex-col space-y-4">
-              <Link href="/" className={`font-medium ${isActive("/") ? "text-secondary" : "hover:text-secondary"}`}>
-                {t.home}
-              </Link>
-              <Link
-                href="/layanan"
-                className={`font-medium ${isActive("/layanan") ? "text-secondary" : "hover:text-secondary"}`}
-              >
-                {t.services}
-              </Link>
-              <Link
-                href="/harga"
-                className={`font-medium ${isActive("/harga") ? "text-secondary" : "hover:text-secondary"}`}
-              >
-                {t.pricing}
-              </Link>
-              <Link
-                href="/tentang"
-                className={`font-medium ${isActive("/tentang") ? "text-secondary" : "hover:text-secondary"}`}
-              >
-                {t.about}
-              </Link>
+              {navigationItems.map(({ href, label }) => (
+                <Link
+                  key={href}
+                  href={href}
+                  className={`font-medium py-2 px-4 rounded-lg transition-colors ${
+                    isActive(href)
+                      ? "bg-[#e9e15b] text-black"
+                      : "text-gray-700 dark:text-gray-300 hover:bg-[#e9e15b]/20 hover:text-black dark:hover:text-black"
+                  }`}
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  {label}
+                </Link>
+              ))}
+
               <Link
                 href="/kontak"
-                className={`font-medium ${isActive("/kontak") ? "text-secondary" : "hover:text-secondary"}`}
+                className="bg-[#e9e15b] hover:bg-[#e9e15b]/80 px-6 py-3 font-medium rounded-full text-center text-black transition-colors"
+                onClick={() => setIsMenuOpen(false)}
               >
-                {t.contact}
-              </Link>
-              <Link href="/kontak" className="bg-primary px-6 py-2 font-medium rounded-full text-center">
                 {t.register}
               </Link>
             </nav>
