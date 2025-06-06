@@ -3,139 +3,9 @@
 import { useState, useEffect, useRef } from "react"
 import Image from "next/image"
 import Link from "next/link"
-import { X, Send, Smile, Copy } from "lucide-react"
+import { X, Send, Phone, Smile } from "lucide-react"
 import data from "@emoji-mart/data"
 import Picker from "@emoji-mart/react"
-
-// Import pricing data
-const webPlans = [
-  {
-    name: "SuperNeo",
-    price: "Rp 1.250.000",
-    description:
-      "Paket ini dirancang khusus untuk membantu freelancer, mahasiswa, dan UMKM yang ingin go digital dengan budget terbatas.",
-    features: [
-      "2 Halaman statis",
-      "Domain: .com atau .net (1 tahun)",
-      "Hosting 1GB SSD (lokal/Asia), Bandwidth 10GB",
-      "Desain responsif & User Friendly",
-      "Setup email domain (1 akun)",
-    ],
-  },
-  {
-    name: "SuperPro",
-    price: "Rp 2.500.000",
-    description:
-      "Paket ini sempurna untuk Anda yang ingin websitenya tampil profesional dan eksklusif dengan fitur lengkap.",
-    features: [
-      "6+ Halaman (maksimal 8 halaman)",
-      "Domain: .com, .net, .co.id (1 tahun)",
-      "Hosting 2GB SSD (lokal/Asia), Bandwidth 30GB",
-      "Desain responsif & User Friendly",
-      "Integrasi media sosial",
-      "Fitur chat WhatsApp",
-      "UI/UX desain (tanpa template)",
-    ],
-  },
-  {
-    name: "SuperPremium",
-    price: "Rp 5.500.000",
-    description:
-      "Paket unggulan yang sempurna untuk Anda yang ingin memiliki website dengan fitur canggih dan desain eksklusif.",
-    features: [
-      "10+ Halaman Custom (maksimal 12 halaman)",
-      "Domain: .com, .net, .co.id, .id, .org (1 tahun)",
-      "Hosting 5GB SSD, Bandwidth Unmetered",
-      "Full CMS Dinamis (admin dashboard)",
-      "Animasi ringan (hero, hover, fade)",
-      "4 Email Bisnis",
-      "Gratis AI Chatbot",
-    ],
-  },
-]
-
-const mobilePlans = [
-  {
-    name: "SuperNeo",
-    price: "Mulai dari Rp 5.000.000",
-    description: "Paket ini cocok untuk bisnis yang ingin memiliki aplikasi mobile sederhana dengan fitur dasar.",
-    features: [
-      "Aplikasi untuk 1 platform (Android/iOS)",
-      "5 halaman/screen utama",
-      "Autentikasi pengguna dasar",
-      "Integrasi dengan 1 API eksternal",
-      "Desain UI/UX responsif",
-    ],
-  },
-  {
-    name: "SuperPro",
-    price: "Mulai dari Rp 8.500.000",
-    description:
-      "Paket ini ideal untuk bisnis yang membutuhkan aplikasi mobile dengan fitur lengkap untuk kedua platform.",
-    features: [
-      "Aplikasi untuk Android & iOS",
-      "10 halaman/screen",
-      "Autentikasi multi-level",
-      "Integrasi dengan 3 API eksternal",
-      "Desain UI/UX premium",
-    ],
-  },
-  {
-    name: "SuperPremium",
-    price: "Mulai dari Rp 12.000.000",
-    description:
-      "Paket ini sempurna untuk perusahaan yang membutuhkan aplikasi enterprise dengan fitur canggih dan performa tinggi.",
-    features: [
-      "Aplikasi untuk Android, iOS & Web",
-      "Screen tak terbatas",
-      "Autentikasi multi-level dengan keamanan tinggi",
-      "Integrasi API lengkap",
-      "Desain UI/UX premium custom",
-    ],
-  },
-]
-
-const softwarePlans = [
-  {
-    name: "SuperNeo",
-    price: "Hubungi kami untuk penawaran khusus",
-    description:
-      "Paket ini cocok untuk bisnis kecil yang membutuhkan solusi software sederhana untuk operasional internal.",
-    features: [
-      "1 modul utama",
-      "Dashboard admin sederhana",
-      "Manajemen pengguna dasar",
-      "Integrasi dengan 1 sistem eksternal",
-      "Desain UI/UX responsif",
-    ],
-  },
-  {
-    name: "SuperPro",
-    price: "Hubungi kami untuk penawaran khusus",
-    description:
-      "Paket ini ideal untuk bisnis menengah yang membutuhkan sistem terintegrasi dengan beberapa modul fungsional.",
-    features: [
-      "3 modul fungsional",
-      "Dashboard admin lengkap",
-      "Manajemen pengguna dengan role",
-      "Integrasi dengan 3 sistem eksternal",
-      "Desain UI/UX premium",
-    ],
-  },
-  {
-    name: "SuperPremium",
-    price: "Hubungi kami untuk penawaran khusus",
-    description:
-      "Paket ini sempurna untuk perusahaan yang membutuhkan sistem enterprise dengan fitur lengkap dan skalabilitas tinggi.",
-    features: [
-      "Modul tak terbatas",
-      "Dashboard admin enterprise",
-      "Manajemen pengguna dengan role dan permission",
-      "Integrasi dengan sistem eksternal tak terbatas",
-      "Desain UI/UX premium custom",
-    ],
-  },
-]
 
 type Message = {
   text: string
@@ -145,22 +15,6 @@ type Message = {
   active: boolean
   typing: boolean
   options?: { text: string; value: string }[]
-  orderInfo?: {
-    ticketNumber: string
-    packageName: string
-    price: string
-    serviceType: string
-  }
-}
-
-// Generate random ticket number
-const generateTicketNumber = () => {
-  const prefix = "SUP"
-  const timestamp = Date.now().toString().slice(-6)
-  const random = Math.floor(Math.random() * 1000)
-    .toString()
-    .padStart(3, "0")
-  return `${prefix}${timestamp}${random}`
 }
 
 // Translations
@@ -183,32 +37,11 @@ const translations = {
       { text: "Custom Software", value: "software" },
     ],
     pricing:
-      "Kami memiliki beberapa paket harga untuk layanan kami. Silakan pilih jenis layanan yang ingin Anda lihat harganya:",
+      "Kami memiliki beberapa paket harga untuk layanan kami:\n\n1. SuperNeo: Rp 1.250.000\n2. SuperPro: Rp 2.500.000\n3. SuperPremium: Rp 5.500.000\n\nIngin tahu detail lebih lanjut tentang paket tertentu?",
     pricingOptions: [
-      { text: "Web Development", value: "harga-web" },
-      { text: "Mobile & Desktop Apps", value: "harga-mobile" },
-      { text: "Custom Software", value: "harga-software" },
-    ],
-    webPricing:
-      "Berikut adalah paket harga untuk Web Development:\n\n1. SuperNeo: Rp 1.250.000\n2. SuperPro: Rp 2.500.000\n3. SuperPremium: Rp 5.500.000\n\nIngin tahu detail lebih lanjut tentang paket tertentu?",
-    mobilePricing:
-      "Berikut adalah paket harga untuk Mobile & Desktop Apps:\n\n1. SuperNeo: Mulai dari Rp 5.000.000\n2. SuperPro: Mulai dari Rp 8.500.000\n3. SuperPremium: Mulai dari Rp 12.000.000\n\nIngin tahu detail lebih lanjut tentang paket tertentu?",
-    softwarePricing:
-      "Berikut adalah paket harga untuk Custom Software:\n\n1. SuperNeo: Hubungi kami untuk penawaran khusus\n2. SuperPro: Hubungi kami untuk penawaran khusus\n3. SuperPremium: Hubungi kami untuk penawaran khusus\n\nIngin tahu detail lebih lanjut tentang paket tertentu?",
-    pricingWebOptions: [
-      { text: "SuperNeo", value: "web-basic" },
-      { text: "SuperPro", value: "web-standard" },
-      { text: "SuperPremium", value: "web-premium" },
-    ],
-    pricingMobileOptions: [
-      { text: "SuperNeo", value: "mobile-basic" },
-      { text: "SuperPro", value: "mobile-standard" },
-      { text: "SuperPremium", value: "mobile-premium" },
-    ],
-    pricingSoftwareOptions: [
-      { text: "SuperNeo", value: "software-basic" },
-      { text: "SuperPro", value: "software-standard" },
-      { text: "SuperPremium", value: "software-premium" },
+      { text: "SuperNeo", value: "basic" },
+      { text: "SuperPro", value: "standard" },
+      { text: "SuperPremium", value: "premium" },
     ],
     packages:
       "Kami menawarkan 3 paket utama:\n\n1. SuperNeo: Cocok untuk bisnis baru yang membutuhkan website sederhana\n2. SuperPro: Untuk website dengan fitur canggih dan desain eksklusif\n3. SuperPremium: Solusi lengkap dengan fitur premium dan dukungan prioritas\n\nPaket mana yang ingin Anda ketahui lebih detail?",
@@ -218,7 +51,7 @@ const translations = {
       { text: "SuperPremium", value: "premium" },
     ],
     contact:
-      "Anda dapat menghubungi kami melalui:\n\nWhatsApp: 0812-8189-2625\nEmail: info@supernesia.com\nAlamat: Jakarta Timur, Indonesia\n\nIngin kami menghubungi Anda?",
+      "Anda dapat menghubungi kami melalui:\n\nWhatsApp: 081281892625\nEmail: info@supernesia.com\nAlamat: Jakarta Timur, Indonesia\n\nIngin kami menghubungi Anda?",
     contactOptions: [
       { text: "Chat WhatsApp", value: "whatsapp" },
       { text: "Kembali ke Menu", value: "menu" },
@@ -241,18 +74,36 @@ const translations = {
       { text: "Lihat Harga Software", value: "harga-software" },
       { text: "Kembali ke Layanan", value: "layanan" },
     ],
+    basicPlan:
+      "SuperNeo (Rp 1.250.000) mencakup:\n• 2 Halaman statis\n• Domain: .com atau .net (1 tahun)\n• Hosting 1GB SSD (lokal/Asia), Bandwidth 10GB\n• Desain responsif & User Friendly\n• Setup email domain (1 akun)\n\nCocok untuk freelancer, mahasiswa, dan UMKM yang ingin go digital dengan budget terbatas.",
+    basicPlanOptions: [
+      { text: "Pesan Basic Plan", value: "pesan-basic" },
+      { text: "Lihat Paket Lain", value: "paket" },
+    ],
+    standardPlan:
+      "SuperPro (Rp 2.500.000) mencakup:\n• 6+ Halaman (maksimal 8 halaman)\n• Domain: .com, .net, .co.id (1 tahun)\n• Hosting 2GB SSD (lokal/Asia), Bandwidth 30GB\n• Desain responsif & User Friendly\n• Integrasi media sosial\n• Fitur chat WhatsApp\n• UI/UX desain (tanpa template)\n\nSempurna untuk website profesional dan eksklusif dengan fitur lengkap.",
+    standardPlanOptions: [
+      { text: "Pesan Standard Plan", value: "pesan-standard" },
+      { text: "Lihat Paket Lain", value: "paket" },
+    ],
+    premiumPlan:
+      "SuperPremium (Rp 5.500.000) mencakup:\n• 10+ Halaman Custom (maksimal 12 halaman)\n• Domain: .com, .net, .co.id, .id, .org (1 tahun)\n• Hosting 5GB SSD, Bandwidth Unmetered\n• Full CMS Dinamis (admin dashboard)\n• Animasi ringan (hero, hover, fade)\n• 4 Email Bisnis\n• Gratis AI Chatbot\n\nSolusi lengkap dengan fitur premium dan dukungan prioritas.",
+    premiumPlanOptions: [
+      { text: "Pesan Premium Plan", value: "pesan-premium" },
+      { text: "Lihat Paket Lain", value: "paket" },
+    ],
     whatsapp: "Anda akan diarahkan ke WhatsApp untuk berbicara dengan tim kami. Ada hal lain yang bisa kami bantu?",
     whatsappOptions: [{ text: "Kembali ke Menu", value: "menu" }],
-    orderSuccess: "🎉 PESANAN BERHASIL DIBUAT!\n\n📋 Nomor Tiket:",
-    orderDetails:
-      "📦 Paket: {package}\n💰 Harga: {price}\n🔧 Layanan: {service}\n\n✅ Pesanan Anda telah tercatat dalam sistem kami!\n\nUntuk melanjutkan proses pembayaran dan diskusi detail proyek, silakan klik tombol di bawah untuk chat langsung dengan tim kami di WhatsApp.\n\n📱 Tim kami akan segera merespon dan membantu Anda menyelesaikan transaksi.",
-    orderWhatsappMessage:
-      "Halo Supernesia! Saya ingin melanjutkan pesanan dengan:\n\n📋 Nomor Tiket: {ticket}\n📦 Paket: {package}\n💰 Harga: {price}\n🔧 Layanan: {service}\n\nMohon bantuan untuk proses selanjutnya. Terima kasih!",
+    orderBasic:
+      "✅ Baik, pesanan Basic Plan kamu sudah kami terima!\nAgar kami bisa lanjut prosesnya, silakan kirimkan:\n• Nama lengkap\n• Kebutuhan spesifik (misal: company profile, blog, dsb)\n• Budget (jika ada tambahan request)\n\n✨ Setelah itu, kami akan arahkan kamu ke WhatsApp untuk diskusi lebih lanjut ya!\n\nKlik tombol berikut untuk lanjut ke WA 🚀",
+    orderStandard:
+      "✅ Baik, pesanan Standard Plan kamu sudah kami terima!\nAgar kami bisa lanjut prosesnya, silakan kirimkan:\n• Nama lengkap\n• Kebutuhan spesifik (misal: company profile, blog, dsb)\n• Budget (jika ada tambahan request)\n\n✨ Setelah itu, kami akan arahkan kamu ke WhatsApp untuk diskusi lebih lanjut ya!\n\nKlik tombol berikut untuk lanjut ke WA 🚀",
+    orderPremium:
+      "✅ Baik, pesanan Premium Plan kamu sudah kami terima!\nAgar kami bisa lanjut prosesnya, silakan kirimkan:\n• Nama lengkap\n• Kebutuhan spesifik (misal: company profile, blog, dsb)\n• Budget (jika ada tambahan request)\n\n✨ Setelah itu, kami akan arahkan kamu ke WhatsApp untuk diskusi lebih lanjut ya!\n\nKlik tombol berikut untuk lanjut ke WA 🚀",
     orderOptions: [
-      { text: "💬 Lanjut ke WhatsApp", value: "order-whatsapp" },
-      { text: "📋 Salin Nomor Tiket", value: "copy-ticket" },
+      { text: "Lanjut ke WhatsApp", value: "whatsapp" },
+      { text: "Kembali ke Menu", value: "menu" },
     ],
-    ticketCopied: "✅ Nomor tiket berhasil disalin!",
     fallback: "Maaf, pertanyaanmu belum tersedia. Mau lihat daftar layanan kami?",
     typePlaceholder: "Ketik pesan...",
     assistant: "AI Assistant",
@@ -275,32 +126,11 @@ const translations = {
       { text: "Custom Software", value: "software" },
     ],
     pricing:
-      "We have several pricing packages for our services. Please select the type of service you want to see pricing for:",
+      "We have several pricing packages for our services:\n\n1. SuperNeo: Rp 1,250,000\n2. SuperPro: Rp 2,500,000\n3. SuperPremium: Rp 5,500,000\n\nWould you like to know more details about a specific package?",
     pricingOptions: [
-      { text: "Web Development", value: "harga-web" },
-      { text: "Mobile & Desktop Apps", value: "harga-mobile" },
-      { text: "Custom Software", value: "harga-software" },
-    ],
-    webPricing:
-      "Here are the pricing packages for Web Development:\n\n1. SuperNeo: Rp 1,250,000\n2. SuperPro: Rp 2,500,000\n3. SuperPremium: Rp 5,500,000\n\nWould you like to know more details about a specific package?",
-    mobilePricing:
-      "Here are the pricing packages for Mobile & Desktop Apps:\n\n1. SuperNeo: Starting from Rp 5,000,000\n2. SuperPro: Starting from Rp 8,500,000\n3. SuperPremium: Starting from Rp 12,000,000\n\nWould you like to know more details about a specific package?",
-    softwarePricing:
-      "Here are the pricing packages for Custom Software:\n\n1. SuperNeo: Contact us for special pricing\n2. SuperPro: Contact us for special pricing\n3. SuperPremium: Contact us for special pricing\n\nWould you like to know more details about a specific package?",
-    pricingWebOptions: [
-      { text: "SuperNeo", value: "web-basic" },
-      { text: "SuperPro", value: "web-standard" },
-      { text: "SuperPremium", value: "web-premium" },
-    ],
-    pricingMobileOptions: [
-      { text: "SuperNeo", value: "mobile-basic" },
-      { text: "SuperPro", value: "mobile-standard" },
-      { text: "SuperPremium", value: "mobile-premium" },
-    ],
-    pricingSoftwareOptions: [
-      { text: "SuperNeo", value: "software-basic" },
-      { text: "SuperPro", value: "software-standard" },
-      { text: "SuperPremium", value: "software-premium" },
+      { text: "SuperNeo", value: "basic" },
+      { text: "SuperPro", value: "standard" },
+      { text: "SuperPremium", value: "premium" },
     ],
     packages:
       "We offer 3 main packages:\n\n1. SuperNeo: Suitable for new businesses that need a simple website\n2. SuperPro: For websites with advanced features and exclusive design\n3. SuperPremium: Complete solution with premium features and priority support\n\nWhich package would you like to know more about?",
@@ -310,7 +140,7 @@ const translations = {
       { text: "SuperPremium", value: "premium" },
     ],
     contact:
-      "You can contact us through:\n\nWhatsApp: 0812-8189-2625\nEmail: info@supernesia.com\nAddress: East Jakarta, Indonesia\n\nWould you like us to contact you?",
+      "You can contact us through:\n\nWhatsApp: 081281892625\nEmail: info@supernesia.com\nAddress: East Jakarta, Indonesia\n\nWould you like us to contact you?",
     contactOptions: [
       { text: "Chat on WhatsApp", value: "whatsapp" },
       { text: "Back to Menu", value: "menu" },
@@ -333,18 +163,36 @@ const translations = {
       { text: "View Software Pricing", value: "harga-software" },
       { text: "Back to Services", value: "layanan" },
     ],
+    basicPlan:
+      "SuperNeo (Rp 1,250,000) includes:\n• 2 Static Pages\n• Domain: .com or .net (1 year)\n• 1GB SSD Hosting (local/Asia), 10GB Bandwidth\n• Responsive & User-Friendly Design\n• Domain email setup (1 account)\n\nSuitable for freelancers, students, and SMEs who want to go digital on a limited budget.",
+    basicPlanOptions: [
+      { text: "Order Basic Plan", value: "pesan-basic" },
+      { text: "View Other Packages", value: "paket" },
+    ],
+    standardPlan:
+      "SuperPro (Rp 2,500,000) includes:\n• 6+ Pages (up to 8 pages)\n• Domain: .com, .net, .co.id (1 year)\n• 2GB SSD Hosting (local/Asia), 30GB Bandwidth\n• Responsive & User-Friendly Design\n• Social media integration\n• WhatsApp chat feature\n• UI/UX design (without templates)\n\nPerfect for professional and exclusive websites with complete features.",
+    standardPlanOptions: [
+      { text: "Order Standard Plan", value: "pesan-standard" },
+      { text: "View Other Packages", value: "paket" },
+    ],
+    premiumPlan:
+      "SuperPremium (Rp 5,500,000) includes:\n• 10+ Custom Pages (up to 12 pages)\n• Domain: .com, .net, .co.id, .id, .org (1 year)\n• 5GB SSD Hosting, Unmetered Bandwidth\n• Full Dynamic CMS (admin dashboard)\n• Light animations (hero, hover, fade)\n• 4 Business Emails\n• Free AI Chatbot\n\nComplete solution with premium features and priority support.",
+    premiumPlanOptions: [
+      { text: "Order Premium Plan", value: "pesan-premium" },
+      { text: "View Other Packages", value: "paket" },
+    ],
     whatsapp: "You will be directed to WhatsApp to speak with our team. Is there anything else we can help you with?",
     whatsappOptions: [{ text: "Back to Menu", value: "menu" }],
-    orderSuccess: "🎉 ORDER SUCCESSFULLY CREATED!\n\n📋 Ticket Number:",
-    orderDetails:
-      "📦 Package: {package}\n💰 Price: {price}\n🔧 Service: {service}\n\n✅ Your order has been recorded in our system!\n\nTo continue the payment process and discuss project details, please click the button below to chat directly with our team on WhatsApp.\n\n📱 Our team will respond promptly and help you complete the transaction.",
-    orderWhatsappMessage:
-      "Hello Supernesia! I want to continue my order with:\n\n📋 Ticket Number: {ticket}\n📦 Package: {package}\n💰 Price: {price}\n🔧 Service: {service}\n\nPlease assist with the next process. Thank you!",
+    orderBasic:
+      "✅ Great, your Basic Plan order has been received!\nTo proceed, please provide us with:\n• Your full name\n• Specific needs (e.g., company profile, blog, etc.)\n• Budget (if you have additional requests)\n\n✨ After that, we'll direct you to WhatsApp for further discussion!\n\nClick the button below to continue to WhatsApp 🚀",
+    orderStandard:
+      "✅ Great, your Standard Plan order has been received!\nTo proceed, please provide us with:\n• Your full name\n• Specific needs (e.g., company profile, blog, etc.)\n• Budget (if you have additional requests)\n\n✨ After that, we'll direct you to WhatsApp for further discussion!\n\nClick the button below to continue to WhatsApp 🚀",
+    orderPremium:
+      "✅ Great, your Premium Plan order has been received!\nTo proceed, please provide us with:\n• Your full name\n• Specific needs (e.g., company profile, blog, etc.)\n• Budget (if you have additional requests)\n\n✨ After that, we'll direct you to WhatsApp for further discussion!\n\nClick the button below to continue to WhatsApp 🚀",
     orderOptions: [
-      { text: "💬 Continue to WhatsApp", value: "order-whatsapp" },
-      { text: "📋 Copy Ticket Number", value: "copy-ticket" },
+      { text: "Continue to WhatsApp", value: "whatsapp" },
+      { text: "Back to Menu", value: "menu" },
     ],
-    ticketCopied: "✅ Ticket number copied successfully!",
     fallback: "Sorry, your question is not yet available. Would you like to see our list of services?",
     typePlaceholder: "Type a message...",
     assistant: "AI Assistant",
@@ -358,13 +206,6 @@ export default function SupernesiaChatbot() {
   const [isTyping, setIsTyping] = useState(false)
   const [showEmojiPicker, setShowEmojiPicker] = useState(false)
   const [language, setLanguage] = useState("ID")
-  const [currentOrder, setCurrentOrder] = useState<{
-    ticketNumber: string
-    packageName: string
-    price: string
-    serviceType: string
-  } | null>(null)
-  const [currentServiceType, setCurrentServiceType] = useState<"web" | "mobile" | "software" | null>(null)
   const messagesEndRef = useRef<HTMLDivElement>(null)
   const emojiPickerRef = useRef<HTMLDivElement>(null)
   const inputRef = useRef<HTMLInputElement>(null)
@@ -467,49 +308,6 @@ export default function SupernesiaChatbot() {
     inputRef.current?.focus()
   }
 
-  // Copy to clipboard function
-  const copyToClipboard = (text: string) => {
-    navigator.clipboard.writeText(text).then(() => {
-      // Show success message
-      const successMessage: Message = {
-        text: t.ticketCopied,
-        timestamp: new Date(),
-        sender: "bot",
-        status: "delivered",
-        active: false,
-        typing: false,
-      }
-      setMessages((prev) => [...prev, successMessage])
-    })
-  }
-
-  // Generate plan description based on service type and plan name
-  const getPlanDetails = (serviceType: string, planName: string) => {
-    let plans
-    let serviceName = ""
-
-    if (serviceType === "web") {
-      plans = webPlans
-      serviceName = "Web Development"
-    } else if (serviceType === "mobile") {
-      plans = mobilePlans
-      serviceName = "Mobile & Desktop Apps"
-    } else if (serviceType === "software") {
-      plans = softwarePlans
-      serviceName = "Custom Software"
-    } else {
-      return null
-    }
-
-    const plan = plans.find((p) => p.name === planName)
-    if (!plan) return null
-
-    return {
-      ...plan,
-      serviceName,
-    }
-  }
-
   // Generate bot response based on user input
   const generateBotResponse = (input: string): Message => {
     // Check for greetings
@@ -546,39 +344,6 @@ export default function SupernesiaChatbot() {
         typing: false,
         options: t.pricingOptions,
       }
-    } else if (input === "harga-web" || input.includes("harga-web")) {
-      setCurrentServiceType("web")
-      return {
-        text: t.webPricing,
-        timestamp: new Date(),
-        sender: "bot",
-        status: "delivered",
-        active: false,
-        typing: false,
-        options: t.pricingWebOptions,
-      }
-    } else if (input === "harga-mobile" || input.includes("harga-mobile")) {
-      setCurrentServiceType("mobile")
-      return {
-        text: t.mobilePricing,
-        timestamp: new Date(),
-        sender: "bot",
-        status: "delivered",
-        active: false,
-        typing: false,
-        options: t.pricingMobileOptions,
-      }
-    } else if (input === "harga-software" || input.includes("harga-software")) {
-      setCurrentServiceType("software")
-      return {
-        text: t.softwarePricing,
-        timestamp: new Date(),
-        sender: "bot",
-        status: "delivered",
-        active: false,
-        typing: false,
-        options: t.pricingSoftwareOptions,
-      }
     } else if (input === "paket" || input.includes("paket") || input.includes("info")) {
       return {
         text: t.packages,
@@ -605,7 +370,6 @@ export default function SupernesiaChatbot() {
         options: t.contactOptions,
       }
     } else if (input === "web" || input.includes("web development")) {
-      setCurrentServiceType("web")
       return {
         text: t.webDev,
         timestamp: new Date(),
@@ -616,7 +380,6 @@ export default function SupernesiaChatbot() {
         options: t.webDevOptions,
       }
     } else if (input === "mobile" || input.includes("mobile") || input.includes("app")) {
-      setCurrentServiceType("mobile")
       return {
         text: t.mobileDev,
         timestamp: new Date(),
@@ -627,7 +390,6 @@ export default function SupernesiaChatbot() {
         options: t.mobileDevOptions,
       }
     } else if (input === "software" || input.includes("software") || input.includes("custom")) {
-      setCurrentServiceType("software")
       return {
         text: t.softwareDev,
         timestamp: new Date(),
@@ -637,248 +399,35 @@ export default function SupernesiaChatbot() {
         typing: false,
         options: t.softwareDevOptions,
       }
-    } else if (input === "web-basic" || input.includes("web-basic")) {
-      const plan = getPlanDetails("web", "SuperNeo")
-      if (!plan)
-        return {
-          text: t.fallback,
-          timestamp: new Date(),
-          sender: "bot",
-          status: "delivered",
-          active: false,
-          typing: false,
-        }
-
-      const features = plan.features.map((feature) => `• ${feature}`).join("\n")
-      const text = `${plan.name} (${plan.price}) mencakup:\n${features}\n\n${plan.description}`
-
+    } else if (input === "basic" || input.includes("basic")) {
       return {
-        text,
+        text: t.basicPlan,
         timestamp: new Date(),
         sender: "bot",
         status: "delivered",
         active: false,
         typing: false,
-        options: [
-          { text: `Pesan ${plan.name}`, value: "pesan-web-basic" },
-          { text: "Lihat Paket Lain", value: "harga-web" },
-        ],
+        options: t.basicPlanOptions,
       }
-    } else if (input === "web-standard" || input.includes("web-standard")) {
-      const plan = getPlanDetails("web", "SuperPro")
-      if (!plan)
-        return {
-          text: t.fallback,
-          timestamp: new Date(),
-          sender: "bot",
-          status: "delivered",
-          active: false,
-          typing: false,
-        }
-
-      const features = plan.features.map((feature) => `• ${feature}`).join("\n")
-      const text = `${plan.name} (${plan.price}) mencakup:\n${features}\n\n${plan.description}`
-
+    } else if (input === "standard" || input.includes("standard")) {
       return {
-        text,
+        text: t.standardPlan,
         timestamp: new Date(),
         sender: "bot",
         status: "delivered",
         active: false,
         typing: false,
-        options: [
-          { text: `Pesan ${plan.name}`, value: "pesan-web-standard" },
-          { text: "Lihat Paket Lain", value: "harga-web" },
-        ],
+        options: t.standardPlanOptions,
       }
-    } else if (input === "web-premium" || input.includes("web-premium")) {
-      const plan = getPlanDetails("web", "SuperPremium")
-      if (!plan)
-        return {
-          text: t.fallback,
-          timestamp: new Date(),
-          sender: "bot",
-          status: "delivered",
-          active: false,
-          typing: false,
-        }
-
-      const features = plan.features.map((feature) => `• ${feature}`).join("\n")
-      const text = `${plan.name} (${plan.price}) mencakup:\n${features}\n\n${plan.description}`
-
+    } else if (input === "premium" || input.includes("premium")) {
       return {
-        text,
+        text: t.premiumPlan,
         timestamp: new Date(),
         sender: "bot",
         status: "delivered",
         active: false,
         typing: false,
-        options: [
-          { text: `Pesan ${plan.name}`, value: "pesan-web-premium" },
-          { text: "Lihat Paket Lain", value: "harga-web" },
-        ],
-      }
-    } else if (input === "mobile-basic" || input.includes("mobile-basic")) {
-      const plan = getPlanDetails("mobile", "SuperNeo")
-      if (!plan)
-        return {
-          text: t.fallback,
-          timestamp: new Date(),
-          sender: "bot",
-          status: "delivered",
-          active: false,
-          typing: false,
-        }
-
-      const features = plan.features.map((feature) => `• ${feature}`).join("\n")
-      const text = `${plan.name} (${plan.price}) mencakup:\n${features}\n\n${plan.description}`
-
-      return {
-        text,
-        timestamp: new Date(),
-        sender: "bot",
-        status: "delivered",
-        active: false,
-        typing: false,
-        options: [
-          { text: `Pesan ${plan.name}`, value: "pesan-mobile-basic" },
-          { text: "Lihat Paket Lain", value: "harga-mobile" },
-        ],
-      }
-    } else if (input === "mobile-standard" || input.includes("mobile-standard")) {
-      const plan = getPlanDetails("mobile", "SuperPro")
-      if (!plan)
-        return {
-          text: t.fallback,
-          timestamp: new Date(),
-          sender: "bot",
-          status: "delivered",
-          active: false,
-          typing: false,
-        }
-
-      const features = plan.features.map((feature) => `• ${feature}`).join("\n")
-      const text = `${plan.name} (${plan.price}) mencakup:\n${features}\n\n${plan.description}`
-
-      return {
-        text,
-        timestamp: new Date(),
-        sender: "bot",
-        status: "delivered",
-        active: false,
-        typing: false,
-        options: [
-          { text: `Pesan ${plan.name}`, value: "pesan-mobile-standard" },
-          { text: "Lihat Paket Lain", value: "harga-mobile" },
-        ],
-      }
-    } else if (input === "mobile-premium" || input.includes("mobile-premium")) {
-      const plan = getPlanDetails("mobile", "SuperPremium")
-      if (!plan)
-        return {
-          text: t.fallback,
-          timestamp: new Date(),
-          sender: "bot",
-          status: "delivered",
-          active: false,
-          typing: false,
-        }
-
-      const features = plan.features.map((feature) => `• ${feature}`).join("\n")
-      const text = `${plan.name} (${plan.price}) mencakup:\n${features}\n\n${plan.description}`
-
-      return {
-        text,
-        timestamp: new Date(),
-        sender: "bot",
-        status: "delivered",
-        active: false,
-        typing: false,
-        options: [
-          { text: `Pesan ${plan.name}`, value: "pesan-mobile-premium" },
-          { text: "Lihat Paket Lain", value: "harga-mobile" },
-        ],
-      }
-    } else if (input === "software-basic" || input.includes("software-basic")) {
-      const plan = getPlanDetails("software", "SuperNeo")
-      if (!plan)
-        return {
-          text: t.fallback,
-          timestamp: new Date(),
-          sender: "bot",
-          status: "delivered",
-          active: false,
-          typing: false,
-        }
-
-      const features = plan.features.map((feature) => `• ${feature}`).join("\n")
-      const text = `${plan.name} (${plan.price}) mencakup:\n${features}\n\n${plan.description}`
-
-      return {
-        text,
-        timestamp: new Date(),
-        sender: "bot",
-        status: "delivered",
-        active: false,
-        typing: false,
-        options: [
-          { text: `Pesan ${plan.name}`, value: "pesan-software-basic" },
-          { text: "Lihat Paket Lain", value: "harga-software" },
-        ],
-      }
-    } else if (input === "software-standard" || input.includes("software-standard")) {
-      const plan = getPlanDetails("software", "SuperPro")
-      if (!plan)
-        return {
-          text: t.fallback,
-          timestamp: new Date(),
-          sender: "bot",
-          status: "delivered",
-          active: false,
-          typing: false,
-        }
-
-      const features = plan.features.map((feature) => `• ${feature}`).join("\n")
-      const text = `${plan.name} (${plan.price}) mencakup:\n${features}\n\n${plan.description}`
-
-      return {
-        text,
-        timestamp: new Date(),
-        sender: "bot",
-        status: "delivered",
-        active: false,
-        typing: false,
-        options: [
-          { text: `Pesan ${plan.name}`, value: "pesan-software-standard" },
-          { text: "Lihat Paket Lain", value: "harga-software" },
-        ],
-      }
-    } else if (input === "software-premium" || input.includes("software-premium")) {
-      const plan = getPlanDetails("software", "SuperPremium")
-      if (!plan)
-        return {
-          text: t.fallback,
-          timestamp: new Date(),
-          sender: "bot",
-          status: "delivered",
-          active: false,
-          typing: false,
-        }
-
-      const features = plan.features.map((feature) => `• ${feature}`).join("\n")
-      const text = `${plan.name} (${plan.price}) mencakup:\n${features}\n\n${plan.description}`
-
-      return {
-        text,
-        timestamp: new Date(),
-        sender: "bot",
-        status: "delivered",
-        active: false,
-        typing: false,
-        options: [
-          { text: `Pesan ${plan.name}`, value: "pesan-software-premium" },
-          { text: "Lihat Paket Lain", value: "harga-software" },
-        ],
+        options: t.premiumPlanOptions,
       }
     } else if (input === "whatsapp" || input.includes("whatsapp")) {
       window.open("https://wa.me/6281281892625", "_blank")
@@ -901,93 +450,35 @@ export default function SupernesiaChatbot() {
         typing: false,
         options: t.options,
       }
-    } else if (input.startsWith("pesan-")) {
-      // Handle all order types
-      const parts = input.split("-")
-      if (parts.length < 3)
-        return {
-          text: t.fallback,
-          timestamp: new Date(),
-          sender: "bot",
-          status: "delivered",
-          active: false,
-          typing: false,
-        }
-
-      const serviceType = parts[1] // web, mobile, software
-      const planType = parts[2] // basic, standard, premium
-
-      let planName
-      if (planType === "basic") planName = "SuperNeo"
-      else if (planType === "standard") planName = "SuperPro"
-      else if (planType === "premium") planName = "SuperPremium"
-      else planName = "Unknown"
-
-      const plan = getPlanDetails(serviceType, planName)
-      if (!plan)
-        return {
-          text: t.fallback,
-          timestamp: new Date(),
-          sender: "bot",
-          status: "delivered",
-          active: false,
-          typing: false,
-        }
-
-      const ticketNumber = generateTicketNumber()
-      const orderInfo = {
-        ticketNumber,
-        packageName: plan.name,
-        price: plan.price,
-        serviceType: plan.serviceName,
-      }
-      setCurrentOrder(orderInfo)
-
-      const orderText = `${t.orderSuccess} ${ticketNumber}\n\n${t.orderDetails
-        .replace("{package}", orderInfo.packageName)
-        .replace("{price}", orderInfo.price)
-        .replace("{service}", orderInfo.serviceType)}`
-
+    } else if (input === "pesan-basic" || input.includes("pesan-basic")) {
       return {
-        text: orderText,
+        text: t.orderBasic,
         timestamp: new Date(),
         sender: "bot",
         status: "delivered",
         active: false,
         typing: false,
         options: t.orderOptions,
-        orderInfo,
       }
-    } else if (input === "order-whatsapp" || input.includes("order-whatsapp")) {
-      if (currentOrder) {
-        const whatsappMessage = encodeURIComponent(
-          t.orderWhatsappMessage
-            .replace("{ticket}", currentOrder.ticketNumber)
-            .replace("{package}", currentOrder.packageName)
-            .replace("{price}", currentOrder.price)
-            .replace("{service}", currentOrder.serviceType),
-        )
-        window.open(`https://wa.me/6281281892625?text=${whatsappMessage}`, "_blank")
-      }
+    } else if (input === "pesan-standard" || input.includes("pesan-standard")) {
       return {
-        text: "✅ Anda akan diarahkan ke WhatsApp dengan informasi pesanan Anda. Tim kami siap membantu!",
+        text: t.orderStandard,
         timestamp: new Date(),
         sender: "bot",
         status: "delivered",
         active: false,
         typing: false,
+        options: t.orderOptions,
       }
-    } else if (input === "copy-ticket" || input.includes("copy-ticket")) {
-      if (currentOrder) {
-        copyToClipboard(currentOrder.ticketNumber)
-      }
+    } else if (input === "pesan-premium" || input.includes("pesan-premium")) {
       return {
-        text: "",
+        text: t.orderPremium,
         timestamp: new Date(),
         sender: "bot",
         status: "delivered",
         active: false,
         typing: false,
+        options: t.orderOptions,
       }
     } else {
       // Fallback message
@@ -1037,39 +528,46 @@ export default function SupernesiaChatbot() {
 
   return (
     <>
-      {/* WhatsApp Button */}
-      <Link
-        href="https://wa.me/6281281892625"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="fixed bottom-24 right-6 z-50"
-        aria-label="Chat on WhatsApp"
-      >
-        <Image src="/wa.png" alt="Chat on WhatsApp" width={48} height={48} className="object-contain" />
-      </Link>
+  {/* WhatsApp Button */}
+   <Link
+  href="https://wa.me/6281281892625"
+  target="_blank"
+  rel="noopener noreferrer"
+  className="fixed bottom-24 right-6 z-50"
+  aria-label="Chat on WhatsApp"
+>
+  <Image
+    src="/wa.png"
+    alt="Chat on WhatsApp"
+    width={48}
+    height={48}
+    className="object-contain"
+  />
+</Link>
 
-      {/* Chat Button */}
-      <div className="fixed bottom-6 right-6 z-50">
-        <button
-          onClick={() => setIsOpen(!isOpen)}
-          className="bg-secondary rounded-full shadow-lg hover:bg-secondary/90 transition-colors relative w-12 h-12 p-0"
-          aria-label={isOpen ? "Close chat" : "Open chat"}
-        >
-          {isOpen ? (
-            <X className="h-6 w-6 m-auto" />
-          ) : (
-            <>
-              <Image
-                src="/robot.png"
-                alt="AI Assistant"
-                width={48}
-                height={48}
-                className="w-full h-full object-contain rounded-full"
-              />
-              <span className="absolute -top-1 -right-1 bg-green-500 w-3 h-3 rounded-full"></span>
-            </>
-          )}
-        </button>
+
+  {/* Chat Button */}
+  <div className="fixed bottom-6 right-6 z-50">
+    <button
+      onClick={() => setIsOpen(!isOpen)}
+      className="bg-secondary rounded-full shadow-lg hover:bg-secondary/90 transition-colors relative w-12 h-12 p-0"
+      aria-label={isOpen ? "Close chat" : "Open chat"}
+    >
+      {isOpen ? (
+        <X className="h-6 w-6 m-auto" />
+      ) : (
+        <>
+          <Image
+            src="/robot.png"
+            alt="AI Assistant"
+            width={48}
+            height={48}
+            className="w-full h-full object-contain rounded-full"
+          />
+          <span className="absolute -top-1 -right-1 bg-green-500 w-3 h-3 rounded-full"></span>
+        </>
+      )}
+    </button>
 
         {/* Chat Window */}
         {isOpen && (
@@ -1095,30 +593,7 @@ export default function SupernesiaChatbot() {
                         : "bg-white dark:bg-gray-700 shadow-sm text-gray-800 dark:text-white"
                     }`}
                   >
-                    {message.text && <p className="whitespace-pre-line">{message.text}</p>}
-
-                    {/* Order Info Display */}
-                    {message.orderInfo && (
-                      <div className="mt-3 p-3 bg-green-50 dark:bg-green-900/20 rounded-lg border border-green-200 dark:border-green-700">
-                        <div className="flex items-center justify-between mb-2">
-                          <span className="font-bold text-green-700 dark:text-green-300">
-                            {message.orderInfo.ticketNumber}
-                          </span>
-                          <button
-                            onClick={() => copyToClipboard(message.orderInfo!.ticketNumber)}
-                            className="text-green-600 hover:text-green-800 dark:text-green-400 dark:hover:text-green-200"
-                          >
-                            <Copy className="w-4 h-4" />
-                          </button>
-                        </div>
-                        <div className="text-sm text-green-600 dark:text-green-300">
-                          <div>📦 {message.orderInfo.packageName}</div>
-                          <div>💰 {message.orderInfo.price}</div>
-                          <div>🔧 {message.orderInfo.serviceType}</div>
-                        </div>
-                      </div>
-                    )}
-
+                    <p className="whitespace-pre-line">{message.text}</p>
                     {message.options && (
                       <div className="mt-3 flex flex-col gap-2">
                         {message.options.map((option, idx) => (
