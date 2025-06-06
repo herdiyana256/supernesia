@@ -6,125 +6,131 @@ export default function Footer() {
   return (
     <footer className="bg-secondary text-white">
       <div className="px-4 md:px-12 lg:px-20 py-12">
-        <div className="grid md:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
+          {/* --- Footer Logo & Intro --- */}
           <div>
             <div className="mb-4">
-              <Image src="/footer.png" alt="Supernesia" width={150} height={40} className="h-8 w-auto" />
+              <Image 
+                src="/footer.png" 
+                alt="Supernesia Logo Footer" 
+                width={150} 
+                height={38} 
+                className="h-9 w-auto" 
+              /> 
             </div>
             <p className="text-sm mb-4">Memberdayakan bisnis dengan solusi transformasi digital strategis sejak 2025</p>
             <div className="flex space-x-4">
-              <Link href="#" className="hover:text-primary transition-colors">
-                <Facebook className="h-5 w-5" />
-              </Link>
-              <Link href="#" className="hover:text-primary transition-colors">
-                <Twitter className="h-5 w-5" />
-              </Link>
-              <Link href="#" className="hover:text-primary transition-colors">
-                <Instagram className="h-5 w-5" />
-              </Link>
-              <Link href="#" className="hover:text-primary transition-colors">
-                <Linkedin className="h-5 w-5" />
-              </Link>
-              <Link href="#" className="hover:text-primary transition-colors">
-                <Github className="h-5 w-5" />
-              </Link>
+              {[{Icon: Facebook, label: "Facebook"}, {Icon: Twitter, label: "Twitter"}, {Icon: Instagram, label: "Instagram"}, {Icon: Linkedin, label: "LinkedIn"}, {Icon: Github, label: "Github"}].map(({Icon, label}) => (
+                <Link 
+                  key={label}
+                  href="#"
+                  aria-label={label}
+                  className="
+                    text-white/80 
+                    hover:text-primary 
+                    transition-colors duration-300
+                    transform 
+                    hover:scale-110 
+                    active:scale-95 
+                    focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2
+                    "
+                >
+                  <Icon className="h-5 w-5" />
+                </Link>
+              ))}
             </div>
           </div>
 
+          {/* --- Footer Links: Layanan --- */}
           <div>
-            <h3 className="font-bold text-xl mb-4">Layanan</h3>
+            <h3 className="font-bold text-lg mb-4">Layanan</h3>
             <ul className="space-y-2">
-              <li>
-                <Link href="#" className="text-sm hover:text-primary transition-colors">
-                  Strategi Teknologi & Digital
-                </Link>
-              </li>
-              <li>
-                <Link href="#" className="text-sm hover:text-primary transition-colors">
-                  Pengembangan Produk
-                </Link>
-              </li>
-              <li>
-                <Link href="#" className="text-sm hover:text-primary transition-colors">
-                  Otomatisasi Proses Bisnis
-                </Link>
-              </li>
-              <li>
-                <Link href="#" className="text-sm hover:text-primary transition-colors">
-                  Konsultasi Tech Stack
-                </Link>
-              </li>
-              <li>
-                <Link href="#" className="text-sm hover:text-primary transition-colors">
-                  Pengembangan Web & Mobile
-                </Link>
-              </li>
-              <li>
-                <Link href="#" className="text-sm hover:text-primary transition-colors">
-                  Desain UI/UX
-                </Link>
-              </li>
+              {[
+                "Strategi Teknologi & Digital",
+                "Pengembangan Produk",
+                "Otomatisasi Proses Bisnis",
+                "Konsultasi Tech Stack",
+                "Pengembangan Web & Mobile",
+                "Desain UI/UX",
+              ].map((item) => (
+                <li key={item}>
+                  <Link 
+                    href="#" 
+                    className="
+                      text-sm text-white/80 
+                      hover:text-primary 
+                      transition-colors duration-300
+                      focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2
+                      active:scale-95
+                      "
+                  >
+                    {item}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
 
+          {/* --- Footer Links: Perusahaan --- */}
           <div>
-            <h3 className="font-bold text-xl mb-4">Perusahaan</h3>
+            <h3 className="font-bold text-lg mb-4">Perusahaan</h3>
             <ul className="space-y-2">
-              <li>
-                <Link href="/" className="text-sm hover:text-primary transition-colors">
-                  Tentang Kami
-                </Link>
-              </li>
-              <li>
-                <Link href="#" className="text-sm hover:text-primary transition-colors">
-                  Klien Kami
-                </Link>
-              </li>
-              <li>
-                <Link href="#" className="text-sm hover:text-primary transition-colors">
-                  Blog
-                </Link>
-              </li>
-              <li>
-                <Link href="#" className="text-sm hover:text-primary transition-colors">
-                  Kontak
-                </Link>
-              </li>
-              <li>
-                <Link href="#" className="text-sm hover:text-primary transition-colors">
-                  Karir
-                </Link>
-              </li>
+              {[
+                {label: "Tentang Kami", href: "/"},
+                {label: "Klien Kami", href: "#"},
+                {label: "Blog", href: "#"},
+                {label: "Kontak", href: "#"},
+                {label: "Karir", href: "#"},
+              ].map(({label, href}) => (
+                <li key={label}>
+                  <Link 
+                    href={href} 
+                    className="
+                      text-sm text-white/80 
+                      hover:text-primary 
+                      transition-colors duration-300
+                      focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2
+                      active:scale-95
+                      "
+                  >
+                    {label}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
 
+          {/* --- Footer Contact Info --- */}
           <div>
-            <h3 className="font-bold text-xl mb-4">Kontak</h3>
-            <ul className="space-y-2">
-              <li className="text-sm">Jakarta Timur, Indonesia</li>
-              <li className="text-sm">WhatsApp: 089628127896</li>
-              <li className="text-sm">info@supernesia.com</li>
+            <h3 className="font-bold text-lg mb-4">Kontak</h3>
+            <ul className="space-y-2 text-sm text-white/80">
+              <li>Gedung Wirausaha Lantai 1 Unit 104, Jalan HR Rasuna Said Kav. C-5 RT 003/RW 001 Kelurahan Karet, Kecamatan Setia Budi, Kota Jakarta Selatan, 12920</li>
+              <li>WhatsApp: 0812-8189-2625</li>
+              <li>info@supernesia.com</li>
             </ul>
           </div>
         </div>
 
-        <div className="border-t border-white/20 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
-          <p className="text-sm">© 2025 Supernesia. Semua hak dilindungi undang-undang.</p>
-          <div className="mt-4 text-xs text-white/60 max-w-full">
-            <p className="leading-relaxed">
-              Transformasi Digital, Pengembangan Web dan Mobile, Konsultasi Teknologi, Solusi Digital, Desain UI/UX,
-              Pengembangan Produk Digital, Otomatisasi Bisnis, Strategi Teknologi Digital, Layanan IT, Konsultan
-              Teknologi, Jasa Pengembangan Website, Platform Digital, Jasa Desain Web dan Mobile, IT Solutions, Layanan
-              Bisnis Digital
-            </p>
-          </div>
-          <div className="flex gap-4 mt-4 md:mt-0">
-            <Link href="#" className="text-sm hover:text-primary transition-colors">
-              Kebijakan Privasi
-            </Link>
-            <Link href="#" className="text-sm hover:text-primary transition-colors">
-              Syarat Layanan
-            </Link>
+        {/* --- Footer Bottom --- */}
+        <div className="border-t border-white/20 mt-10 pt-8 flex flex-col md:flex-row justify-between items-center text-center md:text-left">
+          <p className="text-sm text-white/80 order-last md:order-first mt-4 md:mt-0">© {new Date().getFullYear()} Supernesia. Semua hak dilindungi undang-undang.</p>
+          
+          <div className="flex gap-4 order-first md:order-last">
+            {["Kebijakan Privasi", "Syarat Layanan"].map((item) => (
+              <Link 
+                key={item}
+                href="#"
+                className="
+                  text-sm text-white/80 
+                  hover:text-primary 
+                  transition-colors duration-300
+                  focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2
+                  active:scale-95
+                  "
+              >
+                {item}
+              </Link>
+            ))}
           </div>
         </div>
       </div>

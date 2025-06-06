@@ -18,10 +18,8 @@ module.exports = {
     },
     extend: {
       fontFamily: {
-        sans: ["var(--font-nunito)", "ui-sans-serif", "system-ui", "sans-serif"], // default body pakai Nunito
-        bebasNeue: ["var(--font-bebas-neue)", "cursive"], // untuk navbar Bebas Neue
-        // anton tetap bisa kamu hapus atau simpan jika masih ada kebutuhan
-        // anton: ["var(--font-anton)"],
+        sans: ["var(--font-nunito)", "ui-sans-serif", "system-ui", "sans-serif"],
+        bebasNeue: ["var(--font-bebas-neue)", "cursive"],
       },
       fontSize: {
         base: "1.125rem", // 18px
@@ -32,14 +30,17 @@ module.exports = {
         ring: "hsl(var(--ring))",
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
+
+        // ✅ Brand colors
         primary: {
-          DEFAULT: "#FFDE59",
+          DEFAULT: "#e9e15b", // kuning
           foreground: "#000000",
         },
         secondary: {
-          DEFAULT: "#FF5580",
+          DEFAULT: "#2b2b2b", // abu gelap
           foreground: "#FFFFFF",
         },
+
         destructive: {
           DEFAULT: "hsl(var(--destructive))",
           foreground: "hsl(var(--destructive-foreground))",
