@@ -24,7 +24,7 @@ export default function WhySection() {
   const [clickedCards, setClickedCards] = useState(new Set<number>())
   const [hoveredCard, setHoveredCard] = useState<number | null>(null)
   const ref = useRef(null)
-  const isInView = useInView(ref, { once: true, amount: 0.2 })
+  const isInView = useInView(ref, { once: true, amount: 0.1 })
 
   const handleCardClick = (index: number) => {
     setActiveCard(activeCard === index ? null : index)
@@ -94,7 +94,7 @@ export default function WhySection() {
     },
   ]
 
-  // Animation variants
+  // Simplified animation variants for better mobile performance
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -107,15 +107,13 @@ export default function WhySection() {
   }
 
   const headerVariants = {
-    hidden: { opacity: 0, y: -50 },
+    hidden: { opacity: 0, y: -30 },
     visible: {
       opacity: 1,
       y: 0,
       transition: {
-        type: "spring",
-        stiffness: 100,
-        damping: 15,
-        duration: 0.8,
+        duration: 0.6,
+        ease: "easeOut",
       },
     },
   }
@@ -123,210 +121,100 @@ export default function WhySection() {
   const cardVariants = {
     hidden: {
       opacity: 0,
-      y: 60,
-      scale: 0.8,
-      rotateX: -15,
+      y: 30,
+      scale: 0.95,
     },
     visible: (i: number) => ({
       opacity: 1,
       y: 0,
       scale: 1,
-      rotateX: 0,
       transition: {
-        delay: i * 0.15,
-        duration: 0.8,
-        type: "spring",
-        stiffness: 100,
-        damping: 12,
+        delay: i * 0.1,
+        duration: 0.5,
+        ease: "easeOut",
       },
     }),
   }
 
   const iconVariants = {
-    hidden: { scale: 0, rotate: -180 },
+    hidden: { scale: 0.8, opacity: 0 },
     visible: {
       scale: 1,
-      rotate: 0,
-      transition: {
-        type: "spring",
-        stiffness: 200,
-        damping: 15,
-        delay: 0.2,
-      },
-    },
-    hover: {
-      scale: 1.2,
-      rotate: 360,
-      transition: {
-        duration: 0.6,
-        ease: "easeInOut",
-      },
-    },
-  }
-
-  const statsVariants = {
-    hidden: { opacity: 0, scale: 0 },
-    visible: {
       opacity: 1,
-      scale: 1,
       transition: {
-        type: "spring",
-        stiffness: 200,
-        damping: 20,
-        delay: 0.5,
+        duration: 0.4,
+        ease: "easeOut",
       },
     },
-  }
-
-  // Consistent expand button variants
-  const expandButtonVariants = {
-    rest: {
-      scale: 1,
-      backgroundColor: "rgba(243, 244, 246, 1)", // bg-gray-100
-    },
-    hover: {
-      scale: 1.1,
-      backgroundColor: "rgba(229, 231, 235, 1)", // bg-gray-200
-      transition: {
-        type: "spring",
-        stiffness: 400,
-        damping: 10,
-      },
-    },
-    active: {
-      scale: 1,
-      backgroundColor: "rgba(43, 43, 43, 1)", // bg-[#2b2b2b]
-      transition: {
-        type: "spring",
-        stiffness: 400,
-        damping: 10,
-      },
-    },
-  }
-
-  const chevronVariants = {
-    rest: { rotate: 0 },
-    active: { rotate: 180 },
   }
 
   return (
     <section
       ref={ref}
-      className="py-20 px-4 md:px-12 lg:px-20 rounded-3xl mx-4 md:mx-12 lg:mx-20 my-16 relative overflow-hidden"
-      style={{ backgroundColor: "#e9e15b" }}
+      className="py-12 sm:py-16 md:py-20 px-4 sm:px-6 md:px-12 lg:px-20 rounded-2xl sm:rounded-3xl mx-2 sm:mx-4 md:mx-12 lg:mx-20 my-8 sm:my-12 md:my-16 relative overflow-hidden"
+      style={{ backgroundColor: "#e9e15b", minHeight: "auto" }}
     >
-      {/* Animated Background Elements */}
+      {/* Simplified Background Elements for Mobile */}
+      <div className="absolute inset-0 opacity-5">
+        <div className="absolute top-1/4 left-1/4 w-32 h-32 bg-gray-800 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-1/4 right-1/4 w-32 h-32 bg-gray-800 rounded-full blur-3xl"></div>
+      </div>
+
       <motion.div
-        className="absolute inset-0 opacity-10"
-        animate={{
-          background: [
-            "radial-gradient(circle at 20% 50%, #2b2b2b 0%, transparent 50%)",
-            "radial-gradient(circle at 80% 50%, #2b2b2b 0%, transparent 50%)",
-            "radial-gradient(circle at 40% 50%, #2b2b2b 0%, transparent 50%)",
-          ],
-        }}
-        transition={{
-          duration: 8,
-          repeat: Number.POSITIVE_INFINITY,
-          ease: "easeInOut",
-        }}
-      />
-
-      {/* Floating Particles */}
-      {[...Array(6)].map((_, i) => (
-        <motion.div
-          key={i}
-          className="absolute w-2 h-2 bg-white/20 rounded-full"
-          style={{
-            left: `${Math.random() * 100}%`,
-            top: `${Math.random() * 100}%`,
-          }}
-          animate={{
-            y: [-20, 20, -20],
-            opacity: [0.2, 0.8, 0.2],
-          }}
-          transition={{
-            duration: 3 + Math.random() * 2,
-            repeat: Number.POSITIVE_INFINITY,
-            ease: "easeInOut",
-            delay: Math.random() * 2,
-          }}
-        />
-      ))}
-
-      <motion.div initial="hidden" animate={isInView ? "visible" : "hidden"} variants={containerVariants}>
-        {/* Header Section */}
-        <motion.div className="text-center mb-16" variants={headerVariants}>
+        initial="hidden"
+        animate={isInView ? "visible" : "hidden"}
+        variants={containerVariants}
+        className="relative z-10"
+      >
+        {/* Header Section - Mobile Optimized */}
+        <motion.div className="text-center mb-12 sm:mb-16" variants={headerVariants}>
           <motion.div
-            className="inline-flex items-center bg-white/20 backdrop-blur-sm rounded-full px-6 py-3 mb-6"
-            whileHover={{ scale: 1.05 }}
-            transition={{ type: "spring", stiffness: 400, damping: 10 }}
+            className="inline-flex items-center bg-white/20 backdrop-blur-sm rounded-full px-4 sm:px-6 py-2 sm:py-3 mb-4 sm:mb-6"
+            whileHover={{ scale: 1.02 }}
+            transition={{ duration: 0.2 }}
           >
-            <Star className="w-5 h-5 text-[#2b2b2b] mr-2" />
-            <span className="text-[#2b2b2b] font-semibold">WHY CHOOSE US</span>
-            <Star className="w-5 h-5 text-[#2b2b2b] ml-2" />
+            <Star className="w-4 h-4 sm:w-5 sm:h-5 text-[#2b2b2b] mr-2" />
+            <span className="text-[#2b2b2b] font-semibold text-sm sm:text-base">WHY CHOOSE US</span>
+            <Star className="w-4 h-4 sm:w-5 sm:h-5 text-[#2b2b2b] ml-2" />
           </motion.div>
 
           <motion.h1
-            className="text-5xl md:text-7xl font-black text-[#2b2b2b] leading-tight"
-            initial={{ opacity: 0, y: 30 }}
-            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-            transition={{ delay: 0.3, duration: 0.8 }}
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-black text-[#2b2b2b] leading-tight px-2"
+            initial={{ opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+            transition={{ delay: 0.3, duration: 0.6 }}
           >
             KENAPA{" "}
-            <motion.span
-              className="text-white relative"
-              whileHover={{ scale: 1.05 }}
-              transition={{ type: "spring", stiffness: 400, damping: 10 }}
-            >
+            <span className="text-white relative inline-block">
               SUPERNESIA
               <motion.div
-                className="absolute -inset-2 bg-[#2b2b2b] rounded-lg -z-10"
+                className="absolute -inset-1 sm:-inset-2 bg-[#2b2b2b] rounded-lg -z-10"
                 initial={{ scaleX: 0 }}
                 animate={isInView ? { scaleX: 1 } : { scaleX: 0 }}
                 transition={{ delay: 0.8, duration: 0.6 }}
               />
-            </motion.span>
+            </span>
             <br />
             ADALAH{" "}
-            <motion.span
-              className="bg-gradient-to-r from-[#2b2b2b] to-gray-800 bg-clip-text text-transparent"
-              animate={{
-                backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
-              }}
-              transition={{
-                duration: 3,
-                repeat: Number.POSITIVE_INFINITY,
-                ease: "easeInOut",
-              }}
-            >
-              SOLUSI?
-            </motion.span>
+            <span className="bg-gradient-to-r from-[#2b2b2b] to-gray-800 bg-clip-text text-transparent">SOLUSI?</span>
           </motion.h1>
 
           <motion.p
-            className="text-gray-700 mt-6 text-xl max-w-3xl mx-auto"
+            className="text-gray-700 mt-4 sm:mt-6 text-base sm:text-lg md:text-xl max-w-3xl mx-auto px-4"
             initial={{ opacity: 0 }}
             animate={isInView ? { opacity: 1 } : { opacity: 0 }}
-            transition={{ delay: 0.5, duration: 0.8 }}
+            transition={{ delay: 0.5, duration: 0.6 }}
           >
             Sebagai konsultan IT terpercaya, kami menghadirkan solusi teknologi enterprise yang scalable dan
             future-ready untuk transformasi digital bisnis Anda.
-            <motion.span
-              animate={{ rotate: [0, 10, -10, 0] }}
-              transition={{ duration: 1, repeat: Number.POSITIVE_INFINITY, repeatDelay: 2 }}
-              className="inline-block ml-2"
-            >
-              👇
-            </motion.span>
           </motion.p>
 
-          {/* Stats Bar */}
+          {/* Stats Bar - Mobile Responsive */}
           <motion.div
-            className="flex justify-center items-center space-x-8 mt-8"
+            className="flex flex-col sm:flex-row justify-center items-center space-y-2 sm:space-y-0 sm:space-x-4 md:space-x-8 mt-6 sm:mt-8"
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-            transition={{ delay: 0.7, duration: 0.8 }}
+            transition={{ delay: 0.7, duration: 0.6 }}
           >
             {[
               { icon: Users, label: "150+ Enterprise Clients", value: "150+" },
@@ -335,19 +223,22 @@ export default function WhySection() {
             ].map((stat, index) => (
               <motion.div
                 key={index}
-                className="flex items-center space-x-2 bg-white/20 backdrop-blur-sm rounded-full px-4 py-2"
-                whileHover={{ scale: 1.05, backgroundColor: "rgba(255,255,255,0.3)" }}
-                transition={{ type: "spring", stiffness: 400, damping: 10 }}
+                className="flex items-center space-x-2 bg-white/20 backdrop-blur-sm rounded-full px-3 sm:px-4 py-2"
+                whileHover={{ scale: 1.02 }}
+                transition={{ duration: 0.2 }}
               >
-                <stat.icon className="w-5 h-5 text-[#2b2b2b]" />
-                <span className="text-[#2b2b2b] font-semibold text-sm">{stat.label}</span>
+                <stat.icon className="w-4 h-4 sm:w-5 sm:h-5 text-[#2b2b2b]" />
+                <span className="text-[#2b2b2b] font-semibold text-xs sm:text-sm">{stat.label}</span>
               </motion.div>
             ))}
           </motion.div>
         </motion.div>
 
-        {/* Cards Grid */}
-        <motion.div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8" variants={containerVariants}>
+        {/* Cards Grid - Mobile First */}
+        <motion.div
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8"
+          variants={containerVariants}
+        >
           {features.map((item, index) => {
             const IconComponent = item.icon
             const isActive = activeCard === index
@@ -358,94 +249,79 @@ export default function WhySection() {
                 custom={index}
                 variants={cardVariants}
                 whileHover={{
-                  y: -10,
-                  scale: 1.02,
-                  rotateY: 5,
-                  transition: { type: "spring", stiffness: 300, damping: 20 },
+                  y: -5,
+                  scale: 1.01,
+                  transition: { duration: 0.2 },
                 }}
                 onHoverStart={() => setHoveredCard(index)}
                 onHoverEnd={() => setHoveredCard(null)}
                 className={`
-                  relative overflow-hidden rounded-2xl cursor-pointer group
+                  relative overflow-hidden rounded-xl sm:rounded-2xl cursor-pointer group
                   ${
                     isActive
-                      ? "bg-white shadow-2xl ring-4 ring-white/50"
-                      : "bg-white/95 backdrop-blur-sm shadow-xl hover:shadow-2xl"
+                      ? "bg-white shadow-2xl ring-2 sm:ring-4 ring-white/50"
+                      : "bg-white/95 backdrop-blur-sm shadow-lg hover:shadow-xl"
                   }
+                  transition-all duration-300
                 `}
                 onClick={() => handleCardClick(index)}
-                style={{
-                  transformStyle: "preserve-3d",
-                }}
                 layout
               >
                 {/* Gradient Overlay */}
                 <motion.div
-                  className={`absolute top-0 left-0 w-full h-2 bg-gradient-to-r ${item.color}`}
+                  className={`absolute top-0 left-0 w-full h-1 sm:h-2 bg-gradient-to-r ${item.color}`}
                   initial={{ scaleX: 0 }}
                   animate={{ scaleX: isActive ? 1 : 0 }}
                   transition={{ duration: 0.3 }}
                 />
 
-                {/* Hover Glow Effect */}
-                <motion.div
-                  className={`absolute inset-0 bg-gradient-to-r ${item.color} opacity-0 group-hover:opacity-5`}
-                  transition={{ duration: 0.3 }}
-                />
-
-                <div className="p-8 relative z-10">
+                <div className="p-4 sm:p-6 md:p-8 relative z-10">
                   {/* Icon and Stats */}
-                  <div className="flex items-start justify-between mb-6">
+                  <div className="flex items-start justify-between mb-4 sm:mb-6">
                     <motion.div
-                      className={`relative p-4 rounded-2xl bg-gradient-to-r ${item.color} shadow-lg`}
+                      className={`relative p-3 sm:p-4 rounded-xl sm:rounded-2xl bg-gradient-to-r ${item.color} shadow-lg`}
                       variants={iconVariants}
-                      whileHover="hover"
+                      whileHover={{ scale: 1.05 }}
+                      transition={{ duration: 0.2 }}
                     >
-                      <IconComponent className="w-8 h-8 text-white" />
-
-                      {/* Icon Glow */}
-                      <motion.div
-                        className={`absolute inset-0 rounded-2xl bg-gradient-to-r ${item.color} blur-xl opacity-0 group-hover:opacity-30`}
-                        transition={{ duration: 0.3 }}
-                      />
+                      <IconComponent className="w-6 h-6 sm:w-8 sm:h-8 text-white" />
                     </motion.div>
 
                     <motion.div
-                      className={`px-3 py-1 rounded-full bg-gradient-to-r ${item.color} text-white text-sm font-bold shadow-lg`}
-                      variants={statsVariants}
-                      whileHover={{ scale: 1.1 }}
+                      className={`px-2 sm:px-3 py-1 rounded-full bg-gradient-to-r ${item.color} text-white text-xs sm:text-sm font-bold shadow-lg`}
+                      whileHover={{ scale: 1.05 }}
+                      transition={{ duration: 0.2 }}
                     >
                       {item.stats}
                     </motion.div>
                   </div>
 
                   {/* Content */}
-                  <div className="mb-6">
-                    <motion.h3 className="text-2xl font-bold text-[#2b2b2b] mb-2" layout>
+                  <div className="mb-4 sm:mb-6">
+                    <motion.h3 className="text-lg sm:text-xl md:text-2xl font-bold text-[#2b2b2b] mb-2" layout>
                       {item.title}
                     </motion.h3>
                     <motion.p
-                      className="text-sm font-medium text-gray-500 mb-3"
+                      className="text-xs sm:text-sm font-medium text-gray-500 mb-2 sm:mb-3"
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
                       transition={{ delay: 0.2 }}
                     >
                       {item.subtitle}
                     </motion.p>
-                    <motion.p className="text-gray-600 leading-relaxed" layout>
+                    <motion.p className="text-sm sm:text-base text-gray-600 leading-relaxed" layout>
                       {item.text}
                     </motion.p>
                   </div>
 
-                  {/* Consistent Expand Button */}
+                  {/* Expand Button */}
                   <motion.div
                     className="flex items-center justify-between"
-                    initial="rest"
-                    whileHover="hover"
-                    animate={isActive ? "active" : "rest"}
+                    whileHover={{ scale: 1.01 }}
+                    transition={{ duration: 0.2 }}
                   >
                     <motion.span
-                      className={`text-sm font-medium transition-colors duration-300 ${
+                      className={`text-xs sm:text-sm font-medium transition-colors duration-300 ${
                         isActive ? "text-[#2b2b2b]" : "text-gray-500"
                       }`}
                       layout
@@ -454,19 +330,16 @@ export default function WhySection() {
                     </motion.span>
 
                     <motion.div
-                      className={`w-10 h-10 rounded-full flex items-center justify-center ${
-                        isActive ? "text-white" : "text-gray-400"
+                      className={`w-8 h-8 sm:w-10 sm:h-10 rounded-full flex items-center justify-center transition-all duration-300 ${
+                        isActive ? "bg-[#2b2b2b] text-white" : "bg-gray-100 text-gray-400 hover:bg-gray-200"
                       }`}
-                      variants={expandButtonVariants}
-                      whileHover="hover"
                       whileTap={{ scale: 0.9 }}
                     >
                       <motion.div
-                        variants={chevronVariants}
-                        animate={isActive ? "active" : "rest"}
+                        animate={{ rotate: isActive ? 180 : 0 }}
                         transition={{ duration: 0.3, ease: "easeInOut" }}
                       >
-                        <ChevronDown className="w-5 h-5" />
+                        <ChevronDown className="w-4 h-4 sm:w-5 sm:h-5" />
                       </motion.div>
                     </motion.div>
                   </motion.div>
@@ -475,38 +348,30 @@ export default function WhySection() {
                   <AnimatePresence mode="wait">
                     {isActive && (
                       <motion.div
-                        initial={{ opacity: 0, height: 0, y: -20 }}
-                        animate={{ opacity: 1, height: "auto", y: 0 }}
-                        exit={{ opacity: 0, height: 0, y: -20 }}
-                        transition={{
-                          duration: 0.4,
-                          ease: "easeInOut",
-                          height: { duration: 0.3 },
-                          opacity: { duration: 0.2, delay: 0.1 },
-                        }}
-                        className="mt-6 overflow-hidden"
+                        initial={{ opacity: 0, height: 0 }}
+                        animate={{ opacity: 1, height: "auto" }}
+                        exit={{ opacity: 0, height: 0 }}
+                        transition={{ duration: 0.3, ease: "easeInOut" }}
+                        className="mt-4 sm:mt-6 overflow-hidden"
                         layout
                       >
                         <motion.div
-                          className={`p-6 rounded-xl bg-gradient-to-r ${item.color} bg-opacity-5 border border-opacity-20`}
+                          className={`p-4 sm:p-6 rounded-lg sm:rounded-xl bg-gradient-to-r ${item.color} bg-opacity-5 border border-opacity-20`}
                           initial={{ scale: 0.95, opacity: 0 }}
                           animate={{ scale: 1, opacity: 1 }}
                           transition={{ delay: 0.1, duration: 0.3 }}
                         >
                           <div className="flex items-center mb-3">
-                            <CheckCircle className="w-5 h-5 text-green-500 mr-2" />
-                            <h4 className="font-bold text-[#2b2b2b]">Technical Specifications:</h4>
+                            <CheckCircle className="w-4 h-4 sm:w-5 sm:h-5 text-green-500 mr-2" />
+                            <h4 className="font-bold text-[#2b2b2b] text-sm sm:text-base">Technical Specifications:</h4>
                           </div>
-                          <p className="text-gray-700 text-sm leading-relaxed mb-4">{item.details}</p>
+                          <p className="text-gray-700 text-xs sm:text-sm leading-relaxed mb-4">{item.details}</p>
                           <Link href="/kontak">
                             <motion.button
-                              className={`w-full py-3 rounded-xl text-white font-semibold bg-gradient-to-r ${item.color} shadow-lg`}
-                              whileHover={{
-                                scale: 1.02,
-                                boxShadow: "0 10px 30px rgba(0,0,0,0.2)",
-                              }}
-                              whileTap={{ scale: 0.98 }}
-                              transition={{ type: "spring", stiffness: 400, damping: 10 }}
+                              className={`w-full py-2 sm:py-3 rounded-lg sm:rounded-xl text-white font-semibold bg-gradient-to-r ${item.color} shadow-lg text-sm sm:text-base`}
+                              whileHover={{ scale: 1.01 }}
+                              whileTap={{ scale: 0.99 }}
+                              transition={{ duration: 0.2 }}
                             >
                               Konsultasi Expert
                             </motion.button>
@@ -521,13 +386,13 @@ export default function WhySection() {
                 <AnimatePresence>
                   {clickedCards.has(index) && (
                     <motion.div
-                      className="absolute top-4 right-4"
+                      className="absolute top-3 sm:top-4 right-3 sm:right-4"
                       initial={{ scale: 0, opacity: 0 }}
                       animate={{ scale: 1, opacity: 1 }}
                       exit={{ scale: 0, opacity: 0 }}
                     >
                       <motion.div
-                        className={`w-4 h-4 rounded-full bg-gradient-to-r ${item.color}`}
+                        className={`w-3 h-3 sm:w-4 sm:h-4 rounded-full bg-gradient-to-r ${item.color}`}
                         animate={{
                           scale: [1, 1.2, 1],
                           opacity: [0.7, 1, 0.7],
@@ -541,68 +406,25 @@ export default function WhySection() {
                     </motion.div>
                   )}
                 </AnimatePresence>
-
-                {/* Hover Particles */}
-                <AnimatePresence>
-                  {hoveredCard === index && (
-                    <>
-                      {[...Array(3)].map((_, i) => (
-                        <motion.div
-                          key={i}
-                          className={`absolute w-1 h-1 rounded-full bg-gradient-to-r ${item.color}`}
-                          style={{
-                            left: `${20 + i * 30}%`,
-                            top: `${20 + i * 20}%`,
-                          }}
-                          initial={{ scale: 0, opacity: 0 }}
-                          animate={{
-                            scale: [0, 1, 0],
-                            opacity: [0, 1, 0],
-                            y: [-10, -30, -50],
-                          }}
-                          transition={{
-                            duration: 1.5,
-                            repeat: Number.POSITIVE_INFINITY,
-                            delay: i * 0.2,
-                            ease: "easeOut",
-                          }}
-                        />
-                      ))}
-                    </>
-                  )}
-                </AnimatePresence>
               </motion.div>
             )
           })}
         </motion.div>
 
-        {/* Call to Action */}
+        {/* Call to Action - Mobile Optimized */}
         <motion.div
-          className="text-center mt-20"
-          initial={{ opacity: 0, y: 50 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
-          transition={{ delay: 1, duration: 0.8 }}
+          className="text-center mt-12 sm:mt-16 md:mt-20"
+          initial={{ opacity: 0, y: 30 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+          transition={{ delay: 1, duration: 0.6 }}
         >
           <motion.div
-            className="bg-white/95 backdrop-blur-sm rounded-3xl p-10 shadow-2xl relative overflow-hidden"
-            whileHover={{ scale: 1.02 }}
-            transition={{ type: "spring", stiffness: 300, damping: 20 }}
+            className="bg-white/95 backdrop-blur-sm rounded-2xl sm:rounded-3xl p-6 sm:p-8 md:p-10 shadow-2xl relative overflow-hidden"
+            whileHover={{ scale: 1.01 }}
+            transition={{ duration: 0.2 }}
           >
-            {/* Background Animation */}
-            <motion.div
-              className="absolute inset-0 bg-gradient-to-r from-[#2b2b2b]/5 to-transparent"
-              animate={{
-                x: [-100, 100, -100],
-              }}
-              transition={{
-                duration: 8,
-                repeat: Number.POSITIVE_INFINITY,
-                ease: "easeInOut",
-              }}
-            />
-
             <motion.h3
-              className="text-4xl font-black text-[#2b2b2b] mb-4"
+              className="text-2xl sm:text-3xl md:text-4xl font-black text-[#2b2b2b] mb-3 sm:mb-4"
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
               transition={{ delay: 1.2, duration: 0.6 }}
@@ -611,7 +433,7 @@ export default function WhySection() {
             </motion.h3>
 
             <motion.p
-              className="text-gray-600 mb-8 text-lg max-w-2xl mx-auto"
+              className="text-gray-600 mb-6 sm:mb-8 text-sm sm:text-base md:text-lg max-w-2xl mx-auto px-2"
               initial={{ opacity: 0 }}
               animate={isInView ? { opacity: 1 } : { opacity: 0 }}
               transition={{ delay: 1.4, duration: 0.6 }}
@@ -622,33 +444,16 @@ export default function WhySection() {
 
             <Link href="/kontak">
               <motion.button
-                className="bg-gradient-to-r from-[#2b2b2b] to-gray-800 text-white px-10 py-4 rounded-2xl font-bold text-lg shadow-xl relative overflow-hidden group"
-                whileHover={{
-                  scale: 1.05,
-                  boxShadow: "0 20px 40px rgba(43,43,43,0.3)",
-                }}
-                whileTap={{ scale: 0.95 }}
+                className="bg-gradient-to-r from-[#2b2b2b] to-gray-800 text-white px-6 sm:px-8 md:px-10 py-3 sm:py-4 rounded-xl sm:rounded-2xl font-bold text-sm sm:text-base md:text-lg shadow-xl relative overflow-hidden group"
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
                 initial={{ opacity: 0, y: 20 }}
                 animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
                 transition={{ delay: 1.6, duration: 0.6 }}
               >
-                {/* Button Glow Effect */}
-                <motion.div
-                  className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent opacity-0 group-hover:opacity-100"
-                  initial={{ x: "-100%" }}
-                  whileHover={{ x: "100%" }}
-                  transition={{ duration: 0.6 }}
-                />
-
-                <span className="relative z-10 flex items-center">
+                <span className="relative z-10 flex items-center justify-center">
                   Konsultasi Expert Sekarang
-                  <motion.div
-                    className="ml-2"
-                    animate={{ x: [0, 5, 0] }}
-                    transition={{ duration: 1, repeat: Number.POSITIVE_INFINITY }}
-                  >
-                    <ArrowRight className="w-5 h-5" />
-                  </motion.div>
+                  <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 ml-2" />
                 </span>
               </motion.button>
             </Link>
