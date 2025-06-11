@@ -19,43 +19,121 @@ const nunito = Nunito({
 
 // --- SEO Metadata Optimization ---
 // !!! IMPORTANT: Replace placeholder values below with your actual information !!!
-const siteUrl = "https://www.supernesia.id"; // <<< REPLACE with actual domain
+const siteUrl = "https://supernesia.id"; // <<< CORRECTED: Removed www.
 const siteName = "Supernesia Creative Technology";
 const siteTitle = "Supernesia: Jasa Website & Aplikasi Profesional, Solusi Digital UMKM Indonesia"; // Optimized Title
 const siteDescription = "Supernesia: Jasa pembuatan website profesional & aplikasi mobile custom untuk UMKM/Bisnis di Indonesia. Tingkatkan bisnis Anda dengan solusi digital & transformasi digital terpercaya."; // Optimized Description
 const siteKeywords = [
-  // Core Services
-  "jasa pembuatan website",
-  "jasa pembuatan aplikasi",
-  "pengembangan software",
-  "aplikasi mobile",
-  "pengembangan aplikasi custom",
-  "pembuatan website profesional",
-  "jasa website toko online",
-  "jasa website e-commerce",
+  // 1. Core Services - Web Development (20 keywords)
+  "jasa pembuatan website no 1",
+  "jasa pembuatan website terbaik",
+  "jasa pembuatan website murah",
+  "jasa pembuatan website profesional",
+  "web development indonesia",
   "website company profile",
-  // Target Audience & Solutions
-  "solusi digital UMKM",
-  "transformasi digital bisnis",
-  "software custom UMKM",
-  "layanan IT untuk UMKM",
-  "digital marketing UMKM",
-  "konsultan IT",
-  // Location & National
-  "jasa pembuatan website indonesia",
-  "jasa pembuatan aplikasi indonesia",
-  "software house indonesia",
-  "konsultan IT indonesia",
-  "jasa website jakarta", // Add other key locations if relevant
-  "jasa website surabaya",
-  "jasa website bandung",
-  // Brand & Others
-  "Supernesia",
+  "website responsif mobile",
+  "website UMKM terpercaya",
+  "pembuatan website bisnis",
+  "jasa SEO website indonesia",
+  "website dengan hosting gratis",
+  "paket website lengkap murah",
+  "jasa website landing page",
+  "website toko online",
+  "website e-commerce",
+  "desain website custom",
+  "website dengan SSL gratis",
+  "website dengan chatbot AI",
+  "website dengan Google Analytics",
+  "jasa maintenance website",
+  
+  // 2. Custom Software Development (20 keywords)
+  "custom software development terbaik",
+  "pengembangan software enterprise",
+  "sistem informasi custom",
+  "software bisnis custom",
+  "aplikasi web dashboard",
+  "sistem manajemen terintegrasi",
+  "software untuk UMKM",
+  "aplikasi internal perusahaan",
+  "sistem otomasi bisnis",
+  "software dengan API lengkap",
+  "pengembangan software custom indonesia",
+  "jasa pembuatan software",
+  "sistem ERP custom",
+  "software inventory management",
+  "aplikasi point of sale",
+  "sistem CRM custom",
+  "software akuntansi custom",
+  "aplikasi manajemen proyek",
+  "sistem workflow otomatis",
+  "software business intelligence",
+  
+  // 3. Mobile & Desktop Apps (20 keywords)
+  "jasa pembuatan aplikasi mobile terbaik",
+  "aplikasi android iOS professional",
+  "pengembangan aplikasi bisnis",
+  "mobile app development indonesia",
+  "aplikasi cross platform",
+  "aplikasi dengan notifikasi push",
+  "aplikasi offline dan online",
+  "UI UX aplikasi mobile",
+  "aplikasi dengan analytics",
+  "aplikasi enterprise mobile",
+  "jasa pembuatan aplikasi android",
+  "jasa pembuatan aplikasi iOS",
+  "aplikasi mobile UMKM",
+  "aplikasi e-commerce mobile",
+  "aplikasi delivery online",
+  "aplikasi booking appointment",
+  "aplikasi marketplace",
+  "aplikasi social media",
+  "aplikasi game mobile",
+  "aplikasi fintech",
+  
+  // 4. Location & National - Indonesia (20 keywords)
+  "jasa website jakarta terbaik",
+  "jasa website surabaya murah",
+  "jasa website bandung profesional",
+  "jasa website medan terpercaya",
+  "jasa website makassar",
+  "jasa website semarang",
+  "jasa website palembang",
+  "jasa website yogyakarta",
+  "jasa website solo",
+  "jasa website malang",
+  "jasa website denpasar",
+  "jasa website balikpapan",
+  "jasa website pontianak",
+  "jasa website manado",
+  "jasa website batam",
+  "jasa website pekanbaru",
+  "software house indonesia terpercaya",
+  "web developer indonesia berpengalaman",
+  "jasa IT seluruh indonesia",
+  "konsultan website indonesia",
+  
+  // 5. Brand & Package Names (20 keywords)
   "Supernesia Creative Technology",
-  "teknologi kreatif",
-  "jasa SEO website",
-  "harga jasa pembuatan website",
-]; // Expanded Keywords
+  "SuperNeo paket website",
+  "SuperPro paket website",
+  "SuperPremium paket website",
+  "Supernesia jasa website",
+  "Supernesia software house",
+  "Supernesia web developer",
+  "Supernesia aplikasi mobile",
+  "Supernesia custom software",
+  "Supernesia digital agency",
+  "Supernesia IT consultant",
+  "Supernesia web design",
+  "Supernesia SEO specialist",
+  "Supernesia hosting provider",
+  "Supernesia domain registrar",
+  "Supernesia UI UX designer",
+  "Supernesia backend developer",
+  "Supernesia frontend developer",
+  "Supernesia fullstack developer",
+  "Supernesia technology partner"
+]; // Total 100 Keywords
 const siteAuthor = "Supernesia Creative Technology";
 const googleVerification = "rDv4azVm7pImPiuru4Q-YvU6yrYRuVHpUzLaUTTb1Ho"; // Keep existing or update if changed
 const ogImageUrl = `${siteUrl}/images/og-image.png`; // <<< REPLACE with actual OG image URL (e.g., /images/og-supernesia.png)
