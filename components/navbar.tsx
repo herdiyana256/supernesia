@@ -14,7 +14,7 @@ const translations = {
     pricing: "Harga",
     about: "Tentang",
     contact: "Kontak",
-    register: "Daftar",
+    register: "Hubungi Kami",
   },
   EN: {
     home: "Home",
@@ -22,7 +22,7 @@ const translations = {
     pricing: "Pricing",
     about: "About",
     contact: "Contact",
-    register: "Register",
+    register: "Get In Touch",
   },
 }
 
@@ -95,22 +95,22 @@ export default function Navbar() {
   ]
 
   return (
-    <header className="font-bebasNeue px-4 md:px-12 lg:px-20 sticky top-0 z-50 bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700">
-      <div className="max-w-7xl mx-auto">
-        <div className="flex items-center justify-between h-16 md:h-18 lg:h-20">
+    <header className="font-bebasNeue px-3 sm:px-4 md:px-8 lg:px-16 xl:px-20 sticky top-0 z-50 w-full bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700">
+      <div className="w-full max-w-7xl mx-auto">
+        <div className="flex items-center justify-between h-18 sm:h-20 md:h-22 lg:h-24 w-full min-w-0">
           {/* Logo with Dark/Light Mode Support - Compact */}
-          <Link href="/" className="flex items-center flex-shrink-0">
+          <Link href="/" className="flex items-center flex-shrink-0 min-w-0 mr-4 sm:mr-6 md:mr-8">
             <Image
               src={isDarkMode ? "/SUPERNESIA_LOGOS_MODE_DARK.png" : "/SUPERNESIA_LOGOS.png"}
               alt="Supernesia"
               width={280}
               height={70}
-              className="h-12 md:h-14 lg:h-16 w-auto object-contain max-w-none"
+              className="h-14 sm:h-16 md:h-18 lg:h-20 w-auto object-contain max-w-none"
               priority
             />
           </Link>
 
-          <div className="hidden md:flex items-center justify-between flex-1 ml-16">
+          <div className="hidden md:flex items-center justify-between flex-1 ml-8 lg:ml-12">
             <div className="flex items-center space-x-1 bg-gray-100 dark:bg-gray-800 rounded-full px-1 py-1 mx-auto">
               {navigationItems.map(({ href, label }) => (
                 <Link
@@ -155,7 +155,7 @@ export default function Navbar() {
           </div>
 
           {/* Mobile Menu Button */}
-          <div className="md:hidden flex items-center space-x-3">
+          <div className="md:hidden flex items-center space-x-2 flex-shrink-0">
             <button
               onClick={toggleDarkMode}
               className="p-2 rounded-full bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
@@ -185,7 +185,7 @@ export default function Navbar() {
 
         {/* Mobile Navigation */}
         {isMenuOpen && (
-          <div className="md:hidden bg-white dark:bg-gray-900 py-4 px-4 shadow-md mt-4 rounded-lg border border-gray-200 dark:border-gray-700">
+          <div className="md:hidden bg-white dark:bg-gray-900 py-4 px-2 sm:px-4 shadow-md mt-4 rounded-lg border border-gray-200 dark:border-gray-700 w-full">
             <nav className="flex flex-col space-y-4">
               {navigationItems.map(({ href, label }) => (
                 <Link
