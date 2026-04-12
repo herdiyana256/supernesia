@@ -1,20 +1,14 @@
 import type { Metadata } from "next";
-import { Bebas_Neue, Nunito } from "next/font/google";
+import { Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 import SupernesiaChatbot from "@/components/supernesia-chatbot";
 import Script from 'next/script'; // Import Script component for JSON-LD
 
-// Fonts (keep as is)
-const bebasNeue = Bebas_Neue({
+// Fonts
+const plusJakartaSans = Plus_Jakarta_Sans({
   subsets: ["latin"],
-  weight: "400",
-  variable: "--font-bebas-neue",
-});
-
-const nunito = Nunito({
-  subsets: ["latin"],
-  weight: "400",
-  variable: "--font-nunito",
+  weight: ["300", "400", "500", "600", "700", "800"],
+  variable: "--font-plus-jakarta-sans",
 });
 
 // --- SEO Metadata Optimization ---
@@ -278,7 +272,7 @@ export default function RootLayout({
   return (
     <html
       lang="id"
-      className={`${bebasNeue.variable} ${nunito.variable} scroll-smooth`}
+      className={`${plusJakartaSans.variable} scroll-smooth`}
     >
       <head>
         {/* Google Site Verification is handled by metadata object */}
@@ -293,7 +287,7 @@ export default function RootLayout({
         {/* Example Preload: <link rel="preload" as="image" href="/images/hero-banner.webp"> */}
       </head>
       {/* Added basic light/dark mode classes example - adapt to your styling system */}
-      <body className="font-sans text-base leading-relaxed font-body bg-white text-gray-800 dark:bg-gray-900 dark:text-gray-200">
+      <body className="font-sans text-base leading-relaxed font-body bg-brand-dark text-white">
         {/* Consider adding Skip to Content link for accessibility */}
         {/* <a href="#main-content" className="sr-only focus:not-sr-only">Skip to main content</a> */}
 

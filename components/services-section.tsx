@@ -1,230 +1,173 @@
-"use client"
-
-import { useRef } from "react"
+import React from "react"
+import Image from "next/image"
 import Link from "next/link"
-import { motion, useInView } from "framer-motion"
-import { ArrowUpRight, Smartphone, Globe, Code, CheckCircle } from "lucide-react"
+import { Settings, Wand2, Box, Wrench } from "lucide-react"
 
-// Improved service data with consistent content
 const services = [
   {
-    id: "mobile",
-    title: "Mobile & Desktop App",
-    shortDesc: "Aplikasi mobile & desktop yang powerful dengan teknologi terdepan untuk semua platform dan perangkat.",
-    icon: Smartphone,
-    color: "from-blue-500 to-cyan-500",
-    link: "/layanan/mobile-app",
-    features: [
-      "Native & Cross-platform Development",
-      "UI/UX Design yang Intuitif & Modern",
-      "Integrasi API & Backend Services",
-    ],
+    label: "Maintenance &\nPerformance Upgrade",
+    icon: <Settings className="w-10 h-10 text-white stroke-[2.5]" />,
+    color: "#2D8CFF",
+    shadow: "rgba(45,140,255,0.45)",
+    clipSrc: "/clip paper.png",
+    rotate: "-15deg",
+    pos: { top: "4%", left: "4%" },
+    textPos: { top: "0", left: "100px" },
   },
   {
-    id: "web",
-    title: "Web Development",
-    shortDesc:
-      "Website modern dan responsif dengan teknologi terdepan untuk kehadiran online yang kuat dan profesional.",
-    icon: Globe,
-    color: "from-[#e9e15b] to-yellow-400",
-    link: "/layanan/web-development",
-    features: [
-      "Desain Responsif & Mobile-First",
-      "SEO Optimization & Performance",
-      "CMS Integration & Content Strategy",
-    ],
+    label: "Web\nDevelopment",
+    icon: <Wrench className="w-10 h-10 text-white stroke-[2.5]" />,
+    color: "#FF7A00",
+    shadow: "rgba(255,122,0,0.45)",
+    clipSrc: "/clip paper-1.png",
+    rotate: "45deg",
+    pos: { top: "62%", left: "14%" },
+    textPos: { top: "0", left: "90px" },
   },
   {
-    id: "custom",
-    title: "Custom Software Development",
-    shortDesc: "Solusi perangkat lunak kustom yang disesuaikan dengan kebutuhan bisnis spesifik dan kompleks Anda.",
-    icon: Code,
-    color: "from-purple-500 to-pink-500",
-    link: "/layanan/custom-software",
-    features: [
-      "Analisis Kebutuhan & Perencanaan",
-      "Arsitektur Software yang Scalable",
-      "Integrasi dengan Sistem yang Ada",
-    ],
+    label: "Artificial\nIntelligence",
+    icon: <Wand2 className="w-10 h-10 text-white stroke-[2.5]" />,
+    color: "#EC5B70",
+    shadow: "rgba(236,91,112,0.45)",
+    clipSrc: "/clip paper-2.png",
+    rotate: "-25deg",
+    pos: { top: "30%", left: "46%" },
+    textPos: { top: "-8px", left: "90px" },
+  },
+  {
+    label: "Custom\nSoftware",
+    icon: <Box className="w-10 h-10 text-white stroke-[2.5]" />,
+    color: "#714AFE",
+    shadow: "rgba(113,74,254,0.45)",
+    clipSrc: "/clip paper.png",
+    rotate: "70deg",
+    pos: { top: "72%", left: "60%" },
+    textPos: { top: "0", left: "100px" },
   },
 ]
 
 export default function ServicesSection() {
-  const sectionRef = useRef(null)
-  const isInView = useInView(sectionRef, { once: true, amount: 0.2 })
-
-  // Simplified animation variants
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2,
-        delayChildren: 0.3,
-      },
-    },
-  }
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.5,
-        ease: "easeOut",
-      },
-    },
-  }
-
-  const textVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.6,
-        ease: "easeOut",
-      },
-    },
-  }
-
   return (
-    <section ref={sectionRef} className="py-16 px-4 md:px-12 lg:px-20 relative overflow-hidden">
-      {/* Simplified Background Elements */}
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-20 left-10 w-64 h-64 bg-[#e9e15b]/10 rounded-full blur-3xl opacity-50"></div>
-        <div className="absolute bottom-20 right-10 w-80 h-80 bg-[#2b2b2b]/5 rounded-full blur-3xl opacity-30"></div>
+    <section
+      id="services"
+      className="bg-white py-20 md:py-28 px-6 md:px-12 lg:px-20 font-sans relative overflow-hidden"
+    >
+      {/* Decorative curves */}
+      <div className="absolute top-0 left-0 w-[350px] h-[350px] pointer-events-none opacity-25 hidden lg:block">
+        <svg viewBox="0 0 350 350" fill="none">
+          <path d="M0,0 Q160,80 100,200 T0,350" stroke="#E0E0E0" strokeWidth="2" />
+          <path d="M0,0 Q200,100 140,250 T0,350" stroke="#E0E0E0" strokeWidth="1" />
+        </svg>
+      </div>
+      <div className="absolute bottom-0 right-0 w-[350px] h-[350px] pointer-events-none opacity-25 hidden lg:block">
+        <svg viewBox="0 0 350 350" fill="none">
+          <path d="M350,350 Q200,250 280,150 T350,0" stroke="#E0E0E0" strokeWidth="2" />
+        </svg>
       </div>
 
-      <div className="max-w-7xl mx-auto relative z-10">
-        {/* Header Section */}
-        <motion.div
-          className="mb-12 md:mb-16"
-          initial="hidden"
-          animate={isInView ? "visible" : "hidden"}
-          variants={{
-            hidden: { opacity: 0 },
-            visible: {
-              opacity: 1,
-              transition: {
-                staggerChildren: 0.2,
-              },
-            },
-          }}
-        >
-          <motion.div
-            variants={textVariants}
-            className="inline-flex items-center gap-2 bg-[#e9e15b]/20 px-4 py-2 rounded-full mb-4"
-          >
-            <Code className="w-4 h-4 text-[#2b2b2b]" />
-            <span className="text-[#2b2b2b] font-semibold text-sm">PILIH LAYANANNYA</span>
-          </motion.div>
+      <div className="max-w-7xl mx-auto relative">
 
-          <motion.h2
-            variants={textVariants}
-            className="text-4xl sm:text-5xl md:text-6xl font-black leading-tight text-[#2b2b2b] dark:text-white"
-          >
-            BANGUN MASA DEPAN DIGITAL
-            <br />
-            <span className="bg-gradient-to-r from-[#2b2b2b] to-[#e9e15b] bg-clip-text text-transparent">
-              BERSAMA SUPERNESIA!
-            </span>
-          </motion.h2>
+        {/* Header row: sticky note title + description */}
+        <div className="flex flex-col md:flex-row items-start md:items-center justify-between mb-16 gap-6">
+          {/* "services" sticky note */}
+          <div className="relative inline-block transform -rotate-[1.5deg] hover:rotate-0 transition-transform duration-500">
+            <div
+              className="text-[#16232A] px-10 py-7 shadow-xl relative inline-block"
+              style={{
+                background: "linear-gradient(225deg, transparent 32px, #D9E061 0)",
+                borderRadius: "24px 0 24px 24px",
+              }}
+            >
+              {/* pin */}
+              <div className="absolute top-4 left-4 w-4 h-4 bg-[#16232A] rounded-full z-20" />
+              <h2 className="text-[3.5rem] md:text-[4.5rem] font-black tracking-tighter lowercase mt-2 text-[#16232A]">services</h2>
+              <svg className="w-28 h-4 mt-2 stroke-[#16232A]" viewBox="0 0 100 10" fill="none">
+                <path d="M0,5 Q10,0 20,5 T40,5 T60,5 Q70,10 80,5 T100,5" strokeWidth="4" strokeLinecap="round" />
+              </svg>
+              {/* fold */}
+              <div className="absolute top-0 right-0 w-9 h-9 bg-white/60 shadow-md" style={{ borderRadius: "0 0 0 14px" }} />
+            </div>
+          </div>
 
-          <motion.p variants={textVariants} className="text-gray-600 dark:text-gray-300 mt-6 max-w-2xl text-lg">
-            Kami menawarkan pendekatan unik untuk transformasi digital yang berfokus pada hasil bisnis nyata dan solusi
-            yang disesuaikan dengan kebutuhan spesifik Anda.
-          </motion.p>
-        </motion.div>
+          {/* Description right */}
+          <p className="text-gray-500 text-base md:text-lg font-medium leading-relaxed max-w-sm text-right hidden md:block">
+            Kami bantu bisnis wujudkan website dan aplikasi profesional tanpa nguras budget.
+          </p>
+        </div>
 
-        {/* Services Grid - Fixed Height and Alignment */}
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          animate={isInView ? "visible" : "hidden"}
-          className="grid md:grid-cols-3 gap-6 sm:gap-8 items-stretch"
-        >
-          {services.map((service) => {
-            const IconComponent = service.icon
+        {/* Floating Nodes — Desktop */}
+        <div className="relative hidden lg:block" style={{ minHeight: 640 }}>
+          {/* Connecting SVG Wave */}
+          <div className="absolute inset-0 pointer-events-none z-0">
+            <svg className="w-full h-full" viewBox="0 0 900 600" fill="none" preserveAspectRatio="xMidYMid meet">
+              <path
+                d="M100,80 C280,280 420,100 500,320 C590,540 680,380 780,440"
+                stroke="#E0E0E0"
+                strokeWidth="2.5"
+                strokeLinecap="round"
+                fill="none"
+              />
+            </svg>
+          </div>
 
-            return (
-              <Link key={service.id} href={service.link} className="h-full">
-                <motion.div
-                  variants={itemVariants}
-                  whileHover={{
-                    y: -8,
-                    scale: 1.02,
-                    transition: { duration: 0.3, type: "spring", stiffness: 300 },
-                  }}
-                  className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-6 sm:p-8 shadow-lg hover:shadow-2xl hover:border-[#e9e15b]/50 transition-all duration-300 ease-in-out relative group overflow-hidden cursor-pointer h-full flex flex-col"
-                >
-                  {/* Hover Background Effect */}
-                  <div className="absolute inset-0 bg-gradient-to-br from-[#e9e15b]/5 via-transparent to-[#2b2b2b]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+          {services.map((svc, idx) => (
+            <Link
+              key={idx}
+              href="/layanan"
+              className="absolute group cursor-pointer transition-all duration-500 hover:z-30 hover:scale-105"
+              style={svc.pos}
+            >
+              {/* Bubble Icon */}
+              <div
+                className="w-[100px] h-[100px] rounded-full border-[7px] border-white flex items-center justify-center relative z-10 transition-all duration-500 group-hover:rotate-12 group-hover:scale-110"
+                style={{
+                  background: svc.color,
+                  boxShadow: `0 0 30px ${svc.shadow}`,
+                }}
+              >
+                {svc.icon}
+                <div className="absolute top-3 left-3 w-9 h-9 bg-white/30 rounded-full blur-md" />
+              </div>
 
-                  {/* Service Icon - Fixed Height */}
-                  <div className="flex items-center gap-4 mb-6 relative z-10 min-h-[60px]">
-                    <motion.div
-                      className={`p-3 rounded-xl bg-gradient-to-r ${service.color} shadow-lg group-hover:shadow-xl flex-shrink-0`}
-                      whileHover={{ scale: 1.1, rotate: 5 }}
-                      transition={{ duration: 0.2 }}
-                    >
-                      <IconComponent className="w-6 h-6 text-white" />
-                    </motion.div>
-                    <h3 className="text-lg sm:text-xl font-bold text-[#2b2b2b] dark:text-white group-hover:text-[#e9e15b] transition-colors duration-300 leading-tight">
-                      {service.title}
-                    </h3>
-                  </div>
+              {/* Label */}
+              <div
+                className="absolute whitespace-pre-line text-[#16232A] font-black text-lg leading-snug tracking-tight"
+                style={svc.textPos}
+              >
+                {svc.label}
+              </div>
 
-                  {/* Divider with gradient */}
-                  <div className="h-0.5 w-full bg-gradient-to-r from-transparent via-gray-200 dark:via-gray-700 to-transparent mb-6 group-hover:via-[#e9e15b]/50 transition-colors duration-300"></div>
+              {/* Clip */}
+              <div
+                className="absolute top-[-16px] left-[-8px] w-10 h-10 transition-transform duration-500 group-hover:rotate-[20deg]"
+                style={{ transform: `rotate(${svc.rotate})` }}
+              >
+                <Image src={svc.clipSrc} alt="" fill className="object-contain drop-shadow" />
+              </div>
+            </Link>
+          ))}
+        </div>
 
-                  {/* Description - Fixed Height */}
-                  <div className="mb-6 relative z-10 flex-grow">
-                    <p className="text-gray-600 dark:text-gray-300 text-base group-hover:text-gray-700 dark:group-hover:text-gray-200 transition-colors duration-300 leading-relaxed min-h-[72px]">
-                      {service.shortDesc}
-                    </p>
-                  </div>
-
-                  {/* Features Preview - Fixed Height */}
-                  <div className="mb-8 relative z-10 flex-grow">
-                    <h4 className="text-sm font-semibold text-[#2b2b2b] dark:text-gray-300 mb-4 group-hover:text-[#e9e15b] transition-colors duration-300">
-                      Key Features:
-                    </h4>
-                    <ul className="space-y-3 min-h-[120px]">
-                      {service.features.map((feature, idx) => (
-                        <li key={idx} className="flex items-start gap-3">
-                          <CheckCircle className="h-4 w-4 text-green-500 flex-shrink-0 mt-0.5 group-hover:text-green-400 transition-colors duration-300" />
-                          <span className="text-sm text-gray-600 dark:text-gray-400 group-hover:text-gray-700 dark:group-hover:text-gray-300 transition-colors duration-300 leading-relaxed">
-                            {feature}
-                          </span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-
-                  {/* Bottom Action - Always at bottom */}
-                  <div className="flex justify-between items-center relative z-10 mt-auto pt-4 border-t border-gray-100 dark:border-gray-700 group-hover:border-[#e9e15b]/30 transition-colors duration-300">
-                    <span className="text-[#2b2b2b] dark:text-white font-semibold text-sm group-hover:text-[#e9e15b] transition-colors duration-300">
-                      Lihat Detail
-                    </span>
-
-                    <motion.div
-                      className="p-2.5 rounded-full bg-[#e9e15b] group-hover:bg-[#2b2b2b] transition-colors duration-300 shadow-lg group-hover:shadow-xl"
-                      whileHover={{ scale: 1.1, rotate: 5 }}
-                      whileTap={{ scale: 0.95 }}
-                    >
-                      <ArrowUpRight className="w-4 h-4 text-[#2b2b2b] group-hover:text-[#e9e15b] transition-colors duration-300" />
-                    </motion.div>
-                  </div>
-
-                  {/* Hover Border Effect */}
-                  <div className="absolute inset-0 rounded-2xl border-2 border-transparent group-hover:border-[#e9e15b]/30 transition-colors duration-300"></div>
-                </motion.div>
-              </Link>
-            )
-          })}
-        </motion.div>
+        {/* Mobile: Simple cards */}
+        <div className="grid grid-cols-2 gap-5 lg:hidden">
+          {services.map((svc, idx) => (
+            <Link
+              key={idx}
+              href="/layanan"
+              className="flex flex-col items-center gap-4 bg-gray-50 rounded-[24px] p-6 shadow-sm hover:shadow-md hover:scale-105 transition-all text-left group"
+            >
+              <div
+                className="w-[72px] h-[72px] rounded-full border-[5px] border-white flex items-center justify-center shadow-lg"
+                style={{ background: svc.color }}
+              >
+                {svc.icon}
+              </div>
+              <span className="text-[#16232A] font-black text-base text-center leading-snug whitespace-pre-line group-hover:text-[#EC5B70] transition-colors">
+                {svc.label}
+              </span>
+            </Link>
+          ))}
+        </div>
       </div>
     </section>
   )

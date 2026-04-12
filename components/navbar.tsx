@@ -1,218 +1,122 @@
 "use client"
-
-import { useState, useEffect } from "react"
+import React, { useState, useEffect } from "react"
 import Image from "next/image"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { Menu, Moon, Sun, Globe } from "lucide-react"
-
-// Translations
-const translations = {
-  ID: {
-    home: "Home",
-    services: "Layanan",
-    pricing: "Harga",
-    about: "Tentang",
-    contact: "Kontak",
-    register: "Hubungi Kami",
-  },
-  EN: {
-    home: "Home",
-    services: "Services",
-    pricing: "Pricing",
-    about: "About",
-    contact: "Contact",
-    register: "Get In Touch",
-  },
-}
+import { Menu, X } from "lucide-react"
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
-  const [isDarkMode, setIsDarkMode] = useState(false)
-  const [language, setLanguage] = useState("ID")
+  const [scrolled, setScrolled] = useState(false)
   const pathname = usePathname()
 
-  // Initialize dark mode from localStorage if available
   useEffect(() => {
-    if (typeof window !== "undefined") {
-      const savedDarkMode = localStorage.getItem("darkMode") === "true"
-      setIsDarkMode(savedDarkMode)
-      if (savedDarkMode) {
-        document.documentElement.classList.add("dark")
-      }
-
-      // Initialize language from localStorage if available
-      const savedLanguage = localStorage.getItem("language")
-      if (savedLanguage) {
-        setLanguage(savedLanguage)
-      }
-    }
+    const handleScroll = () => setScrolled(window.scrollY > 20)
+    window.addEventListener("scroll", handleScroll)
+    return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
-  // Toggle dark mode
-  const toggleDarkMode = () => {
-    const newDarkMode = !isDarkMode
-    setIsDarkMode(newDarkMode)
-    if (typeof window !== "undefined") {
-      localStorage.setItem("darkMode", String(newDarkMode))
-      if (newDarkMode) {
-        document.documentElement.classList.add("dark")
-      } else {
-        document.documentElement.classList.remove("dark")
-      }
-    }
-  }
-
-  // Toggle language
-  const toggleLanguage = () => {
-    const newLanguage = language === "ID" ? "EN" : "ID"
-    setLanguage(newLanguage)
-    if (typeof window !== "undefined") {
-      localStorage.setItem("language", newLanguage)
-      // Dispatch a custom event to notify other components about language change
-      window.dispatchEvent(new CustomEvent("languageChange", { detail: newLanguage }))
-    }
-  }
-
-  // Improved active path detection
-  const isActive = (path: string) => {
-    if (path === "/") {
-      return pathname === "/"
-    }
-    return pathname.startsWith(path)
-  }
-
-  // Get current translations
-  const t = translations[language as keyof typeof translations]
-
-  // Navigation items
   const navigationItems = [
-    { href: "/", label: t.home },
-    { href: "/layanan", label: t.services },
-    { href: "/harga", label: t.pricing },
-    { href: "/tentang", label: t.about },
-    { href: "/kontak", label: t.contact },
+    { href: "/", label: "Home" },
+    { href: "/layanan", label: "Layanan" },
+    { href: "/tentang", label: "Tentang" },
+    { href: "/kontak", label: "Kontak" },
   ]
 
+  const isActive = (href: string) => pathname === href
+
   return (
-    <header className="font-bebasNeue px-3 sm:px-4 md:px-8 lg:px-16 xl:px-20 sticky top-0 z-50 w-full bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700">
-      <div className="w-full max-w-7xl mx-auto">
-        <div className="flex items-center justify-between h-18 sm:h-20 md:h-22 lg:h-24 w-full min-w-0">
-          {/* Logo with Dark/Light Mode Support - Compact */}
-          <Link href="/" className="flex items-center flex-shrink-0 min-w-0 mr-4 sm:mr-6 md:mr-8">
-            <Image
-              src={isDarkMode ? "/SUPERNESIA_LOGOS_MODE_DARK.png" : "/SUPERNESIA_LOGOS.png"}
-              alt="Supernesia"
-              width={280}
-              height={70}
-              className="h-14 sm:h-16 md:h-18 lg:h-20 w-auto object-contain max-w-none"
-              priority
-            />
+    <header
+      className={`fixed top-0 left-0 z-50 w-full px-6 sm:px-10 lg:px-[6%] py-5 font-sans transition-all duration-500 ${
+        scrolled
+          ? "bg-[#16232A]/95 backdrop-blur-xl shadow-[0_4px_30px_rgba(0,0,0,0.4)]"
+          : "bg-transparent"
+      }`}
+    >
+      <div className="w-full flex items-center justify-between">
+
+        {/* Left: Get In Touch Pill */}
+        <div className="flex-1 flex justify-start">
+          <Link
+            href="/kontak"
+            className="bg-[#D9E061] hover:bg-[#e8ef6a] font-bold px-7 py-3 rounded-full text-[#16232A] transition-all duration-300 text-sm tracking-wide shadow-lg hover:scale-105 hover:shadow-[0_0_20px_rgba(217,224,97,0.4)]"
+          >
+            Get In Touch
           </Link>
+        </div>
 
-          <div className="hidden md:flex items-center justify-between flex-1 ml-8 lg:ml-12">
-            <div className="flex items-center space-x-1 bg-gray-100 dark:bg-gray-800 rounded-full px-1 py-1 mx-auto">
-              {navigationItems.map(({ href, label }) => (
-                <Link
-                  key={href}
-                  href={href}
-                  className={`px-6 py-2 font-medium transition-all duration-200 rounded-full border border-gray-200/30 ${
-                    isActive(href)
-                      ? "bg-[#e9e15b] text-black shadow-sm"
-                      : "text-gray-700 dark:text-gray-300 hover:bg-[#e9e15b]/20 hover:text-black dark:hover:text-black"
-                  }`}
-                >
-                  {label}
-                </Link>
-              ))}
-            </div>
-
-            <div className="flex items-center space-x-4 ml-8">
-              <button
-                onClick={toggleDarkMode}
-                className="p-2 rounded-full bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
-                aria-label={isDarkMode ? "Switch to light mode" : "Switch to dark mode"}
-              >
-                {isDarkMode ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
-              </button>
-
-              <button
-                onClick={toggleLanguage}
-                className="p-2 rounded-full bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 flex items-center hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
-                aria-label="Toggle language"
-              >
-                <Globe className="h-5 w-5" />
-                <span className="ml-1 text-xs font-bold">{language}</span>
-              </button>
-
-              <Link
-                href="/kontak"
-                className="bg-[#e9e15b] hover:bg-[#e9e15b]/80 px-6 py-2 font-medium rounded-full text-black transition-colors"
-              >
-                {t.register}
-              </Link>
-            </div>
-          </div>
-
-          {/* Mobile Menu Button */}
-          <div className="md:hidden flex items-center space-x-2 flex-shrink-0">
-            <button
-              onClick={toggleDarkMode}
-              className="p-2 rounded-full bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
-              aria-label={isDarkMode ? "Switch to light mode" : "Switch to dark mode"}
-            >
-              {isDarkMode ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
-            </button>
-
-            <button
-              onClick={toggleLanguage}
-              className="p-2 rounded-full bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 flex items-center hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
-              aria-label="Toggle language"
-            >
-              <Globe className="h-5 w-5" />
-              <span className="ml-1 text-xs font-bold">{language}</span>
-            </button>
-
-            <button
-              className="p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-colors"
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-              aria-label="Toggle menu"
-            >
-              <Menu className="h-6 w-6" />
-            </button>
+        {/* Center: Logo */}
+        <div className="flex-1 flex justify-center items-center">
+          <div className="bg-white/5 backdrop-blur-md px-4 py-2 rounded-xl transition-all duration-300 hover:bg-white/10 shadow-sm border border-white/5">
+            <Link href="/" className="flex items-center gap-2">
+              <Image
+                src="/SUPERNESIA_LOGOS_MODE_DARK.png"
+                alt="Supernesia"
+                width={240}
+                height={60}
+                className="h-10 md:h-12 lg:h-14 w-auto object-contain transition-transform duration-300 hover:scale-105"
+                priority
+              />
+            </Link>
           </div>
         </div>
 
-        {/* Mobile Navigation */}
-        {isMenuOpen && (
-          <div className="md:hidden bg-white dark:bg-gray-900 py-4 px-2 sm:px-4 shadow-md mt-4 rounded-lg border border-gray-200 dark:border-gray-700 w-full">
-            <nav className="flex flex-col space-y-4">
-              {navigationItems.map(({ href, label }) => (
-                <Link
-                  key={href}
-                  href={href}
-                  className={`font-medium py-2 px-4 rounded-lg transition-colors ${
-                    isActive(href)
-                      ? "bg-[#e9e15b] text-black"
-                      : "text-gray-700 dark:text-gray-300 hover:bg-[#e9e15b]/20 hover:text-black dark:hover:text-black"
-                  }`}
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  {label}
-                </Link>
-              ))}
+        {/* Right: Nav Links */}
+        <div className="hidden md:flex flex-1 justify-end items-center space-x-8 lg:space-x-10 text-sm font-semibold">
+          {navigationItems.map(({ href, label }) => (
+            <Link
+              key={href}
+              href={href}
+              className={`relative transition-all duration-300 hover:text-[#D9E061] pb-1 group ${
+                isActive(href) ? "text-[#D9E061]" : "text-white/85"
+              }`}
+            >
+              {label}
+              <span className={`absolute bottom-0 left-0 h-[2px] bg-[#D9E061] rounded-full transition-all duration-300 ${isActive(href) ? "w-full" : "w-0 group-hover:w-full"}`} />
+            </Link>
+          ))}
+        </div>
 
-              <Link
-                href="/kontak"
-                className="bg-[#e9e15b] hover:bg-[#e9e15b]/80 px-6 py-3 font-medium rounded-full text-center text-black transition-colors"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                {t.register}
-              </Link>
-            </nav>
-          </div>
-        )}
+        {/* Mobile Menu Icon */}
+        <div className="md:hidden flex-1 flex justify-end items-center">
+          <button
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            className="text-white hover:text-[#D9E061] transition-colors p-2"
+            aria-label="Toggle menu"
+          >
+            {isMenuOpen ? <X className="h-7 w-7" /> : <Menu className="h-7 w-7" />}
+          </button>
+        </div>
       </div>
+
+      {/* Mobile Menu Content */}
+      {isMenuOpen && (
+        <div className="md:hidden fixed inset-0 z-[60] bg-[#16232A] flex flex-col items-center justify-center space-y-8">
+          <button
+            onClick={() => setIsMenuOpen(false)}
+            className="absolute top-6 right-6 text-white hover:text-[#D9E061] transition-colors"
+          >
+            <X className="h-9 w-9" />
+          </button>
+          {navigationItems.map(({ href, label }) => (
+            <Link
+              key={href}
+              href={href}
+              className={`text-4xl font-black transition-colors ${isActive(href) ? "text-[#D9E061]" : "text-white hover:text-[#D9E061]"}`}
+              onClick={() => setIsMenuOpen(false)}
+            >
+              {label}
+            </Link>
+          ))}
+          <Link
+            href="/kontak"
+            className="bg-[#D9E061] text-[#16232A] px-10 py-4 rounded-full font-bold text-xl hover:bg-[#e8ef6a] transition-colors mt-4"
+            onClick={() => setIsMenuOpen(false)}
+          >
+            Get In Touch
+          </Link>
+        </div>
+      )}
     </header>
   )
 }

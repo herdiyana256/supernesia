@@ -5,64 +5,36 @@
 @layer base {
   :root {
     --background: 0 0% 100%;
-    --foreground: 0 0% 3.9%;
+    --foreground: 210 20% 10%;
 
     --card: 0 0% 100%;
-    --card-foreground: 0 0% 3.9%;
+    --card-foreground: 210 20% 10%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 3.9%;
+    --popover-foreground: 210 20% 10%;
 
-    --primary: 54 100% 67%;
-    --primary-foreground: 0 0% 0%;
+    /* Brand: Figma Yellow #D9E061 */
+    --primary: 63 68% 63%;
+    --primary-foreground: 210 20% 10%;
 
-    --secondary: 339 100% 67%;
-    --secondary-foreground: 0 0% 98%;
+    /* Brand: Pink #EC5B70 */
+    --secondary: 350 80% 64%;
+    --secondary-foreground: 0 0% 100%;
 
-    --muted: 0 0% 96.1%;
-    --muted-foreground: 0 0% 45.1%;
+    --muted: 0 0% 96%;
+    --muted-foreground: 0 0% 45%;
 
-    --accent: 0 0% 96.1%;
+    --accent: 0 0% 96%;
     --accent-foreground: 0 0% 9%;
 
-    --destructive: 0 84.2% 60.2%;
+    --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 98%;
 
-    --border: 0 0% 89.8%;
-    --input: 0 0% 89.8%;
-    --ring: 0 0% 3.9%;
+    --border: 0 0% 90%;
+    --input: 0 0% 90%;
+    --ring: 63 68% 63%;
 
-    --radius: 0.5rem;
-  }
-
-  .dark {
-    --background: 0 0% 10%;
-    --foreground: 0 0% 98%;
-
-    --card: 0 0% 15%;
-    --card-foreground: 0 0% 98%;
-
-    --popover: 0 0% 15%;
-    --popover-foreground: 0 0% 98%;
-
-    --primary: 54 100% 67%;
-    --primary-foreground: 0 0% 0%;
-
-    --secondary: 339 100% 67%;
-    --secondary-foreground: 0 0% 98%;
-
-    --muted: 0 0% 20%;
-    --muted-foreground: 0 0% 70%;
-
-    --accent: 0 0% 20%;
-    --accent-foreground: 0 0% 98%;
-
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 0 0% 98%;
-
-    --border: 0 0% 30%;
-    --input: 0 0% 30%;
-    --ring: 0 0% 80%;
+    --radius: 0.75rem;
   }
 }
 
@@ -71,8 +43,12 @@
     @apply border-border;
   }
 
+  html {
+    scroll-behavior: smooth;
+  }
+
   body {
-    @apply bg-background text-foreground;
+    @apply bg-white text-foreground;
     font-feature-settings: "rlig" 1, "calt" 1;
   }
 
@@ -83,47 +59,25 @@
 
 @layer components {
   .btn-primary {
-    @apply bg-[#FFDE59] text-black font-bold py-2 px-6 rounded-full hover:brightness-95 transition-all;
+    @apply bg-[#D9E061] text-[#16232A] font-bold py-3 px-8 rounded-full hover:bg-[#e8ef6a] transition-all shadow-lg hover:scale-105;
   }
 
   .btn-secondary {
-    @apply bg-white border border-gray-300 text-black font-bold py-2 px-6 rounded-full hover:bg-gray-50 transition-all;
+    @apply bg-[#16232A] text-white font-bold py-3 px-8 rounded-full hover:bg-[#1e3040] transition-all shadow-lg hover:scale-105;
+  }
+
+  .sticky-note-yellow {
+    background: linear-gradient(225deg, transparent 28px, #D9E061 0);
+    border-radius: 24px 0 24px 24px;
+  }
+
+  .sticky-note-pink {
+    background: linear-gradient(45deg, transparent 28px, #EC5B70 0);
+    border-radius: 28px 28px 28px 0;
   }
 
   .section-title {
-    @apply text-4xl sm:text-5xl md:text-6xl font-bold leading-tight;
-  }
-
-  .section-subtitle {
-    @apply text-[#FF5580] uppercase font-medium;
-  }
-
-  .feature-check {
-    @apply flex items-center gap-2 mb-2;
-  }
-
-  .heading-1 {
-    @apply text-4xl sm:text-5xl md:text-6xl font-black leading-tight;
-  }
-
-  .heading-2 {
-    @apply text-3xl sm:text-4xl md:text-5xl font-black leading-tight;
-  }
-
-  .heading-3 {
-    @apply text-2xl sm:text-3xl font-bold;
-  }
-
-  .body-large {
-    @apply text-lg;
-  }
-
-  .body-regular {
-    @apply text-base;
-  }
-
-  .body-small {
-    @apply text-sm;
+    @apply text-4xl sm:text-5xl md:text-6xl font-black tracking-tight leading-none lowercase;
   }
 
   .hide-scrollbar::-webkit-scrollbar {
@@ -135,8 +89,17 @@
     scrollbar-width: none;
   }
 
-  /* Responsive container helper */
   .container-responsive {
-    @apply px-4 sm:px-6 md:px-12 lg:px-24 xl:px-36 max-w-screen-xl mx-auto;
+    @apply px-4 sm:px-6 md:px-12 lg:px-20 max-w-7xl mx-auto;
   }
+}
+
+/* Ticker animation */
+@keyframes ticker {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-ticker {
+  animation: ticker 22s linear infinite;
 }

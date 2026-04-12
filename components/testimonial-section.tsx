@@ -1,582 +1,210 @@
 "use client"
-
-import { useState, useEffect, useRef } from "react"
+import React, { useState } from "react"
 import Image from "next/image"
-import { motion, useInView, AnimatePresence, useMotionValue, useTransform } from "framer-motion"
-import { Star, Quote, ChevronRight, Building2, Users, Award, Sparkles } from "lucide-react"
+import { Star } from "lucide-react"
 
-// Translations
-const translations = {
-  ID: {
-    testimonials: "TESTIMONI",
-    whatTheySay: "INTIP APA KATA MEREKA",
-    description:
-      "Kami telah bermitra dengan berbagai perusahaan enterprise di berbagai industri untuk mendorong transformasi digital dan akselerasi pertumbuhan bisnis mereka.",
-    viewAll: "Lihat Semua Testimoni",
-    clientSince: "Klien sejak",
-    projectCompleted: "Proyek selesai",
-  },
-  EN: {
-    testimonials: "TESTIMONIALS",
-    whatTheySay: "SEE WHAT THEY SAY",
-    description:
-      "We have partnered with various enterprise companies across industries to drive digital transformation and accelerate their business growth.",
-    viewAll: "View All Testimonials",
-    clientSince: "Client since",
-    projectCompleted: "Projects completed",
-  },
-}
-
-// Enhanced testimonials data
 const testimonials = [
   {
-    id: 1,
-    name: "Andi Saputra",
-    position: "CEO & Founder",
-    company: "PT Solusi Digital Indonesia",
-    industry: "Technology Consulting",
-    avatar: "/andi.png",
-    rating: 5,
-    date: "April 20, 2025",
-    clientSince: "2023",
-    projectsCompleted: 3,
-    testimonial:
-      "Supernesia telah mentransformasi infrastruktur IT kami secara menyeluruh. Dari legacy system modernization hingga implementasi cloud architecture, mereka berhasil meningkatkan efisiensi operasional kami hingga 300%.",
-    projectType: "Enterprise System Integration",
-    results: ["300% efficiency increase", "Zero downtime migration", "50% cost reduction"],
-    color: "from-blue-500 to-cyan-500",
+    name: "Rizky Firmansyah",
+    role: "Founder, Kreasi Digital — Jakarta",
+    quote: "Supernesia benar-benar mengubah cara kami beroperasi secara digital. Platform e-commerce yang mereka bangun sangat responsif dan UI-nya memanjakan mata. Traffic kami meningkat 40% dalam bulan pertama!",
+    image: "/client_001.png",
+    stars: 5,
+    result: "Traffic meningkat +40%",
+    impact: "Penjualan Q1 melonjak progresif",
   },
   {
-    id: 2,
+    name: "Dewi Savitri",
+    role: "Operational Manager, LogisHub — Surabaya",
+    quote: "Tim Supernesia sangat profesional. Kami membutuhkan custom software untuk sistem tracking logistik yang cukup kompleks, dan mereka berhasil men-deliver tepat waktu.",
+    image: "/client_002.png",
+    stars: 5,
+    result: "Efisiensi operasional 3x Lipat",
+    impact: "Sistem tracking logistik seamless",
+  },
+  {
+    name: "Ahmad Faisal",
+    role: "CEO, FinSmart — Bandung",
+    quote: "Proses komunikasi mereka sangat transparan. Dari desain awal hingga deployment benar-benar rapi. Tidak ada cost tersembunyi. Mobile app kami kini mendapatkan rating 4.8 di PlayStore berkat optimasi mereka.",
+    image: "/client_003.png",
+    stars: 5,
+    result: "Rating 4.8 di PlayStore",
+    impact: "User satisfaction meningkat",
+  },
+  {
+    name: "Sarah Wijaya",
+    role: "Marketing Director, Bloom Beauty — Bali",
+    quote: "Kami minta desain yang 'vibrant' namun elegan, dan Supernesia deliver lebih dari ekspektasi. Website baru kami sangat merefleksikan brand identity kami yang premium.",
+    image: "/client_004.png",
+    stars: 5,
+    result: "Re-branding Sukses Besar",
+    impact: "Konversi ads naik 25%",
+  },
+  {
     name: "Budi Santoso",
-    position: "Chief Technology Officer",
-    company: "PT Global Makmur Utama",
-    industry: "Manufacturing & Logistics",
-    avatar: "/budi.png",
-    rating: 5,
-    date: "April 15, 2025",
-    clientSince: "2022",
-    projectsCompleted: 5,
-    testimonial:
-      "Implementasi ERP dan supply chain management system dari Supernesia benar-benar game changer untuk operasional kami. Real-time inventory tracking dan business intelligence dashboard memberikan visibility penuh.",
-    projectType: "ERP & Supply Chain System",
-    results: ["Real-time inventory tracking", "40% faster procurement", "Complete operational visibility"],
-    color: "from-purple-500 to-pink-500",
+    role: "Head of IT, EduNesia — Yogyakarta",
+    quote: "Selain coding yang clean, mereka memahami bagaimana membangun arsitektur yang scalable. Sistem admin dashboard kami kini berjalan lebih cepat 3x lipat. Sangat direkomendasikan!",
+    image: "/client_005.png",
+    stars: 5,
+    result: "Performa Aplikasi 300% Lebih Cepat",
+    impact: "Server backend optimal & stabil",
   },
   {
-    id: 3,
-    name: "Citra Dewi",
-    position: "Head of Digital Innovation",
-    company: "Innovate Supply Solutions",
-    industry: "Supply Chain & Logistics",
-    avatar: "/dewi.png",
-    rating: 5,
-    date: "April 10, 2025",
-    clientSince: "2023",
-    projectsCompleted: 2,
-    testimonial:
-      "Proyek digital transformation dengan Supernesia sangat impressive. Mereka tidak hanya membangun aplikasi mobile dan web platform, tapi juga mengintegrasikan AI untuk predictive analytics dan automation.",
-    projectType: "Digital Transformation & AI Integration",
-    results: ["AI-powered analytics", "Mobile-first platform", "Seamless integration"],
-    color: "from-green-500 to-emerald-500",
-  },
-  {
-    id: 4,
-    name: "Fahri Alamsyah",
-    position: "Chief Technology Officer",
-    company: "TechnoWorks Indonesia",
-    industry: "Software Development",
-    avatar: "/fahri.png",
-    rating: 5,
-    date: "April 5, 2025",
-    clientSince: "2024",
-    projectsCompleted: 1,
-    testimonial:
-      "Sebagai fellow tech company, kami sangat appreciate kualitas code dan architecture yang didelivery Supernesia. Microservices architecture, CI/CD pipeline, dan cloud-native approach yang mereka implement sangat solid.",
-    projectType: "Cloud-Native Architecture & DevOps",
-    results: ["Microservices architecture", "Automated CI/CD", "Scalable infrastructure"],
-    color: "from-yellow-500 to-orange-500",
-  },
-  {
-    id: 5,
-    name: "Rina Kurniawati",
-    position: "VP of Operations",
-    company: "NextGen Digital Solutions",
-    industry: "Digital Marketing",
-    avatar: "/rina.png",
-    rating: 5,
-    date: "April 1, 2025",
-    clientSince: "2023",
-    projectsCompleted: 4,
-    testimonial:
-      "Partnership dengan Supernesia sangat strategic untuk growth kami. Mereka membangun comprehensive CRM system, marketing automation platform, dan analytics dashboard yang integrate dengan semua tools kami.",
-    projectType: "CRM & Marketing Automation",
-    results: ["Comprehensive CRM", "Marketing automation", "Data-driven insights"],
-    color: "from-red-500 to-pink-500",
-  },
-  {
-    id: 6,
-    name: "Rina Kurniawati",
-    position: "VP of Operations",
-    company: "NextGen Digital Solutions",
-    industry: "Digital Marketing",
-    avatar: "/rina.png",
-    rating: 5,
-    date: "April 1, 2025",
-    clientSince: "2023",
-    projectsCompleted: 4,
-    testimonial:
-      "Partnership dengan Supernesia sangat strategic untuk growth kami. Mereka membangun comprehensive CRM system, marketing automation platform, dan analytics dashboard yang integrate dengan semua tools kami.",
-    projectType: "CRM & Marketing Automation",
-    results: ["Comprehensive CRM", "Marketing automation", "Data-driven insights"],
-    color: "from-red-500 to-pink-500",
+    name: "Nina Maharani",
+    role: "Owner, Kopi Kawan — Semarang",
+    quote: "Awalnya saya ragu karena kami hanya UMKM, tapi tim Supernesia tetap memberikan pelayanan VIP. Sistem Point of Sale yang dibangun sangat mudah digunakan oleh kasir kami.",
+    image: "/client_006.png",
+    stars: 5,
+    result: "Transaksi Kasir Jadi 2x Lebih Cepat",
+    impact: "Mengurangi human error data",
   },
 ]
 
 export default function TestimonialSection() {
-  const [language, setLanguage] = useState("ID")
-  const [currentIndex, setCurrentIndex] = useState(0)
-  const [isDragging, setIsDragging] = useState(false)
-  const ref = useRef(null)
-  const isInView = useInView(ref, { once: true, amount: 0.2 })
-  const carouselRef = useRef<HTMLDivElement>(null)
-  const x = useMotionValue(0)
-  const rotateY = useTransform(x, [-300, 300], [30, -30])
-
-  // Listen for language changes
-  useEffect(() => {
-    const savedLanguage = localStorage.getItem("language")
-    if (savedLanguage) {
-      setLanguage(savedLanguage)
-    }
-
-    const handleLanguageChange = (e: CustomEvent) => {
-      setLanguage(e.detail)
-    }
-
-    window.addEventListener("languageChange", handleLanguageChange as EventListener)
-    return () => {
-      window.removeEventListener("languageChange", handleLanguageChange as EventListener)
-    }
-  }, [])
-
-  // Auto-rotate functionality
-  useEffect(() => {
-    if (isDragging) return
-
-    const interval = setInterval(() => {
-      setCurrentIndex((prev) => (prev + 1) % testimonials.length)
-    }, 5000)
-
-    return () => clearInterval(interval)
-  }, [isDragging])
-
-  // Get current translations
-  const t = translations[language as keyof typeof translations]
-
-  // Get current testimonial
-  const currentTestimonial = testimonials[currentIndex]
-
-  // Animation variants
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-        delayChildren: 0.2,
-      },
-    },
-  }
-
-  const headerVariants = {
-    hidden: { opacity: 0, y: -30 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        type: "spring",
-        stiffness: 100,
-        damping: 15,
-      },
-    },
-  }
-
-  const cardVariants = {
-    hidden: { opacity: 0, scale: 0.8, rotateY: 90 },
-    visible: {
-      opacity: 1,
-      scale: 1,
-      rotateY: 0,
-      transition: {
-        type: "spring",
-        stiffness: 100,
-        damping: 12,
-      },
-    },
-    exit: {
-      opacity: 0,
-      scale: 0.8,
-      rotateY: -90,
-      transition: {
-        duration: 0.4,
-      },
-    },
-  }
+  const [active, setActive] = useState(0)
 
   return (
     <section
-      ref={ref}
-      className="py-20 px-4 md:px-12 lg:px-20 bg-gradient-to-br from-gray-50 to-white dark:from-gray-900 dark:to-gray-800 relative overflow-hidden"
+      id="testimonial"
+      className="bg-[#16232A] py-20 md:py-28 px-6 md:px-12 lg:px-20 font-sans relative overflow-hidden"
     >
-      {/* Background Elements */}
-      <motion.div
-        className="absolute inset-0 opacity-5"
-        animate={{
-          background: [
-            "radial-gradient(circle at 20% 80%, #e9e15b 0%, transparent 50%)",
-            "radial-gradient(circle at 80% 20%, #e9e15b 0%, transparent 50%)",
-            "radial-gradient(circle at 40% 60%, #e9e15b 0%, transparent 50%)",
-          ],
-        }}
-        transition={{
-          duration: 10,
-          repeat: Number.POSITIVE_INFINITY,
-          ease: "easeInOut",
-        }}
-      />
+      {/* Subtle bg radial */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute top-0 right-0 w-[500px] h-[500px] opacity-5 blur-3xl rounded-full bg-[#D9E061]" />
+        <div className="absolute bottom-0 left-0 w-[400px] h-[400px] opacity-5 blur-3xl rounded-full bg-[#EC5B70]" />
+      </div>
 
-      {/* Floating Particles */}
-      {[...Array(8)].map((_, i) => (
-        <motion.div
-          key={i}
-          className="absolute w-2 h-2 bg-[#e9e15b]/30 rounded-full"
-          style={{
-            left: `${Math.random() * 100}%`,
-            top: `${Math.random() * 100}%`,
-          }}
-          animate={{
-            y: [-20, 20, -20],
-            opacity: [0.2, 0.8, 0.2],
-          }}
-          transition={{
-            duration: 3 + Math.random() * 2,
-            repeat: Number.POSITIVE_INFINITY,
-            ease: "easeInOut",
-            delay: Math.random() * 2,
-          }}
-        />
-      ))}
+      <div className="max-w-7xl mx-auto relative">
 
-      <motion.div initial="hidden" animate={isInView ? "visible" : "hidden"} variants={containerVariants}>
-        {/* Header Section */}
-        <motion.div className="mb-16 text-center" variants={headerVariants}>
-          <motion.div
-            className="inline-flex items-center bg-[#e9e15b]/20 backdrop-blur-sm rounded-full px-6 py-3 mb-6"
-            whileHover={{ scale: 1.05 }}
-            transition={{ type: "spring", stiffness: 400, damping: 10 }}
-          >
-            <Sparkles className="w-5 h-5 text-[#2b2b2b] mr-2" />
-            <span className="text-[#2b2b2b] font-semibold">{t.testimonials}</span>
-            <Sparkles className="w-5 h-5 text-[#2b2b2b] ml-2" />
-          </motion.div>
-
-          <motion.h2
-            className="text-5xl md:text-6xl font-black leading-tight text-[#2b2b2b] dark:text-white mb-6"
-            initial={{ opacity: 0, y: 30 }}
-            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-            transition={{ delay: 0.3, duration: 0.8 }}
-          >
-            {t.whatTheySay}
-          </motion.h2>
-
-          <motion.p
-            className="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto text-lg"
-            initial={{ opacity: 0 }}
-            animate={isInView ? { opacity: 1 } : { opacity: 0 }}
-            transition={{ delay: 0.5, duration: 0.8 }}
-          >
-            {t.description}
-          </motion.p>
-
-          {/* Stats Bar */}
-          <motion.div
-            className="flex flex-wrap justify-center items-center gap-4 mt-8"
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-            transition={{ delay: 0.7, duration: 0.8 }}
-          >
-            {[
-              { icon: Building2, label: "Enterprise Clients", value: "150+" },
-              { icon: Users, label: "Projects Delivered", value: "500+" },
-              { icon: Award, label: "Client Satisfaction", value: "99%" },
-            ].map((stat, index) => (
-              <motion.div
-                key={index}
-                className="flex items-center space-x-2 bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-full px-6 py-3 shadow-lg"
-                whileHover={{ scale: 1.05, y: -2 }}
-                transition={{ type: "spring", stiffness: 400, damping: 10 }}
-              >
-                <stat.icon className="w-5 h-5 text-[#e9e15b]" />
-                <div className="text-center">
-                  <div className="text-lg font-bold text-[#2b2b2b] dark:text-white">{stat.value}</div>
-                  <div className="text-xs text-gray-600 dark:text-gray-300">{stat.label}</div>
-                </div>
-              </motion.div>
-            ))}
-          </motion.div>
-        </motion.div>
-
-        {/* Interactive 3D Testimonial Carousel */}
-        <div className="max-w-4xl mx-auto perspective">
-          <motion.div
-            ref={carouselRef}
-            className="relative h-[500px] md:h-[400px] w-full"
-            style={{ rotateY, transformStyle: "preserve-3d" }}
-            drag="x"
-            dragConstraints={{ left: 0, right: 0 }}
-            dragElastic={0.1}
-            onDragStart={() => setIsDragging(true)}
-            onDragEnd={(_, info) => {
-              setIsDragging(false)
-              if (info.offset.x > 100) {
-                setCurrentIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length)
-              } else if (info.offset.x < -100) {
-                setCurrentIndex((prev) => (prev + 1) % testimonials.length)
-              }
-            }}
-            onDrag={(_, info) => {
-              x.set(info.offset.x)
+        {/* Section title */}
+        <div className="relative inline-block transform rotate-[1deg] hover:rotate-0 transition-transform duration-500 mb-16">
+          <div
+            className="text-[#16232A] px-10 py-7 shadow-xl relative inline-block"
+            style={{
+              background: "linear-gradient(225deg, transparent 32px, #D9E061 0)",
+              borderRadius: "24px 0 24px 24px",
             }}
           >
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={currentIndex}
-                className="absolute inset-0 flex items-center justify-center"
-                variants={cardVariants}
-                initial="hidden"
-                animate="visible"
-                exit="exit"
-              >
-                <div className="w-full max-w-3xl">
-                  <motion.div
-                    className={`bg-white dark:bg-gray-800 rounded-3xl p-8 shadow-2xl border border-gray-100 dark:border-gray-700 relative overflow-hidden`}
-                    whileHover={{ scale: 1.02 }}
-                    transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                  >
-                    {/* Gradient Border */}
-                    <motion.div
-                      className={`absolute top-0 left-0 w-full h-2 bg-gradient-to-r ${currentTestimonial.color}`}
-                      initial={{ scaleX: 0 }}
-                      animate={{ scaleX: 1 }}
-                      transition={{ duration: 0.8, delay: 0.3 }}
-                    />
-
-                    {/* Quote Icon */}
-                    <motion.div
-                      className="absolute top-6 right-6 text-[#e9e15b]/20"
-                      animate={{ rotate: [0, 15, 0] }}
-                      transition={{ duration: 5, repeat: Number.POSITIVE_INFINITY }}
-                    >
-                      <Quote className="w-12 h-12" />
-                    </motion.div>
-
-                    <div className="flex flex-col md:flex-row items-start gap-6">
-                      {/* Avatar and Info */}
-                      <motion.div
-                        className="flex flex-col items-center md:items-start"
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.4 }}
-                      >
-                        <div className="relative mb-4">
-                          <motion.div
-                            className={`absolute inset-0 rounded-full bg-gradient-to-r ${currentTestimonial.color} blur-md opacity-50`}
-                            animate={{ scale: [1, 1.2, 1] }}
-                            transition={{ duration: 2, repeat: Number.POSITIVE_INFINITY }}
-                          />
-                          <Image
-                            src={currentTestimonial.avatar || "/placeholder.svg"}
-                            alt={currentTestimonial.name}
-                            width={80}
-                            height={80}
-                            className="rounded-full border-4 border-white dark:border-gray-800 relative z-10"
-                          />
-                          <motion.div
-                            className="absolute -bottom-2 -right-2 bg-[#e9e15b] rounded-full p-1 z-20"
-                            initial={{ scale: 0 }}
-                            animate={{ scale: 1 }}
-                            transition={{ delay: 0.6 }}
-                          >
-                            <Award className="w-4 h-4 text-[#2b2b2b]" />
-                          </motion.div>
-                        </div>
-
-                        <h3 className="text-xl font-bold text-[#2b2b2b] dark:text-white text-center md:text-left">
-                          {currentTestimonial.name}
-                        </h3>
-                        <p className="text-sm font-medium text-[#e9e15b]">{currentTestimonial.position}</p>
-                        <p className="text-sm text-gray-600 dark:text-gray-300">{currentTestimonial.company}</p>
-                        <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
-                          {currentTestimonial.projectType}
-                        </p>
-
-                        <div className="flex items-center space-x-1 mt-2">
-                          {[...Array(currentTestimonial.rating)].map((_, i) => (
-                            <motion.div
-                              key={i}
-                              initial={{ opacity: 0, scale: 0 }}
-                              animate={{ opacity: 1, scale: 1 }}
-                              transition={{ delay: 0.7 + i * 0.1 }}
-                            >
-                              <Star className="w-4 h-4 fill-[#e9e15b] text-[#e9e15b]" />
-                            </motion.div>
-                          ))}
-                        </div>
-                      </motion.div>
-
-                      {/* Content */}
-                      <div className="flex-1">
-                        {/* Testimonial Text */}
-                        <motion.div
-                          className="relative"
-                          initial={{ opacity: 0 }}
-                          animate={{ opacity: 1 }}
-                          transition={{ delay: 0.5 }}
-                        >
-                          <motion.div
-                            className="absolute -left-4 -top-4 text-[#e9e15b]/10 dark:text-[#e9e15b]/5"
-                            initial={{ scale: 0 }}
-                            animate={{ scale: 1, rotate: -10 }}
-                            transition={{ delay: 0.3, type: "spring" }}
-                          >
-                            <Quote className="w-8 h-8" />
-                          </motion.div>
-                          <p className="text-gray-700 dark:text-gray-300 leading-relaxed text-lg mb-6 italic">
-                            "{currentTestimonial.testimonial}"
-                          </p>
-                        </motion.div>
-
-                        {/* Results */}
-                        <motion.div
-                          className="flex flex-wrap gap-2 mb-6"
-                          initial={{ opacity: 0, y: 10 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          transition={{ delay: 0.6 }}
-                        >
-                          {currentTestimonial.results.map((result, idx) => (
-                            <motion.span
-                              key={idx}
-                              className={`bg-gradient-to-r ${currentTestimonial.color} bg-opacity-10 text-[#2b2b2b] dark:text-white px-3 py-1 rounded-full text-xs font-medium`}
-                              whileHover={{ scale: 1.05 }}
-                              transition={{ type: "spring", stiffness: 400, damping: 10 }}
-                            >
-                              ✓ {result}
-                            </motion.span>
-                          ))}
-                        </motion.div>
-
-                        {/* Footer */}
-                        <div className="flex items-center justify-between text-xs text-gray-500 dark:text-gray-400">
-                          <div className="flex items-center space-x-4">
-                            <span>
-                              {t.clientSince} {currentTestimonial.clientSince}
-                            </span>
-                            <span>
-                              {currentTestimonial.projectsCompleted} {t.projectCompleted}
-                            </span>
-                          </div>
-                          <span>{currentTestimonial.date}</span>
-                        </div>
-                      </div>
-                    </div>
-                  </motion.div>
-                </div>
-              </motion.div>
-            </AnimatePresence>
-          </motion.div>
-
-          {/* Interactive Navigation */}
-          <div className="mt-8 flex justify-center items-center">
-            <div className="flex space-x-4">
-              {testimonials.map((_, index) => (
-                <motion.button
-                  key={index}
-                  onClick={() => setCurrentIndex(index)}
-                  className={`relative w-10 h-10 rounded-full flex items-center justify-center ${
-                    index === currentIndex
-                      ? "bg-[#e9e15b] text-[#2b2b2b]"
-                      : "bg-white/80 dark:bg-gray-800/80 text-gray-400"
-                  }`}
-                  whileHover={{ scale: 1.1 }}
-                  whileTap={{ scale: 0.9 }}
-                >
-                  {index === currentIndex && (
-                    <motion.div
-                      className="absolute inset-0 bg-[#e9e15b] rounded-full"
-                      layoutId="activeIndicator"
-                      transition={{ type: "spring", stiffness: 300, damping: 30 }}
-                    />
-                  )}
-                  <span className="relative z-10 font-bold">{index + 1}</span>
-                </motion.button>
-              ))}
-            </div>
+            <div className="absolute top-4 left-4 w-4 h-4 bg-[#16232A] rounded-full z-20" />
+            <h2 className="text-[3rem] md:text-[4rem] font-black tracking-tighter lowercase mt-2 text-[#16232A]">testimoni</h2>
+            <svg className="w-28 h-4 mt-2 stroke-[#16232A]" viewBox="0 0 100 10" fill="none">
+              <path d="M0,5 Q10,0 20,5 T40,5 T60,5 Q70,10 80,5 T100,5" strokeWidth="4" strokeLinecap="round" />
+            </svg>
+            <div className="absolute top-0 right-0 w-9 h-9 bg-white/60 shadow-md" style={{ borderRadius: "0 0 0 14px" }} />
           </div>
-
-          {/* Drag Instructions */}
-          <motion.div
-            className="text-center mt-4 text-sm text-gray-500 dark:text-gray-400"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 1 }}
-          >
-            <span className="inline-block">← Swipe or drag to navigate →</span>
-          </motion.div>
         </div>
 
-        {/* Call to Action */}
-        <motion.div
-          className="text-center mt-16"
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-          transition={{ delay: 1.2 }}
-        >
-          <motion.button
-            className="bg-gradient-to-r from-[#e9e15b] to-yellow-400 hover:from-yellow-400 hover:to-[#e9e15b] text-[#2b2b2b] font-bold py-4 px-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 relative overflow-hidden group"
-            whileHover={{
-              scale: 1.05,
-              boxShadow: "0 20px 40px rgba(233, 225, 91, 0.3)",
-            }}
-            whileTap={{ scale: 0.95 }}
-          >
-            {/* Button Glow Effect */}
-            <motion.div
-              className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent opacity-0 group-hover:opacity-100"
-              initial={{ x: "-100%" }}
-              whileHover={{ x: "100%" }}
-              transition={{ duration: 0.6 }}
-            />
+        {/* Main testimonial layout */}
+        <div className="grid lg:grid-cols-[1.3fr_1fr] gap-8 items-stretch">
 
-            <span className="relative z-10 flex items-center">
-              {t.viewAll}
-              <motion.div
-                className="ml-2"
-                animate={{ x: [0, 5, 0] }}
-                transition={{ duration: 1, repeat: Number.POSITIVE_INFINITY }}
-              >
-                <ChevronRight className="w-5 h-5" />
-              </motion.div>
-            </span>
-          </motion.button>
-        </motion.div>
-      </motion.div>
+          {/* Left Column (Split into Main Card + Secondary Card) */}
+          <div className="flex flex-col gap-6">
+            
+            {/* Main featured card */}
+            <div className="bg-white rounded-[36px] p-8 md:p-10 shadow-2xl flex flex-col hover:shadow-[0_30px_80px_rgba(0,0,0,0.25)] transition-shadow">
+              {/* Photo Area (Compact Height) */}
+              <div className="w-full h-[180px] bg-gray-100 rounded-[24px] mb-6 relative overflow-hidden">
+                <Image
+                  src={testimonials[active].image}
+                  alt={testimonials[active].name}
+                  fill
+                  className="object-cover object-top"
+                />
+                <div className="absolute top-4 right-4 w-8 h-8 bg-[#D9E061] rounded-full shadow-inner" />
+              </div>
 
-      <style jsx global>{`
-        .perspective {
-          perspective: 1000px;
-        }
-      `}</style>
+              {/* Content */}
+              <div className="flex flex-col">
+                <div className="flex gap-1 mb-4">
+                  {Array.from({ length: testimonials[active].stars }).map((_, i) => (
+                    <Star key={i} className="w-5 h-5 fill-[#D9E061] stroke-none" />
+                  ))}
+                </div>
+                <h3 className="text-[#16232A] font-black text-2xl md:text-3xl mb-1">{testimonials[active].name}</h3>
+                <p className="text-gray-400 font-semibold text-sm mb-6">{testimonials[active].role}</p>
+                <p className="text-gray-600 font-medium text-lg leading-relaxed italic">
+                  &ldquo;{testimonials[active].quote}&rdquo;
+                </p>
+              </div>
+            </div>
+
+            {/* Secondary Highlight Card (Stats/Result) - OPSI 2 */}
+            <div className="bg-white/5 backdrop-blur-md border border-white/10 rounded-[32px] p-6 md:p-8 flex flex-col justify-between flex-1">
+              <div className="mb-4">
+                <div className="text-[#D9E061] text-xs font-black tracking-widest uppercase mb-4 flex items-center gap-2">
+                  <span className="w-2 h-2 rounded-full bg-[#EC5B70] animate-pulse" />
+                  Project Impact Result
+                </div>
+                <h4 className="text-white font-black text-xl md:text-2xl mb-2">
+                  {testimonials[active].result}
+                </h4>
+                <p className="text-gray-400 text-sm font-medium">
+                  {testimonials[active].impact}
+                </p>
+              </div>
+              <div className="flex justify-end mt-4 md:mt-0">
+                <div className="w-12 h-12 rounded-full bg-[#D9E061] text-[#16232A] flex items-center justify-center font-bold">
+                  <Star className="w-6 h-6 fill-[#16232A]" />
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          {/* Right stacked cards */}
+          <div className="flex flex-col gap-5">
+            {testimonials.map((t, idx) => (
+              idx !== active && (
+                <button
+                  key={idx}
+                  onClick={() => setActive(idx)}
+                  className="bg-white/5 hover:bg-white/10 border border-white/10 hover:border-[#D9E061]/30 rounded-[28px] p-6 flex gap-5 items-start text-left transition-all duration-300 group"
+                >
+                  <div className="w-[70px] h-[70px] rounded-[18px] bg-gray-700 flex-shrink-0 overflow-hidden relative">
+                    <Image src={t.image} alt={t.name} fill className="object-cover object-top grayscale group-hover:grayscale-0 transition-all" />
+                  </div>
+                  <div className="flex-1">
+                    <h4 className="text-white font-black text-base mb-0.5">{t.name}</h4>
+                    <p className="text-white/50 font-semibold text-xs mb-3">{t.role}</p>
+                    <p className="text-white/60 text-sm leading-relaxed line-clamp-2">
+                      &ldquo;{t.quote}&rdquo;
+                    </p>
+                    <span className="inline-block mt-3 text-[#D9E061] text-xs font-bold bg-[#D9E061]/10 px-4 py-1.5 rounded-full group-hover:bg-[#D9E061]/20 transition-colors">
+                      Read More
+                    </span>
+                  </div>
+                </button>
+              )
+            ))}
+
+            {/* Pagination dots */}
+            <div className="flex flex-col items-center mt-auto pt-6 w-full max-w-[300px] mx-auto">
+              <div className="flex justify-between w-full text-center mb-3">
+                {testimonials.map((_, i) => (
+                  <button
+                    key={i}
+                    onClick={() => setActive(i)}
+                    className={`font-black text-xl w-1/3 transition-colors ${active === i ? "text-[#D9E061]" : "text-white/30 hover:text-white/60"}`}
+                  >
+                    {String(i + 1).padStart(2, "0")}
+                  </button>
+                ))}
+              </div>
+              <div className="w-full h-2.5 bg-white/10 rounded-full overflow-hidden">
+                <div
+                  className="h-full bg-[#D9E061] rounded-full transition-all duration-500 shadow-[0_0_10px_rgba(217,224,97,0.5)]"
+                  style={{ width: `${((active + 1) / testimonials.length) * 100}%` }}
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Decorative scribble bottom left */}
+        <div className="absolute bottom-[10%] left-[2%] opacity-30 hidden md:block">
+          <Image src="/asaf sdag.png" alt="" width={80} height={24} className="object-contain" />
+        </div>
+      </div>
     </section>
   )
 }

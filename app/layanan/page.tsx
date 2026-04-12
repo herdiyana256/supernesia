@@ -1,396 +1,416 @@
 "use client"
 
-import { useState, useEffect, useRef } from "react"
+import React, { useState } from "react"
+import Image from "next/image"
 import Link from "next/link"
 import Navbar from "@/components/navbar"
 import Footer from "@/components/footer"
-import WhatsappCTA from "@/components/whatsapp-cta"
-import SupernesiaChatbot from "@/components/supernesia-chatbot"
-import { motion, useInView } from "framer-motion"
-import { ArrowUpRight, ChevronDown, Code, Smartphone, Server, Sparkles, Zap, Globe } from "lucide-react"
+import { ArrowUpRight, Check } from "lucide-react"
+import { motion } from "framer-motion"
 
-// Translations
-const translations = {
-  ID: {
-    title1: "EXPERT DEVELOPMENT",
-    title2: "WITH UPSCALE TECH",
-    description:
-      "Kami berspesialisasi dalam memberikan layanan pengembangan mobile dan web terbaik, dengan fokus pada pengembangan yang upscale. Keahlian kami mencakup berbagai industri, dan kami memiliki rekam jejak yang telah terbukti dalam menangani proyek berskala besar, aplikasi mobile, web dev ataupun sistem. Baik Anda sudah memiliki backend atau layanan API, kami dapat mengintegrasikan dan membuat antarmuka pengguna yang memukau untuk kebutuhan Anda.",
-    learnMore: "Pelajari Lebih Lanjut",
-    superService: "SUPER SERVICE DALAM",
-    digitalIndustry: "INDUSTRI DIGITAL",
-    serviceDesc:
-      "Kami menawarkan pendekatan unik untuk transformasi digital yang berfokus pada hasil bisnis nyata dan solusi yang disesuaikan dengan kebutuhan spesifik Anda.",
-    webDev: "Web Development",
-    mobileApp: "Mobile & Desktop Apps",
-    customSoftware: "Custom Software Development",
-    serviceDescription: "Konsultasi strategis untuk menyelaraskan inisiatif teknologi dengan tujuan bisnis Anda.",
-    viewDetails: "Lihat Detail",
-    expertise: "KEAHLIAN KAMI",
-    expertiseDesc: "Teknologi dan keahlian yang kami gunakan untuk memberikan solusi terbaik",
+const services = [
+  {
+    id: "web-development",
+    title: "Web Development",
+    icon: "🌐",
+    iconColor: "#FF7A00",
+    desc: "From company profile to e-commerce — we build fast, responsive, and scalable websites tailored to your business needs.",
+    features: ["Landing Page", "Company Profile", "E-Commerce", "Web App", "Dashboard Admin", "API Integration"],
+    href: "/layanan/web-development",
   },
-  EN: {
-    title1: "EXPERT DEVELOPMENT",
-    title2: "WITH UPSCALE TECH",
-    description:
-      "We specialize in providing the best mobile and web development services, with a focus on upscale development. Our expertise spans various industries, and we have a proven track record in handling large-scale projects, mobile applications, web development, or systems. Whether you already have a backend or API service, we can integrate and create stunning user interfaces for your needs.",
-    learnMore: "Learn More",
-    superService: "SUPER SERVICE IN",
-    digitalIndustry: "DIGITAL INDUSTRY",
-    serviceDesc:
-      "We offer a unique approach to digital transformation that focuses on real business results and solutions tailored to your specific needs.",
-    webDev: "Web Development",
-    mobileApp: "Mobile & Desktop Apps",
-    customSoftware: "Custom Software Development",
-    serviceDescription: "Strategic consultation to align technology initiatives with your business goals.",
-    viewDetails: "View Details",
-    expertise: "OUR EXPERTISE",
-    expertiseDesc: "Technologies and expertise we use to deliver the best solutions",
+  {
+    id: "custom-software",
+    title: "Custom Software",
+    icon: "📦",
+    iconColor: "#714AFE",
+    desc: "Got a unique business process? We develop custom systems like CRM, inventory, POS, and internal tools that actually fit how you work.",
+    features: ["Sistem CRM", "Inventory Management", "Point of Sale", "ERP System", "Workflow Automation", "Reporting Dashboard"],
+    href: "/layanan/custom-software",
   },
-}
+  {
+    id: "maintenance",
+    title: "Maintenance & Revamp",
+    icon: "🔧",
+    iconColor: "#2D8CFF",
+    desc: "We keep your digital product healthy — bug fixing, performance boost, security patching, SEO, & redesign.",
+    features: ["Bug Fixing", "Performance Optimization", "Security Patching", "SEO Improvement", "UI Redesign", "Code Refactoring"],
+    href: "#",
+  },
+  {
+    id: "ai",
+    title: "Artificial Intelligence",
+    icon: "🤖",
+    iconColor: "#EC5B70",
+    desc: "Automate repetitive tasks, deploy AI agents, or launch a WhatsApp chatbot to serve your customers 24/7.",
+    features: ["AI Chatbot", "WhatsApp Bot", "Data Analysis", "Process Automation", "Recommendation System", "AI Integration"],
+    href: "#",
+  },
+]
+
+const processSteps = [
+  {
+    step: "01",
+    title: "Research",
+    desc: "Memahami bisnis kamu dari akar. Kami analisa kebutuhan, target market, dan kompetitor untuk memastikan solusi yang kami bangun tepat sasaran dan deliver hasil maksimal.",
+    color: "#D9E061",
+  },
+  {
+    step: "02",
+    title: "Planning & Design",
+    desc: "Kami buat wireframe, architecture, dan UI/UX mockup yang pixel-perfect sebelum coding dimulai. Kamu approve dulu, baru kami build.",
+    color: "#EC5B70",
+  },
+  {
+    step: "03",
+    title: "Development",
+    desc: "Tim developer kami build dengan clean code, teknologi terkini, dan best practice. Kamu bisa pantau progress real-time.",
+    color: "#2D8CFF",
+  },
+  {
+    step: "04",
+    title: "Testing & QA",
+    desc: "Sebelum launch, kami lakukan QA testing menyeluruh — dari functionality, performance, security, hingga mobile responsiveness.",
+    color: "#714AFE",
+  },
+  {
+    step: "05",
+    title: "Launch & Support",
+    desc: "Go live! Kami bantu deploy dan pastikan semua berjalan sempurna. After launch, kami tetap standby untuk support dan maintenance.",
+    color: "#FF7A00",
+  },
+]
 
 export default function LayananPage() {
-  const [language, setLanguage] = useState<"ID" | "EN">("ID")
-  const servicesRef = useRef<HTMLDivElement>(null)
-  const heroRef = useRef<HTMLDivElement>(null)
-  const isHeroInView = useInView(heroRef, { once: true, amount: 0.3 })
-  const isServicesInView = useInView(servicesRef, { once: true, amount: 0.3 })
+  const [activeService, setActiveService] = useState(0)
+  const [parallax, setParallax] = useState("translate(0px, 0px)")
 
-  // Listen for language changes
-  useEffect(() => {
-    // Initialize language from localStorage
-    if (typeof window !== "undefined") {
-      const savedLanguage = localStorage.getItem("language") as "ID" | "EN"
-      if (savedLanguage) {
-        setLanguage(savedLanguage)
-      }
-    }
-
-    // Listen for language change events from navbar
-    const handleLanguageChange = (event: CustomEvent) => {
-      setLanguage(event.detail as "ID" | "EN")
-    }
-
-    window.addEventListener("languageChange", handleLanguageChange as EventListener)
-
-    return () => {
-      window.removeEventListener("languageChange", handleLanguageChange as EventListener)
-    }
-  }, [])
-
-  // Get current translations
-  const t = translations[language]
-
-  // Scroll to services section
-  const scrollToServices = () => {
-    servicesRef.current?.scrollIntoView({ behavior: "smooth" })
-  }
-
-  const services = [
-    {
-      title: t.webDev,
-      description: t.serviceDescription,
-      link: "/layanan/web-development",
-      icon: Globe,
-    },
-    {
-      title: t.mobileApp,
-      description: t.serviceDescription,
-      link: "/layanan/mobile-app",
-      icon: Smartphone,
-    },
-    {
-      title: t.customSoftware,
-      description: t.serviceDescription,
-      link: "/layanan/custom-software",
-      icon: Server,
-    },
-  ]
-
-  // Animation variants
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2,
-        delayChildren: 0.3,
-      },
-    },
-  }
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        type: "spring",
-        stiffness: 100,
-        damping: 15,
-      },
-    },
-  }
-
-  const textRevealVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.8,
-        ease: "easeOut",
-      },
-    },
-  }
-
-  const floatingVariants = {
-    animate: {
-      y: [-10, 10, -10],
-      rotate: [-2, 2, -2],
-      transition: {
-        duration: 6,
-        repeat: Number.POSITIVE_INFINITY,
-        ease: "easeInOut",
-      },
-    },
+  const handleMouseMove = (e: React.MouseEvent) => {
+    const x = (e.clientX / window.innerWidth - 0.5) * 20
+    const y = (e.clientY / window.innerHeight - 0.5) * 20
+    setParallax(`translate(${x}px, ${y}px)`)
   }
 
   return (
-    <main className="overflow-hidden">
+    <div className="min-h-screen bg-[#16232A] font-sans">
       <Navbar />
 
-      {/* Hero Section - layanan_001 */}
-      <section ref={heroRef} className="relative py-20 px-4 md:px-12 lg:px-20 min-h-[80vh] flex items-center">
-        {/* Floating Background Elements */}
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <motion.div
-            variants={floatingVariants}
-            animate="animate"
-            className="absolute top-20 left-10 w-32 h-32 bg-[#e9e15b]/10 rounded-full blur-xl"
-          />
-          <motion.div
-            variants={floatingVariants}
-            animate="animate"
-            style={{ animationDelay: "2s" }}
-            className="absolute top-40 right-20 w-48 h-48 bg-[#2b2b2b]/5 dark:bg-[#e9e15b]/5 rounded-full blur-xl"
-          />
-          <motion.div
-            variants={floatingVariants}
-            animate="animate"
-            style={{ animationDelay: "4s" }}
-            className="absolute bottom-20 left-1/4 w-36 h-36 bg-[#e9e15b]/15 rounded-full blur-xl"
-          />
-        </div>
-
-        <div className="max-w-7xl mx-auto w-full relative z-10">
-          <motion.div
-            variants={containerVariants}
-            initial="hidden"
-            animate={isHeroInView ? "visible" : "hidden"}
-            className="grid md:grid-cols-2 gap-12 items-center"
-          >
-            <motion.div variants={itemVariants}>
-              <motion.div
-                initial={{ scale: 0 }}
-                animate={isHeroInView ? { scale: 1 } : {}}
-                transition={{ delay: 0.2, type: "spring", stiffness: 200 }}
-                className="inline-flex items-center gap-2 bg-[#e9e15b]/20 dark:bg-[#e9e15b]/30 px-4 py-2 rounded-full mb-6"
-              >
-                <Sparkles className="w-5 h-5 text-[#2b2b2b] dark:text-[#e9e15b]" />
-                <span className="text-[#2b2b2b] dark:text-[#e9e15b] font-semibold">{t.expertise}</span>
-              </motion.div>
-
-              <motion.h1
-                className="text-5xl md:text-6xl font-black leading-tight mb-6 text-[#2b2b2b] dark:text-white"
-                variants={textRevealVariants}
-              >
-                <span className="inline-block">{t.title1}</span>
-                <br />
-                {t.title2}
-              </motion.h1>
-
-              <motion.div variants={textRevealVariants} className="mt-8">
-                <motion.button
-                  onClick={scrollToServices}
-                  className="group relative overflow-hidden bg-[#e9e15b] text-[#2b2b2b] px-8 py-4 font-bold rounded-full shadow-lg hover:shadow-xl transition-all duration-300"
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  <motion.span className="relative z-10 flex items-center gap-2">
-                    {t.learnMore}
-                    <motion.div
-                      initial={{ x: -5, opacity: 0.5 }}
-                      animate={{ x: 0, opacity: 1 }}
-                      transition={{
-                        repeat: Number.POSITIVE_INFINITY,
-                        repeatType: "mirror",
-                        duration: 1,
-                      }}
-                    >
-                      <ChevronDown className="w-5 h-5" />
-                    </motion.div>
-                  </motion.span>
-                  <motion.div
-                    className="absolute inset-0 bg-[#2b2b2b] opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                    initial={{ x: "-100%" }}
-                    whileHover={{ x: "0%" }}
-                    transition={{ duration: 0.3 }}
-                  />
-                  <motion.span className="absolute inset-0 z-20 flex items-center justify-center text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    {t.learnMore}
-                  </motion.span>
-                </motion.button>
-              </motion.div>
-            </motion.div>
-
-            <motion.div variants={itemVariants}>
-              <motion.p
-                className="text-lg md:text-xl leading-relaxed text-gray-700 dark:text-gray-300"
-                variants={textRevealVariants}
-              >
-                {t.description}
-              </motion.p>
-              <motion.div
-                className="mt-8 flex justify-end"
-                initial={{ opacity: 0 }}
-                animate={isHeroInView ? { opacity: 1 } : {}}
-                transition={{ delay: 1.2, duration: 0.8 }}
-              >
-                <motion.div
-                  className="w-24 h-24 rounded-full bg-[#e9e15b]/20 flex items-center justify-center"
-                  animate={{
-                    scale: [1, 1.1, 1],
-                    rotate: [0, 5, 0],
-                  }}
-                  transition={{
-                    duration: 4,
-                    repeat: Number.POSITIVE_INFINITY,
-                    ease: "easeInOut",
-                  }}
-                >
-                  <Zap className="w-10 h-10 text-[#2b2b2b] dark:text-[#e9e15b]" />
-                </motion.div>
-              </motion.div>
-            </motion.div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Services Section - layanan_002 */}
-      <section
-        ref={servicesRef}
-        className="relative py-20 px-4 md:px-12 lg:px-20 bg-gradient-to-br from-[#2b2b2b] to-gray-900"
-      >
-        <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-10">
-          <div className="absolute top-0 left-0 w-full h-full">
-            <svg
-              width="100%"
-              height="100%"
-              viewBox="0 0 100 0 100"
-              xmlns="http://www.w3.org/2000/svg"
-              preserveAspectRatio="none"
-            >
-              <defs>
-                <pattern id="grid" width="8" height="8" patternUnits="userSpaceOnUse">
-                  <path d="M 8 0 L 0 0 0 8" fill="none" stroke="#e9e15b" strokeWidth="0.5" />
-                </pattern>
-              </defs>
-              <rect width="100%" height="100%" fill="url(#grid)" />
-            </svg>
+      {/* ── HERO ── */}
+      <section className="relative min-h-screen bg-[#16232A] flex flex-col overflow-hidden pt-24">
+        {/* Decorative bolts */}
+        <div className="absolute inset-0 pointer-events-none z-0">
+          <div className="absolute top-[20%] right-[30%] text-[#D9E061] opacity-70 rotate-12">
+            <svg width="28" height="44" viewBox="0 0 24 40" fill="currentColor"><path d="M14 2L4 22h9l-3 16 14-22h-10l3-14z" /></svg>
+          </div>
+          <div className="absolute top-[50%] left-[5%] text-[#EC5B70] opacity-60 -rotate-15">
+            <svg width="40" height="60" viewBox="0 0 24 40" fill="currentColor"><path d="M14 2L4 22h9l-3 16 14-22h-10l3-14z" /></svg>
           </div>
         </div>
 
-        <div className="max-w-6xl mx-auto relative z-10">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={isServicesInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-            className="mb-16"
+        <div className="flex-1 max-w-[1440px] mx-auto w-full px-6 md:px-12 lg:px-20 flex flex-col md:flex-row items-center gap-12 py-16 relative z-10">
+          {/* Left text */}
+          <div className="w-full md:w-[60%] flex flex-col">
+            <p className="text-white/60 text-2xl md:text-3xl font-light italic mb-2">/level up your</p>
+            <h1 className="text-[3.5rem] md:text-[6rem] lg:text-[7rem] font-black text-white tracking-tighter leading-none lowercase mb-4">
+              digital impact
+            </h1>
+            {/* "today." sticky note */}
+            <div className="relative inline-block transform -rotate-1 hover:rotate-0 transition-transform duration-500 mb-8 self-start">
+              <div
+                className="text-[#16232A] px-10 py-5 text-[3rem] md:text-[4.5rem] font-black tracking-tighter lowercase shadow-[0_20px_50px_rgba(217,224,97,0.4)]"
+                style={{ background: "linear-gradient(225deg, transparent 32px, #D9E061 0)", borderRadius: "24px 0 24px 24px" }}
+              >
+                today.
+                <div className="absolute top-0 right-0 w-9 h-9 bg-white/50 shadow-md" style={{ borderRadius: "0 0 0 14px" }} />
+              </div>
+            </div>
+
+            <p className="text-white/60 text-base md:text-lg leading-relaxed max-w-lg mb-8">
+              Supernesia Creative Tech adalah perusahaan teknologi yang berfokus pada solusi digital untuk pertumbuhan bisnis, mulai dari Website, Apps Development, Custom Software, AI, hingga strategi digital.
+            </p>
+
+            <div className="relative inline-block self-start">
+              <Link
+                href="/kontak"
+                className="bg-white text-[#16232A] font-black px-9 py-4 rounded-full inline-flex items-center gap-2 hover:bg-white/90 transition-all shadow-xl hover:scale-105"
+              >
+                Start a Project
+              </Link>
+              <div className="absolute -top-2 -right-2 w-5 h-5 bg-[#EC5B70] rounded-full shadow-md z-20" />
+            </div>
+          </div>
+
+          {/* Right: person image with Motion & Parallax */}
+          <div 
+            className="w-full md:w-[40%] relative h-[400px] md:h-[560px] group cursor-default"
+            onMouseMove={handleMouseMove}
           >
-            <motion.div
-              initial={{ scale: 0 }}
-              animate={isServicesInView ? { scale: 1 } : {}}
-              transition={{ delay: 0.2, type: "spring", stiffness: 200 }}
-              className="inline-flex items-center gap-2 bg-[#e9e15b]/20 px-4 py-2 rounded-full mb-6"
-            >
-              <Code className="w-5 h-5 text-[#e9e15b]" />
-              <span className="text-[#e9e15b] font-semibold">{t.expertise}</span>
-            </motion.div>
+            {/* Glow Depth background */}
+            <div className="absolute inset-0 bg-[#EC5B70]/20 blur-[80px] rounded-full scale-75 z-0" />
 
-            <motion.h2
-              className="text-4xl md:text-5xl font-black leading-tight mb-4 text-white"
-              initial={{ opacity: 0, y: 20 }}
-              animate={isServicesInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ delay: 0.3, duration: 0.6 }}
+            <div 
+              className="relative w-full h-full transition-transform duration-700 ease-out z-10"
+              style={{ transform: parallax }}
             >
-              <span>{t.superService}</span>
-              <br />
-              {t.digitalIndustry}
-            </motion.h2>
+              <motion.div
+                animate={{ y: [0, -12, 0] }}
+                transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut" }}
+                className="relative w-full h-full"
+              >
+                <Image 
+                  src="/hero-layanan.jpg" 
+                  alt="Supernesia Services" 
+                  fill 
+                  className="object-contain object-bottom drop-shadow-[0_20px_60px_rgba(0,0,0,0.5)] rounded-[32px] group-hover:scale-[1.02] transition-transform duration-500" 
+                />
+              </motion.div>
+            </div>
+          </div>
+        </div>
 
-            <motion.p
-              className="text-lg md:text-xl text-gray-300 mb-12 max-w-3xl"
-              initial={{ opacity: 0, y: 20 }}
-              animate={isServicesInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ delay: 0.5, duration: 0.6 }}
-            >
-              {t.serviceDesc}
-            </motion.p>
-          </motion.div>
+        {/* Pink ticker */}
+        <div className="w-full bg-[#EC5B70] overflow-hidden py-4 relative z-20">
+          <div className="flex items-center gap-0 whitespace-nowrap" style={{ animation: "ticker 20s linear infinite" }}>
+            {[...Array(10)].map((_, i) => (
+              <div key={i} className="flex items-center gap-8 pr-8 flex-shrink-0">
+                <span className="text-white font-black text-lg tracking-wide">Let&apos;s build your project</span>
+                <svg width="18" height="18" viewBox="0 0 20 20" fill="white" className="flex-shrink-0">
+                  <path d="M10 0L12.9 7.1L20 10L12.9 12.9L10 20L7.1 12.9L0 10L7.1 7.1L10 0Z" />
+                </svg>
+              </div>
+            ))}
+          </div>
+        </div>
 
-          <motion.div
-            variants={containerVariants}
-            initial="hidden"
-            animate={isServicesInView ? "visible" : "hidden"}
-            className="grid md:grid-cols-3 gap-8"
-          >
-            {services.map((service, index) => {
-              const Icon = service.icon
-              return (
-                <motion.div
-                  key={index}
-                  variants={itemVariants}
-                  whileHover={{
-                    y: -10,
-                    scale: 1.03,
-                    transition: { type: "spring", stiffness: 400, damping: 10 },
-                  }}
-                  className="bg-white dark:bg-gray-800 rounded-xl p-8 shadow-xl hover:shadow-2xl transition-all duration-300 group"
+        <style>{`@keyframes ticker { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }`}</style>
+      </section>
+
+      {/* ── SUPER SERVICE ── */}
+      <section className="bg-white py-20 md:py-28 px-6 md:px-12 lg:px-20 relative overflow-hidden">
+        {/* Decorative bubble icons left */}
+        <div className="absolute left-[3%] top-1/2 -translate-y-1/2 flex flex-col gap-6 pointer-events-none hidden lg:flex">
+          {[
+            { color: "#FF7A00", size: 70 },
+            { color: "#EC5B70", size: 55 },
+            { color: "#2D8CFF", size: 65 },
+            { color: "#714AFE", size: 50 },
+          ].map((b, i) => (
+            <div key={i} className="relative">
+              <div
+                className="rounded-full border-[5px] border-white shadow-lg flex items-center justify-center"
+                style={{ width: b.size, height: b.size, background: b.color }}
+              />
+              {/* paper clips scattered */}
+              <div className="absolute -right-3 top-1/2 -translate-y-1/2 opacity-70 rotate-[30deg]">
+                <Image src="/clip paper.png" alt="" width={20} height={20} className="object-contain" />
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <div className="max-w-7xl mx-auto">
+          <div className="flex flex-col lg:flex-row gap-12 items-start">
+            {/* Left: Stacked sticky notes title */}
+            <div className="w-full lg:w-[35%] flex flex-col items-start gap-2 pt-4">
+              <div className="relative inline-block transform -rotate-2 hover:rotate-0 transition-transform duration-500">
+                <div
+                  className="text-[#16232A] px-8 py-5 text-[3rem] md:text-[4rem] font-black tracking-tighter lowercase shadow-xl relative"
+                  style={{ background: "linear-gradient(225deg, transparent 28px, #D9E061 0)", borderRadius: "20px 0 20px 20px" }}
                 >
-                  <div className="flex items-center gap-4 mb-4">
-                    <div className="w-12 h-12 rounded-full bg-[#e9e15b]/20 flex items-center justify-center group-hover:bg-[#e9e15b] transition-colors duration-300">
-                      <Icon className="w-6 h-6 text-[#2b2b2b]" />
+                  super
+                  <svg className="w-24 h-3 mt-1 stroke-[#16232A]" viewBox="0 0 100 10" fill="none"><path d="M0,5 Q10,0 20,5 T40,5 T60,5 Q70,10 80,5 T100,5" strokeWidth="4" strokeLinecap="round" /></svg>
+                  <div className="absolute top-0 right-0 w-8 h-8 bg-white/50" style={{ borderRadius: "0 0 0 12px" }} />
+                </div>
+              </div>
+              <div className="relative inline-block transform rotate-1 hover:rotate-0 transition-transform duration-500 -mt-2 ml-6">
+                <div
+                  className="text-white px-8 py-5 text-[3rem] md:text-[4rem] font-black tracking-tighter lowercase shadow-xl relative"
+                  style={{ background: "linear-gradient(45deg, transparent 28px, #EC5B70 0)", borderRadius: "20px 20px 20px 0" }}
+                >
+                  service
+                  <svg className="w-28 h-3 mt-1 stroke-white" viewBox="0 0 100 10" fill="none"><path d="M0,5 Q10,0 20,5 T40,5 T60,5 Q70,10 80,5 T100,5" strokeWidth="4" strokeLinecap="round" /></svg>
+                  <div className="absolute bottom-0 left-0 w-8 h-8 bg-white/30" style={{ borderRadius: "0 12px 0 0" }} />
+                </div>
+              </div>
+              <p className="text-gray-400 text-lg font-medium leading-relaxed mt-6 max-w-sm italic">
+                &ldquo;Every service we offer is designed to solve real problems — not just look good on paper.&rdquo;
+              </p>
+            </div>
+
+            {/* Right: Service Cards Grid */}
+            <div className="w-full lg:w-[65%] grid grid-cols-1 md:grid-cols-2 gap-5">
+              {services.map((svc, idx) => (
+                <div
+                  key={idx}
+                  className={`relative bg-white border-2 rounded-[24px] p-7 cursor-pointer transition-all duration-300 hover:-translate-y-1 group ${
+                    activeService === idx ? "border-[#D9E061] shadow-[0_8px_32px_rgba(217,224,97,0.25)]" : "border-gray-100 shadow-sm hover:border-gray-200 hover:shadow-md"
+                  }`}
+                  onClick={() => setActiveService(idx)}
+                >
+                  {/* Icon */}
+                  <div
+                    className="w-10 h-10 rounded-[10px] flex items-center justify-center mb-4 text-white text-lg"
+                    style={{ background: svc.iconColor }}
+                  >
+                    {svc.icon}
+                  </div>
+                  {/* Arrow */}
+                  <div className="absolute top-6 right-6 opacity-30 group-hover:opacity-100 transition-opacity">
+                    <ArrowUpRight className="w-5 h-5 text-[#16232A]" />
+                  </div>
+                  <h3 className="text-[#16232A] font-black text-xl mb-3 tracking-tight">{svc.title}</h3>
+                  <p className="text-gray-500 text-sm leading-relaxed mb-4">{svc.desc}</p>
+
+                  {/* Expanded features */}
+                  {activeService === idx && (
+                    <div className="grid grid-cols-2 gap-2 mt-4 border-t border-gray-100 pt-4">
+                      {svc.features.map((f, fi) => (
+                        <div key={fi} className="flex items-center gap-2 text-sm text-gray-600 font-medium">
+                          <Check className="w-4 h-4 text-[#D9E061] flex-shrink-0" />
+                          {f}
+                        </div>
+                      ))}
                     </div>
-                    <h3 className="text-xl font-bold text-[#2b2b2b] dark:text-white">{service.title}</h3>
-                  </div>
+                  )}
 
-                  <div className="border-t border-[#2b2b2b]/20 dark:border-[#e9e15b]/20 my-4"></div>
-
-                  <p className="text-gray-600 dark:text-gray-300 mb-8 h-24">{service.description}</p>
-
-                  <div className="flex justify-end">
-                    <Link href={service.link}>
-                      <motion.div
-                        className="w-12 h-12 rounded-full bg-[#e9e15b]/10 flex items-center justify-center text-[#2b2b2b] dark:text-[#e9e15b] group-hover:bg-[#e9e15b] group-hover:text-[#2b2b2b] transition-colors duration-300"
-                        whileHover={{ scale: 1.2, rotate: 90 }}
-                        whileTap={{ scale: 0.9 }}
-                      >
-                        <ArrowUpRight size={20} />
-                      </motion.div>
-                    </Link>
-                  </div>
-                </motion.div>
-              )
-            })}
-          </motion.div>
+                  {/* Sticky note corner fold */}
+                  <div className="absolute bottom-0 right-0 w-8 h-8 opacity-60" style={{ background: `linear-gradient(225deg, ${svc.iconColor}30, transparent 70%)`, borderRadius: "0 0 20px 0" }} />
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </section>
 
-      {/* WhatsApp CTA - layanan_003 */}
-      <WhatsappCTA />
-      <SupernesiaChatbot />
+      {/* ── HOW WE WORK ── */}
+      <section className="bg-white py-20 md:py-28 px-6 md:px-12 lg:px-20 relative overflow-hidden border-t border-gray-100">
+        <div className="max-w-7xl mx-auto">
+          <div className="flex flex-col lg:flex-row gap-16 items-start">
+
+            {/* Left: Sticky note titles + floating service icons */}
+            <div className="w-full lg:w-[35%] sticky top-28">
+              <div className="flex flex-col items-start gap-2 mb-10">
+                <div className="relative inline-block transform -rotate-1 hover:rotate-0 transition-transform duration-500">
+                  <div
+                    className="text-[#16232A] px-8 py-5 text-[2.5rem] md:text-[3.5rem] font-black tracking-tighter lowercase shadow-xl relative"
+                    style={{ background: "linear-gradient(225deg, transparent 28px, #D9E061 0)", borderRadius: "20px 0 20px 20px" }}
+                  >
+                    how
+                    <svg className="w-16 h-3 mt-1 stroke-[#16232A]" viewBox="0 0 100 10" fill="none"><path d="M0,5 Q10,0 20,5 T40,5 T60,5 Q70,10 80,5 T100,5" strokeWidth="4" strokeLinecap="round" /></svg>
+                    <div className="absolute top-0 right-0 w-8 h-8 bg-white/50" style={{ borderRadius: "0 0 0 12px" }} />
+                  </div>
+                </div>
+                <div className="relative inline-block transform rotate-1 hover:rotate-0 transition-transform duration-500 -mt-1 ml-8">
+                  <div
+                    className="text-white px-8 py-5 text-[2.5rem] md:text-[3.5rem] font-black tracking-tighter lowercase shadow-xl relative"
+                    style={{ background: "linear-gradient(45deg, transparent 28px, #EC5B70 0)", borderRadius: "20px 20px 20px 0" }}
+                  >
+                    we work
+                    <svg className="w-24 h-3 mt-1 stroke-white" viewBox="0 0 100 10" fill="none"><path d="M0,5 Q10,0 20,5 T40,5 T60,5 Q70,10 80,5 T100,5" strokeWidth="4" strokeLinecap="round" /></svg>
+                    <div className="absolute bottom-0 left-0 w-8 h-8 bg-white/30" style={{ borderRadius: "0 12px 0 0" }} />
+                  </div>
+                </div>
+              </div>
+
+              {/* Floating service bubbles row */}
+              <div className="flex gap-4 flex-wrap">
+                {[
+                  { color: "#FF7A00", size: 56 },
+                  { color: "#EC5B70", size: 44 },
+                  { color: "#714AFE", size: 50 },
+                  { color: "#2D8CFF", size: 52 },
+                ].map((b, i) => (
+                  <div
+                    key={i}
+                    className="rounded-full border-[4px] border-white shadow-lg hover:scale-110 transition-transform cursor-default"
+                    style={{ width: b.size, height: b.size, background: b.color }}
+                  />
+                ))}
+              </div>
+            </div>
+
+            {/* Right: Steps timeline with snake path */}
+            <div className="w-full lg:w-[65%] relative">
+              {/* Vertical connecting line */}
+              <div className="absolute left-[22px] top-0 bottom-0 w-[2px] bg-gray-200 hidden md:block" />
+
+              <div className="flex flex-col gap-8">
+                {processSteps.map((step, idx) => (
+                  <div key={idx} className="flex gap-6 items-start group">
+                    {/* Step dot with red pin */}
+                    <div className="relative flex-shrink-0 z-10">
+                      <div
+                        className="w-11 h-11 rounded-full flex items-center justify-center font-black text-[#16232A] text-sm shadow-lg border-4 border-white group-hover:scale-110 transition-transform"
+                        style={{ background: step.color }}
+                      >
+                        {step.step}
+                      </div>
+                    </div>
+
+                    {/* Content card */}
+                    <div className={`flex-1 rounded-[20px] p-6 border-2 transition-all duration-300 group-hover:-translate-y-0.5 group-hover:shadow-lg ${
+                      idx === 0 ? "bg-[#D9E061] border-[#D9E061]" : "bg-white border-gray-100 group-hover:border-gray-200"
+                    }`}>
+                      <h3 className={`font-black text-xl mb-2 ${idx === 0 ? "text-[#16232A]" : "text-[#16232A]"}`}>
+                        {step.title}
+                      </h3>
+                      <p className={`text-sm leading-relaxed ${idx === 0 ? "text-[#16232A]/75" : "text-gray-500"}`}>
+                        {step.desc}
+                      </p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── CTA ── */}
+      <section className="bg-white py-20 px-6 md:px-12 lg:px-20 relative overflow-hidden border-t border-gray-100">
+        <div className="max-w-5xl mx-auto flex flex-col items-center text-center">
+          {/* "the best part" stacked */}
+          <div className="flex flex-wrap justify-center gap-3 mb-12">
+            <div className="relative inline-block transform -rotate-1 hover:rotate-0 transition-transform duration-500">
+              <div
+                className="text-[#16232A] px-10 py-5 text-[2.5rem] md:text-[4rem] font-black tracking-tighter lowercase shadow-xl relative"
+                style={{ background: "linear-gradient(225deg, transparent 28px, #D9E061 0)", borderRadius: "20px 0 20px 20px" }}
+              >
+                the best
+                <div className="absolute top-0 right-0 w-9 h-9 bg-white/50" style={{ borderRadius: "0 0 0 14px" }} />
+              </div>
+            </div>
+            <div className="relative inline-block transform rotate-2 hover:rotate-0 transition-transform duration-500">
+              <div
+                className="text-white px-10 py-5 text-[2.5rem] md:text-[4rem] font-black tracking-tighter lowercase shadow-xl relative"
+                style={{ background: "linear-gradient(45deg, transparent 28px, #EC5B70 0)", borderRadius: "20px 20px 20px 0" }}
+              >
+                part
+                <div className="absolute bottom-0 left-0 w-9 h-9 bg-white/30" style={{ borderRadius: "0 14px 0 0" }} />
+              </div>
+            </div>
+          </div>
+
+          <p className="text-gray-500 text-lg leading-relaxed max-w-2xl mb-10">
+            Setiap project yang kami selesaikan bukan hanya menghasilkan produk digital — tapi juga pertumbuhan nyata bagi bisnis kamu. Siap mulai?
+          </p>
+
+          <div className="relative inline-block group">
+            <div className="absolute -top-3 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center">
+              <div className="w-5 h-5 bg-[#EC5B70] rounded-full shadow-md" />
+              <div className="w-[2px] h-4 bg-[#c0394e]" />
+            </div>
+            <Link
+              href="/kontak"
+              className="mt-4 inline-flex items-center gap-3 text-[#16232A] font-black text-xl px-12 py-5 rounded-full border-2 border-[#16232A] hover:bg-[#16232A] hover:text-white transition-all duration-300 shadow-lg hover:shadow-2xl hover:scale-105"
+            >
+              Mulai Project Sekarang
+              <ArrowUpRight className="w-5 h-5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+            </Link>
+          </div>
+        </div>
+      </section>
+
       <Footer />
-    </main>
+    </div>
   )
 }

@@ -1,106 +1,100 @@
+import React from "react"
 import Image from "next/image"
 import Link from "next/link"
-import { ShieldCheck, ThumbsUp, Zap } from "lucide-react"
 
-// Translations
-const translations = {
-  ID: {
-    tagline: "Konsultasi Bisnis Cerdas",
-    title: "Hubungi Kami & Wujudkan Solusi Digital Terbaik",
-    subtitle: "Kami siap membantu Anda menjawab kebutuhan digital — baik itu sistem, website, hingga WhatsApp bisnis. Dapatkan solusi yang disesuaikan dengan kebutuhan Anda, gratis konsultasi awal tanpa komitmen.",
-    chatNow: "Konsultasi Sekarang - Gratis!",
-    benefits: [
-      "Keamanan Terjamin",
-      "90+ Proyek Sukses",
-      "Respon < 5 menit"
-    ]
-  },
-  EN: {
-    tagline: "Smart Business Consultation",
-    title: "Contact Us & Build the Right Digital Solution",
-    subtitle: "We’re ready to help you solve your digital needs — from internal systems and websites to WhatsApp Business. Get tailored solutions with a free initial consultation, no commitment needed.",
-    chatNow: "Start Consultation — Free!",
-    benefits: [
-      "Secure & Trusted",
-      "90+ Successful Projects",
-      "Response < 5 mins"
-    ]
-  },
-}
-
-export default function CTASection({ lang = "ID" }: { lang?: "ID" | "EN" }) {
-  const t = translations[lang]
-
+export default function CTASection() {
   return (
-    <section className="py-20 px-4 md:px-12 lg:px-24 bg-gradient-to-b from-white to-[#f9f9f9] relative overflow-hidden">
-      {/* Decorative Background */}
-      <div className="absolute top-0 left-0 w-40 h-40 bg-[#e9e15b]/30 rounded-full blur-3xl animate-pulse -z-10" />
-      <div className="absolute bottom-0 right-0 w-40 h-40 bg-[#2b2b2b]/20 rounded-full blur-2xl animate-pulse -z-10" />
+    <section
+      id="cta"
+      className="bg-white py-24 md:py-32 px-6 md:px-12 lg:px-20 font-sans relative overflow-hidden"
+    >
+      {/* Large decorative curve bottom left */}
+      <div className="absolute bottom-0 left-0 w-[500px] h-[400px] pointer-events-none opacity-20 hidden lg:block">
+        <svg viewBox="0 0 500 400" fill="none">
+          <path d="M0,400 Q200,200 180,100 T0,0" stroke="#E0E0E0" strokeWidth="2" />
+          <path d="M0,400 Q280,250 240,120 T0,0" stroke="#E0E0E0" strokeWidth="1.5" />
+        </svg>
+      </div>
 
-      <div className="bg-white border border-gray-200 rounded-2xl shadow-xl p-8 md:p-12 transition-all duration-500 hover:shadow-2xl">
-        <div className="grid md:grid-cols-2 gap-10 items-center">
-          {/* Text Content */}
-          <div>
-            <p className="text-secondary text-sm md:text-base font-semibold uppercase tracking-wider mb-3">
-              {t.tagline}
-            </p>
-            <h2 className="text-4xl md:text-5xl font-extrabold leading-tight text-black mb-4">
-              {t.title}
-            </h2>
-            <p className="text-gray-700 text-base md:text-lg mb-6 leading-relaxed">
-              {t.subtitle}
-            </p>
+      {/* Top right scribble */}
+      <div className="absolute top-[10%] right-[8%] opacity-50 hidden md:block">
+        <svg className="stroke-[#D9E061] w-24 h-8" viewBox="0 0 100 20" fill="none">
+          <path d="M0,10 Q15,2 30,10 T60,10 T90,18" strokeWidth="3" strokeLinecap="round" />
+        </svg>
+      </div>
 
-            {/* Benefits */}
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
-              <div className="flex items-center space-x-3">
-                <ShieldCheck className="text-primary w-6 h-6" />
-                <span className="text-sm font-medium text-gray-800">
-                  {t.benefits[0]}
-                </span>
-              </div>
-              <div className="flex items-center space-x-3">
-                <ThumbsUp className="text-primary w-6 h-6" />
-                <span className="text-sm font-medium text-gray-800">
-                  {t.benefits[1]}
-                </span>
-              </div>
-              <div className="flex items-center space-x-3">
-                <Zap className="text-primary w-6 h-6 animate-bounce" />
-                <span className="text-sm font-medium text-gray-800">
-                  {t.benefits[2]}
-                </span>
-              </div>
-            </div>
+      {/* Left scribble */}
+      <div className="absolute left-[6%] top-[50%] opacity-40 -translate-y-1/2 hidden md:block">
+        <svg className="stroke-[#EC5B70] w-20 h-7" viewBox="0 0 100 20" fill="none">
+          <path d="M0,10 Q15,2 30,10 T60,10 T90,18" strokeWidth="3" strokeLinecap="round" />
+        </svg>
+      </div>
 
-            {/* CTA Button */}
-            <Link
-              href="/kontak"
-              className="inline-block bg-primary text-black px-6 py-3 rounded-xl font-bold text-base md:text-lg shadow-md hover:scale-105 hover:bg-yellow-300 transition-transform duration-300"
+      <div className="max-w-5xl mx-auto relative flex flex-col items-center text-center">
+
+        {/* Main sticky note CTA — big centered */}
+        <div className="flex flex-wrap justify-center items-center gap-4 md:gap-6 mb-14">
+
+          {/* "make it" yellow sticky note */}
+          <div className="relative inline-block transform -rotate-[2deg] hover:rotate-0 transition-transform duration-500 cursor-default">
+            <div
+              className="text-[#16232A] px-10 md:px-14 py-5 md:py-7 text-[3rem] md:text-[5rem] lg:text-[6.5rem] font-black tracking-tighter lowercase shadow-[0_20px_60px_rgba(217,224,97,0.35)]"
+              style={{
+                background: "linear-gradient(225deg, transparent 40px, #D9E061 0)",
+                borderRadius: "28px 0 28px 28px",
+              }}
             >
-              {t.chatNow}
-            </Link>
-          </div>
-
-          {/* Image */}
-          <div className="relative group flex justify-center">
-            <div className="absolute inset-0 bg-[#e9e15b]/20 rounded-2xl rotate-2 group-hover:rotate-6 transition-transform duration-500" />
-            <div className="relative bg-white rounded-2xl p-4 md:p-6 shadow-xl group-hover:shadow-2xl transition-shadow duration-500">
-              
-              {/* Online Badge (TOP-RIGHT) */}
-              <div className="absolute top-3 right-3 bg-green-500 text-white text-xs font-medium px-3 py-1 rounded-full shadow animate-pulse">
-                Online
-              </div>
-
-              <Image
-                src="/contact.png"
-                alt="Consultation"
-                width={500}
-                height={500}
-                className="w-full max-w-md md:max-w-lg group-hover:scale-105 transition-transform duration-500"
+              make it
+              {/* fold top right */}
+              <div
+                className="absolute top-0 right-0 w-11 h-11 bg-white/50 shadow-md"
+                style={{ borderRadius: "0 0 0 18px" }}
               />
             </div>
           </div>
+
+          {/* "real." pink sticky note */}
+          <div className="relative inline-block transform rotate-[2deg] hover:rotate-0 transition-transform duration-500 cursor-default">
+            <div
+              className="text-white px-10 md:px-14 py-5 md:py-7 text-[3rem] md:text-[5rem] lg:text-[6.5rem] font-black tracking-tighter lowercase shadow-[0_20px_60px_rgba(236,91,112,0.4)]"
+              style={{
+                background: "linear-gradient(45deg, transparent 40px, #EC5B70 0)",
+                borderRadius: "28px 28px 28px 0",
+              }}
+            >
+              real.
+              {/* fold bottom left */}
+              <div
+                className="absolute bottom-0 left-0 w-11 h-11 bg-white/40 shadow-md"
+                style={{ borderRadius: "0 18px 0 0" }}
+              />
+            </div>
+          </div>
+        </div>
+
+        {/* CTA Button with pin */}
+        <div className="relative inline-block group">
+          {/* Red decorative pin */}
+          <div className="absolute -top-3 left-1/2 -translate-x-1/2 flex flex-col items-center z-20">
+            <div className="w-5 h-5 bg-[#EC5B70] rounded-full shadow-[0_2px_8px_rgba(236,91,112,0.6)]" />
+            <div className="w-[2px] h-4 bg-[#c0394e]" />
+          </div>
+
+          <Link
+            href="/kontak"
+            className="relative mt-4 inline-flex items-center gap-3 text-[#16232A] font-black text-xl md:text-2xl px-12 py-5 rounded-full bg-transparent border-2 border-[#16232A] hover:bg-[#16232A] hover:text-white transition-all duration-400 shadow-lg hover:shadow-2xl hover:scale-105 group"
+          >
+            Hubungi Kami
+            <svg
+              className="w-5 h-5 group-hover:translate-x-1 transition-transform"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2.5"
+              viewBox="0 0 24 24"
+            >
+              <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+            </svg>
+          </Link>
         </div>
       </div>
     </section>

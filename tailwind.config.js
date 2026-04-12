@@ -18,8 +18,7 @@ module.exports = {
     },
     extend: {
       fontFamily: {
-        sans: ["var(--font-nunito)", "ui-sans-serif", "system-ui", "sans-serif"],
-        bebasNeue: ["var(--font-bebas-neue)", "cursive"],
+        sans: ["var(--font-plus-jakarta-sans)", "ui-sans-serif", "system-ui", "sans-serif"],
       },
       fontSize: {
         base: "1.125rem", // 18px
@@ -31,15 +30,18 @@ module.exports = {
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
 
-        // ✅ Brand colors
+        // ✅ Brand colors — exact Figma values
         primary: {
-          DEFAULT: "#e9e15b", // kuning
-          foreground: "#000000",
+          DEFAULT: "#D9E061", // Figma Yellow
+          foreground: "#16232A",
         },
         secondary: {
-          DEFAULT: "#2b2b2b", // abu gelap
+          DEFAULT: "#EC5B70", // Figma Pink
           foreground: "#FFFFFF",
         },
+        "brand-dark": "#16232A",    // Figma Dark Background
+        "brand-yellow": "#D9E061",  // Figma Yellow
+        "brand-pink": "#EC5B70",    // Figma Pink
 
         destructive: {
           DEFAULT: "hsl(var(--destructive))",
