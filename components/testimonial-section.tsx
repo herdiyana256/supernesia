@@ -8,55 +8,61 @@ const testimonials = [
     name: "Rizky Firmansyah",
     role: "Founder, Kreasi Digital — Jakarta",
     quote: "Supernesia benar-benar mengubah cara kami beroperasi secara digital. Platform e-commerce yang mereka bangun sangat responsif dan UI-nya memanjakan mata. Traffic kami meningkat 40% dalam bulan pertama!",
-    image: "/client_001.png",
+    image: "/avatar.png",
     stars: 5,
     result: "Traffic meningkat +40%",
     impact: "Penjualan Q1 melonjak progresif",
+    detail: "Melalui modernisasi infrastruktur dan optimalisasi performa web secara menyeluruh, sistem E-Commerce mampu menangani lonjakan pengunjung organik dengan latensi minimum. Hal ini mengonversi pengunjung menjadi pelanggan aktif secara signifikan."
   },
   {
     name: "Dewi Savitri",
     role: "Operational Manager, LogisHub — Surabaya",
     quote: "Tim Supernesia sangat profesional. Kami membutuhkan custom software untuk sistem tracking logistik yang cukup kompleks, dan mereka berhasil men-deliver tepat waktu.",
-    image: "/client_002.png",
+    image: "/avatar.png",
     stars: 5,
     result: "Efisiensi operasional 3x Lipat",
     impact: "Sistem tracking logistik seamless",
+    detail: "Dengan penerapan arsitektur data real-time, flow logistik pergudangan menjadi sangat sinkron. Dashboard monitoring dapat diakses secara mobile sehingga pergerakan armada dapat dipantau tanpa harus terikat di meja kerja."
   },
   {
     name: "Ahmad Faisal",
     role: "CEO, FinSmart — Bandung",
     quote: "Proses komunikasi mereka sangat transparan. Dari desain awal hingga deployment benar-benar rapi. Tidak ada cost tersembunyi. Mobile app kami kini mendapatkan rating 4.8 di PlayStore berkat optimasi mereka.",
-    image: "/client_003.png",
+    image: "/avatar.png",
     stars: 5,
     result: "Rating 4.8 di PlayStore",
     impact: "User satisfaction meningkat",
+    detail: "Redesain UI/UX secara saintifik berbasis data interaksi pengguna sebelumnya. Ditambah optimasi cache aplikasi yang membuat UX flow di kelas entry-level devices menjadi sangat mulus tanpa frame drop."
   },
   {
     name: "Sarah Wijaya",
     role: "Marketing Director, Bloom Beauty — Bali",
     quote: "Kami minta desain yang 'vibrant' namun elegan, dan Supernesia deliver lebih dari ekspektasi. Website baru kami sangat merefleksikan brand identity kami yang premium.",
-    image: "/client_004.png",
+    image: "/avatar.png",
     stars: 5,
     result: "Re-branding Sukses Besar",
     impact: "Konversi ads naik 25%",
+    detail: "Penerapan visual hierarchy berkelas dengan balutan micro-animations. Campaign digital dapat langsung digiring ke landing page interaktif ini untuk memecah keraguan target audience, mengakibatkan boosting sales otomatis."
   },
   {
     name: "Budi Santoso",
     role: "Head of IT, EduNesia — Yogyakarta",
     quote: "Selain coding yang clean, mereka memahami bagaimana membangun arsitektur yang scalable. Sistem admin dashboard kami kini berjalan lebih cepat 3x lipat. Sangat direkomendasikan!",
-    image: "/client_005.png",
+    image: "/avatar.png",
     stars: 5,
     result: "Performa Aplikasi 300% Lebih Cepat",
     impact: "Server backend optimal & stabil",
+    detail: "Proses migrasi server dari monolithic architecture ke microservices memangkas waktu load. Efek bottleneck tak lagi terjadi sekalipun ribuan siswa mengakses platform saat periode ujian bersamaan."
   },
   {
     name: "Nina Maharani",
     role: "Owner, Kopi Kawan — Semarang",
     quote: "Awalnya saya ragu karena kami hanya UMKM, tapi tim Supernesia tetap memberikan pelayanan VIP. Sistem Point of Sale yang dibangun sangat mudah digunakan oleh kasir kami.",
-    image: "/client_006.png",
+    image: "/avatar.png",
     stars: 5,
     result: "Transaksi Kasir Jadi 2x Lebih Cepat",
     impact: "Mengurangi human error data",
+    detail: "Kustomisasi modul POS berbasis tablet yang berfokus ke kesederhanaan kasir. Sinkronisasi data stok real-time antar cabang memastikan pelaporan di akhir hari sangat akurat tanpa slip pembukuan."
   },
 ]
 
@@ -138,9 +144,14 @@ export default function TestimonialSection() {
                 <h4 className="text-white font-black text-xl md:text-2xl mb-2">
                   {testimonials[active].result}
                 </h4>
-                <p className="text-gray-400 text-sm font-medium">
+                <p className="text-gray-400 text-sm font-medium mb-6">
                   {testimonials[active].impact}
                 </p>
+                <div className="bg-white/5 border border-white/10 rounded-[16px] p-5">
+                  <p className="text-white/70 text-sm leading-relaxed">
+                    {testimonials[active].detail}
+                  </p>
+                </div>
               </div>
               <div className="flex justify-end mt-4 md:mt-0">
                 <div className="w-12 h-12 rounded-full bg-[#D9E061] text-[#16232A] flex items-center justify-center font-bold">

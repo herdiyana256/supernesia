@@ -27,7 +27,7 @@ export default function Navbar() {
 
   return (
     <header
-      className={`fixed top-0 left-0 z-50 w-full px-6 sm:px-10 lg:px-[6%] py-5 font-sans transition-all duration-500 ${
+      className={`fixed top-0 left-0 z-50 w-full px-6 sm:px-10 lg:px-[6%] h-[72px] flex items-center font-sans transition-all duration-500 ${
         scrolled
           ? "bg-[#16232A]/95 backdrop-blur-xl shadow-[0_4px_30px_rgba(0,0,0,0.4)]"
           : "bg-transparent"
@@ -47,14 +47,15 @@ export default function Navbar() {
 
         {/* Center: Logo */}
         <div className="flex-1 flex justify-center items-center">
-          <div className="bg-white/5 backdrop-blur-md px-4 py-2 rounded-xl transition-all duration-300 hover:bg-white/10 shadow-sm border border-white/5">
+          <div className="bg-white/5 backdrop-blur-md px-4 py-1.5 rounded-xl transition-all duration-300 hover:bg-white/10 shadow-sm border border-white/5 flex items-center justify-center">
             <Link href="/" className="flex items-center gap-2">
               <Image
                 src="/SUPERNESIA_LOGOS_MODE_DARK.png"
                 alt="Supernesia"
-                width={240}
-                height={60}
-                className="h-10 md:h-12 lg:h-14 w-auto object-contain transition-transform duration-300 hover:scale-105"
+                width={140}
+                height={48}
+                className="h-[36px] md:h-[44px] w-auto max-h-[44px] object-contain transition-transform duration-300 hover:scale-105"
+                style={{ objectFit: 'contain' }}
                 priority
               />
             </Link>
@@ -78,7 +79,7 @@ export default function Navbar() {
         </div>
 
         {/* Mobile Menu Icon */}
-        <div className="md:hidden flex-1 flex justify-end items-center">
+        <div className="md:hidden navbar-hamburger flex-1 flex justify-end items-center">
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             className="text-white hover:text-[#D9E061] transition-colors p-2"
@@ -91,26 +92,22 @@ export default function Navbar() {
 
       {/* Mobile Menu Content */}
       {isMenuOpen && (
-        <div className="md:hidden fixed inset-0 z-[60] bg-[#16232A] flex flex-col items-center justify-center space-y-8">
-          <button
-            onClick={() => setIsMenuOpen(false)}
-            className="absolute top-6 right-6 text-white hover:text-[#D9E061] transition-colors"
-          >
-            <X className="h-9 w-9" />
-          </button>
-          {navigationItems.map(({ href, label }) => (
-            <Link
-              key={href}
-              href={href}
-              className={`text-4xl font-black transition-colors ${isActive(href) ? "text-[#D9E061]" : "text-white hover:text-[#D9E061]"}`}
-              onClick={() => setIsMenuOpen(false)}
-            >
-              {label}
-            </Link>
-          ))}
+        <div className="mobile-drawer">
+          <nav className="flex flex-col gap-6">
+            {navigationItems.map(({ href, label }) => (
+              <Link
+                key={href}
+                href={href}
+                className={`text-3xl font-black transition-colors ${isActive(href) ? "text-[#D9E061]" : "text-white hover:text-[#D9E061]"}`}
+                onClick={() => setIsMenuOpen(false)}
+              >
+                {label}
+              </Link>
+            ))}
+          </nav>
           <Link
             href="/kontak"
-            className="bg-[#D9E061] text-[#16232A] px-10 py-4 rounded-full font-bold text-xl hover:bg-[#e8ef6a] transition-colors mt-4"
+            className="bg-[#D9E061] text-[#16232A] px-10 py-4 rounded-full font-bold text-center text-xl hover:bg-[#e8ef6a] transition-colors mt-auto mb-4"
             onClick={() => setIsMenuOpen(false)}
           >
             Get In Touch

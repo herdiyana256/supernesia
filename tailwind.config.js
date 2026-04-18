@@ -9,6 +9,25 @@ module.exports = {
     "*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
+    screens: {
+      // Mobile
+      'xs':  '320px',   // iPhone SE, Galaxy A series kecil
+      'sm':  '375px',   // iPhone 12/13/14 standard
+      'md':  '390px',   // iPhone 14 Pro, 15
+      'lg':  '414px',   // iPhone Plus/Max, Galaxy S series
+
+      // Tablet
+      'tab-sm':  '600px',   // Tab kecil, iPad Mini portrait
+      'tab':     '768px',   // iPad, Samsung Tab A portrait
+      'tab-lg':  '820px',   // iPad Air portrait
+      'tab-xl':  '1024px',  // iPad Pro 11", Tab landscape
+
+      // Desktop
+      'desk-sm': '1280px',  // Laptop 13"
+      'desk':    '1440px',  // Desktop standard
+      'desk-lg': '1920px',  // Full HD monitor
+      'desk-xl': '2560px',  // 2K/4K monitor
+    },
     container: {
       center: true,
       padding: "2rem",

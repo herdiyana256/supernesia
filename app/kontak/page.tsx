@@ -1,11 +1,11 @@
 "use client"
 
-import React, { useState } from "react"
+import React, { useState, useEffect, useRef } from "react"
 import Image from "next/image"
 import Link from "next/link"
 import Navbar from "@/components/navbar"
 import Footer from "@/components/footer"
-import { CheckCircle, XCircle } from "lucide-react"
+import { CheckCircle, XCircle, Users, Clock, FileCheck, Star } from "lucide-react"
 import { motion } from "framer-motion"
 
 const serviceOptions = [
@@ -16,6 +16,42 @@ const serviceOptions = [
   "AI Integration",
   "Maintenance & Support",
   "Lainnya",
+  "Lainnya",
+]
+
+function CountUp({ target, duration = 2000, suffix = '' }: { target: number, duration?: number, suffix?: string }) {
+  const [count, setCount] = useState(0)
+  const ref = useRef<HTMLSpanElement>(null)
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) {
+        let start = 0
+        const step = target / (duration / 16)
+        const timer = setInterval(() => {
+          start += step
+          if (start >= target) {
+            setCount(target)
+            clearInterval(timer)
+          } else {
+            setCount(Math.floor(start))
+          }
+        }, 16)
+        if (ref.current) observer.unobserve(ref.current)
+      }
+    }, { threshold: 0.3 })
+    if (ref.current) observer.observe(ref.current)
+    return () => observer.disconnect()
+  }, [target, duration])
+
+  return <span ref={ref}>{count}{suffix}</span>
+}
+
+const statsData = [
+  { icon: <Users size={20} />,  value: 15,  suffix: '+',   label: 'Expert siap membantu' },
+  { icon: <Clock size={20} />,  value: 5,   suffix: ' min', label: 'Respon tercepat' },
+  { icon: <FileCheck size={20}/>,value: 75, suffix: '+',   label: 'Project Sukses' },
+  { icon: <Star size={20} />,   value: 4.9, suffix: '/5',  label: 'Rating Client' },
 ]
 
 export default function KontakPage() {
@@ -183,15 +219,41 @@ export default function KontakPage() {
               </div>
             </div>
 
-            {/* Stats row */}
-            <div className="flex flex-wrap gap-6 text-white/60 text-sm font-semibold border-t border-white/10 pt-6">
-              <div className="flex items-center gap-2">
-                <div className="w-2 h-2 bg-[#D9E061] rounded-full" />
-                15+ Expert – siap membantu anda
+            {/* Divider line dengan gradient */}
+            <div style={{
+              height: '1px',
+              background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent)',
+              margin: '24px 0'
+            }} />
+
+            {/* Stats row with Interactive Glassmorphism Cards */}
+            <div className="relative">
+              {/* Glow accent di belakang stats */}
+              <div style={{
+                position: 'absolute',
+                width: '200px',
+                height: '200px', 
+                background: 'radial-gradient(circle, rgba(205,255,0,0.08) 0%, transparent 70%)',
+                bottom: '-20px',
+                left: '20%',
+                pointerEvents: 'none'
+              }} />
+
+              <div className="grid grid-cols-2 gap-3 relative z-10 mt-2">
+                {statsData.map((stat, idx) => (
+                  <div key={idx} className="group bg-white/5 border border-white/10 backdrop-blur-md rounded-2xl p-4 flex flex-col md:flex-row items-start md:items-center gap-3 header-stat transition-all duration-300 hover:bg-white/10 hover:border-white/20 hover:-translate-y-0.5">
+                    <div className="text-white/50 group-hover:text-[#CDFF00] transition-colors">{stat.icon}</div>
+                    <div className="flex flex-col">
+                      <div className="text-[1.8rem] font-bold text-[#CDFF00] leading-none">
+                        <CountUp target={stat.value} suffix={stat.suffix} />
+                      </div>
+                      <div className="text-[0.75rem] text-white/60 mt-1 font-medium leading-tight">
+                        {stat.label}
+                      </div>
+                    </div>
+                  </div>
+                ))}
               </div>
-              <div>⏱ Respon &lt;5 menit</div>
-              <div>📄 75+ Project Sukses</div>
-              <div>⭐ 4.9/5 Rating Client</div>
             </div>
           </div>
 

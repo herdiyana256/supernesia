@@ -275,6 +275,18 @@ export default function RootLayout({
       className={`${plusJakartaSans.variable} scroll-smooth`}
     >
       <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+        <meta name="theme-color" content="#CDFF00" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+        <meta name="apple-mobile-web-app-title" content="Supernesia" />
+
+        {/* Apple touch icons */}
+        <link rel="apple-touch-icon" sizes="180x180" href="/icons/icon-192x192.png" />
+
+        {/* Manifest */}
+        <link rel="manifest" href="/manifest.json" />
+        
         {/* Google Site Verification is handled by metadata object */}
         {/* JSON-LD Structured Data */} 
         <Script

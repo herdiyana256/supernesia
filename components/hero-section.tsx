@@ -3,10 +3,13 @@ import React, { useEffect, useRef, useState } from "react"
 import Image from "next/image"
 import Link from "next/link"
 import { motion } from "framer-motion"
+import { useTickerContent } from "../hooks/use-ticker-content"
 
 export default function HeroSection() {
   const tickerRef = useRef<HTMLDivElement>(null)
   const [parallax, setParallax] = useState("translate(0px, 0px)")
+  const items = useTickerContent()
+  const doubled = [...items, ...items]
 
   const handleMouseMove = (e: React.MouseEvent) => {
     const x = (e.clientX / window.innerWidth - 0.5) * 25
@@ -191,26 +194,35 @@ export default function HeroSection() {
       </div>
 
       {/* Scrolling Ticker — Yellow Banner */}
-      <div className="w-full bg-[#D9E061] overflow-hidden py-4 relative z-20 mt-auto">
-        <div
-          className="flex items-center gap-0 animate-[ticker_20s_linear_infinite] whitespace-nowrap"
-          style={{ animation: "ticker 22s linear infinite" }}
-        >
-          {[...Array(8)].map((_, i) => (
-            <div key={i} className="flex items-center gap-8 pr-8 flex-shrink-0">
-              <span className="text-[#16232A] font-black text-lg md:text-xl tracking-wide">Let&apos;s build your Website</span>
-              <svg width="20" height="20" viewBox="0 0 20 20" fill="#16232A" className="flex-shrink-0">
-                <path d="M10 0L12.9 7.1L20 10L12.9 12.9L10 20L7.1 12.9L0 10L7.1 7.1L10 0Z" />
-              </svg>
-            </div>
+      <div className="ticker-wrapper bg-[#D9E061] overflow-hidden py-3.5 relative z-20 mt-auto flex-shrink-0">
+        <div className="ticker-track">
+          {doubled.map((item, i) => (
+            <span key={i} className="ticker-item flex items-center">
+              <span className="text-[#16232A] font-black text-lg md:text-xl tracking-wide px-8 whitespace-nowrap">{item}</span>
+              <span className="ticker-sep text-[#16232A] opacity-30 text-xl font-bold">✦</span>
+            </span>
           ))}
         </div>
       </div>
 
       <style>{`
-        @keyframes ticker {
-          0% { transform: translateX(0); }
-          100% { transform: translateX(-50%); }
+        .ticker-wrapper {
+          width: 100%;
+        }
+
+        .ticker-track {
+          display: flex;
+          width: max-content;
+          animation: ticker-scroll 30s linear infinite;
+        }
+
+        .ticker-wrapper:hover .ticker-track {
+          animation-play-state: paused;
+        }
+
+        @keyframes ticker-scroll {
+          from { transform: translateX(0); }
+          to   { transform: translateX(-50%); }
         }
       `}</style>
     </section>

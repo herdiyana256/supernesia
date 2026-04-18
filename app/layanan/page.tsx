@@ -5,44 +5,103 @@ import Image from "next/image"
 import Link from "next/link"
 import Navbar from "@/components/navbar"
 import Footer from "@/components/footer"
-import { ArrowUpRight, Check } from "lucide-react"
+import { ArrowUpRight, Check, Globe, Code2, Smartphone, Wrench, Bot, Palette } from "lucide-react"
 import { motion } from "framer-motion"
+import { useTickerContent } from "@/hooks/use-ticker-content"
 
 const services = [
   {
     id: "web-development",
     title: "Web Development",
-    icon: "🌐",
-    iconColor: "#FF7A00",
+    icon: <Globe size={28} strokeWidth={1.5} />,
+    iconColor: "#F97316",
     desc: "From company profile to e-commerce — we build fast, responsive, and scalable websites tailored to your business needs.",
-    features: ["Landing Page", "Company Profile", "E-Commerce", "Web App", "Dashboard Admin", "API Integration"],
+    features: [
+      { title: "Landing Page", desc: "Halaman promosi produk/jasa yang dioptimasi untuk konversi tinggi" },
+      { title: "Company Profile", desc: "Website resmi perusahaan yang profesional dan terpercaya" },
+      { title: "E-Commerce", desc: "Toko online lengkap dengan catalog, cart, dan checkout" },
+      { title: "Web App", desc: "Aplikasi berbasis web dengan fitur kompleks dan real-time" },
+      { title: "Dashboard Admin", desc: "Panel kontrol untuk manajemen data, user, dan laporan" },
+      { title: "Payment Gateway", desc: "Integrasi Midtrans & Xendit untuk transaksi yang aman dan mudah" }
+    ],
     href: "/layanan/web-development",
   },
   {
     id: "custom-software",
     title: "Custom Software",
-    icon: "📦",
-    iconColor: "#714AFE",
+    icon: <Code2 size={28} strokeWidth={1.5} />,
+    iconColor: "#8B5CF6",
     desc: "Got a unique business process? We develop custom systems like CRM, inventory, POS, and internal tools that actually fit how you work.",
-    features: ["Sistem CRM", "Inventory Management", "Point of Sale", "ERP System", "Workflow Automation", "Reporting Dashboard"],
+    features: [
+      { title: "CRM System", desc: "Kelola leads, pipeline, dan hubungan pelanggan dalam satu platform" },
+      { title: "Inventory System", desc: "Pantau stok, gudang, dan pergerakan barang secara real-time" },
+      { title: "POS System", desc: "Sistem kasir modern untuk toko fisik maupun online" },
+      { title: "Internal Tools", desc: "Tools custom sesuai alur kerja tim dan bisnis kamu" }
+    ],
     href: "/layanan/custom-software",
+  },
+  {
+    id: "mobile-desktop-apps",
+    title: "Mobile & Desktop Apps",
+    icon: <Smartphone size={28} strokeWidth={1.5} />,
+    iconColor: "#3B82F6",
+    desc: "We build native and cross-platform apps for iOS, Android, and desktop — fast, intuitive, and built to scale with your business.",
+    features: [
+      { title: "iOS App", desc: "Native app untuk iPhone dan iPad dengan performa optimal" },
+      { title: "Android App", desc: "App Android yang ringan, cepat, dan kompatibel luas" },
+      { title: "Flutter", desc: "Cross-platform app dari satu codebase untuk iOS & Android" },
+      { title: "React Native", desc: "App hybrid berperforma tinggi dengan ekosistem JavaScript" },
+      { title: "Desktop App", desc: "Aplikasi Windows/Mac untuk kebutuhan operasional internal" },
+      { title: "Cross-platform", desc: "Satu produk, jalan di semua device" }
+    ],
+    href: "#",
   },
   {
     id: "maintenance",
     title: "Maintenance & Revamp",
-    icon: "🔧",
-    iconColor: "#2D8CFF",
+    icon: <Wrench size={28} strokeWidth={1.5} />,
+    iconColor: "#14B8A6",
     desc: "We keep your digital product healthy — bug fixing, performance boost, security patching, SEO, & redesign.",
-    features: ["Bug Fixing", "Performance Optimization", "Security Patching", "SEO Improvement", "UI Redesign", "Code Refactoring"],
+    features: [
+      { title: "Bug Fixing", desc: "Identifikasi dan perbaikan error sebelum ganggu user" },
+      { title: "Performance Boost", desc: "Optimasi kecepatan loading dan efisiensi server" },
+      { title: "Security Patching", desc: "Update keamanan rutin agar sistem tetap terlindungi" },
+      { title: "SEO Optimization", desc: "Perbaikan teknikal SEO agar lebih mudah ditemukan Google" },
+      { title: "Redesign", desc: "Tampilan baru yang modern tanpa kehilangan fungsionalitas" },
+      { title: "Code Refactoring", desc: "Bersihkan technical debt agar codebase lebih maintainable" }
+    ],
     href: "#",
   },
   {
     id: "ai",
-    title: "Artificial Intelligence",
-    icon: "🤖",
-    iconColor: "#EC5B70",
-    desc: "Automate repetitive tasks, deploy AI agents, or launch a WhatsApp chatbot to serve your customers 24/7.",
-    features: ["AI Chatbot", "WhatsApp Bot", "Data Analysis", "Process Automation", "Recommendation System", "AI Integration"],
+    title: "AI & Automation",
+    icon: <Bot size={28} strokeWidth={1.5} />,
+    iconColor: "#EF4444",
+    desc: "Automate repetitive tasks, deploy AI agents, or launch a WhatsApp chatbot to serve your customers 24/7 — so your team can focus on what matters.",
+    features: [
+      { title: "AI Chatbot", desc: "Chatbot pintar yang bisa jawab pertanyaan pelanggan otomatis" },
+      { title: "WhatsApp Bot", desc: "Bot WA terintegrasi untuk CS, notifikasi, dan follow-up otomatis" },
+      { title: "Data Analysis", desc: "Olah data bisnis jadi insight yang actionable" },
+      { title: "Process Automation", desc: "Otomatisasi workflow repetitif seperti laporan, notifikasi, approval" },
+      { title: "Recommendation System", desc: "Engine rekomendasi produk/konten berbasis behavior user" },
+      { title: "AI Integration", desc: "Integrasi AI ke sistem yang sudah ada (OpenAI, Gemini, dsb)" }
+    ],
+    href: "#",
+  },
+  {
+    id: "ui-ux",
+    title: "UI/UX Design",
+    icon: <Palette size={28} strokeWidth={1.5} />,
+    iconColor: "#EAB308",
+    desc: "We design interfaces that look great and feel effortless — from wireframes to pixel-perfect mockups, ready for development.",
+    features: [
+      { title: "Wireframing", desc: "Kerangka layout sebelum masuk tahap visual" },
+      { title: "Prototyping", desc: "Prototype interaktif yang bisa langsung di-test user" },
+      { title: "Design System", desc: "Komponen dan panduan visual yang konsisten untuk seluruh produk" },
+      { title: "User Research", desc: "Riset perilaku user untuk keputusan desain yang tepat sasaran" },
+      { title: "Mobile UI", desc: "Desain antarmuka yang optimal untuk layar smartphone" },
+      { title: "Figma Handoff", desc: "File Figma siap development dengan anotasi lengkap" }
+    ],
     href: "#",
   },
 ]
@@ -83,6 +142,8 @@ const processSteps = [
 export default function LayananPage() {
   const [activeService, setActiveService] = useState(0)
   const [parallax, setParallax] = useState("translate(0px, 0px)")
+  const items = useTickerContent()
+  const doubled = [...items, ...items]
 
   const handleMouseMove = (e: React.MouseEvent) => {
     const x = (e.clientX / window.innerWidth - 0.5) * 20
@@ -168,20 +229,33 @@ export default function LayananPage() {
         </div>
 
         {/* Pink ticker */}
-        <div className="w-full bg-[#EC5B70] overflow-hidden py-4 relative z-20">
-          <div className="flex items-center gap-0 whitespace-nowrap" style={{ animation: "ticker 20s linear infinite" }}>
-            {[...Array(10)].map((_, i) => (
-              <div key={i} className="flex items-center gap-8 pr-8 flex-shrink-0">
-                <span className="text-white font-black text-lg tracking-wide">Let&apos;s build your project</span>
-                <svg width="18" height="18" viewBox="0 0 20 20" fill="white" className="flex-shrink-0">
-                  <path d="M10 0L12.9 7.1L20 10L12.9 12.9L10 20L7.1 12.9L0 10L7.1 7.1L10 0Z" />
-                </svg>
+        <div className="ticker-wrapper bg-[#EC5B70] overflow-hidden py-3.5 relative z-20 flex-shrink-0">
+          <div className="ticker-track flex items-center">
+            {doubled.map((item, i) => (
+              <div key={i} className="ticker-item flex items-center flex-shrink-0">
+                <span className="text-white font-black text-lg md:text-xl tracking-wide px-8 whitespace-nowrap">{item}</span>
+                <span className="ticker-sep text-white opacity-40 text-xl font-bold">✦</span>
               </div>
             ))}
           </div>
         </div>
 
-        <style>{`@keyframes ticker { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }`}</style>
+        <style>{`
+          .ticker-wrapper {
+            width: 100%;
+          }
+          .ticker-track {
+            width: max-content;
+            animation: ticker-scroll 30s linear infinite;
+          }
+          .ticker-wrapper:hover .ticker-track {
+            animation-play-state: paused;
+          }
+          @keyframes ticker-scroll {
+            from { transform: translateX(0); }
+            to   { transform: translateX(-50%); }
+          }
+        `}</style>
       </section>
 
       {/* ── SUPER SERVICE ── */}
@@ -208,40 +282,42 @@ export default function LayananPage() {
         </div>
 
         <div className="max-w-7xl mx-auto">
-          <div className="flex flex-col lg:flex-row gap-12 items-start">
-            {/* Left: Stacked sticky notes title */}
-            <div className="w-full lg:w-[35%] flex flex-col items-start gap-2 pt-4">
-              <div className="relative inline-block transform -rotate-2 hover:rotate-0 transition-transform duration-500">
-                <div
-                  className="text-[#16232A] px-8 py-5 text-[3rem] md:text-[4rem] font-black tracking-tighter lowercase shadow-xl relative"
-                  style={{ background: "linear-gradient(225deg, transparent 28px, #D9E061 0)", borderRadius: "20px 0 20px 20px" }}
-                >
-                  super
-                  <svg className="w-24 h-3 mt-1 stroke-[#16232A]" viewBox="0 0 100 10" fill="none"><path d="M0,5 Q10,0 20,5 T40,5 T60,5 Q70,10 80,5 T100,5" strokeWidth="4" strokeLinecap="round" /></svg>
-                  <div className="absolute top-0 right-0 w-8 h-8 bg-white/50" style={{ borderRadius: "0 0 0 12px" }} />
+          <div className="flex flex-col gap-12">
+            {/* Top: Header Section */}
+            <div className="flex flex-col lg:flex-row justify-between items-start lg:items-end gap-6 pt-4">
+              <div className="flex flex-col items-start gap-2">
+                <div className="relative inline-block transform -rotate-2 hover:rotate-0 transition-transform duration-500">
+                  <div
+                    className="text-[#16232A] px-8 py-5 text-[3rem] md:text-[4rem] font-black tracking-tighter lowercase shadow-xl relative"
+                    style={{ background: "linear-gradient(225deg, transparent 28px, #D9E061 0)", borderRadius: "20px 0 20px 20px" }}
+                  >
+                    super
+                    <svg className="w-24 h-3 mt-1 stroke-[#16232A]" viewBox="0 0 100 10" fill="none"><path d="M0,5 Q10,0 20,5 T40,5 T60,5 Q70,10 80,5 T100,5" strokeWidth="4" strokeLinecap="round" /></svg>
+                    <div className="absolute top-0 right-0 w-8 h-8 bg-white/50" style={{ borderRadius: "0 0 0 12px" }} />
+                  </div>
+                </div>
+                <div className="relative inline-block transform rotate-1 hover:rotate-0 transition-transform duration-500 -mt-2 ml-6">
+                  <div
+                    className="text-white px-8 py-5 text-[3rem] md:text-[4rem] font-black tracking-tighter lowercase shadow-xl relative"
+                    style={{ background: "linear-gradient(45deg, transparent 28px, #EC5B70 0)", borderRadius: "20px 20px 20px 0" }}
+                  >
+                    service
+                    <svg className="w-28 h-3 mt-1 stroke-white" viewBox="0 0 100 10" fill="none"><path d="M0,5 Q10,0 20,5 T40,5 T60,5 Q70,10 80,5 T100,5" strokeWidth="4" strokeLinecap="round" /></svg>
+                    <div className="absolute bottom-0 left-0 w-8 h-8 bg-white/30" style={{ borderRadius: "0 12px 0 0" }} />
+                  </div>
                 </div>
               </div>
-              <div className="relative inline-block transform rotate-1 hover:rotate-0 transition-transform duration-500 -mt-2 ml-6">
-                <div
-                  className="text-white px-8 py-5 text-[3rem] md:text-[4rem] font-black tracking-tighter lowercase shadow-xl relative"
-                  style={{ background: "linear-gradient(45deg, transparent 28px, #EC5B70 0)", borderRadius: "20px 20px 20px 0" }}
-                >
-                  service
-                  <svg className="w-28 h-3 mt-1 stroke-white" viewBox="0 0 100 10" fill="none"><path d="M0,5 Q10,0 20,5 T40,5 T60,5 Q70,10 80,5 T100,5" strokeWidth="4" strokeLinecap="round" /></svg>
-                  <div className="absolute bottom-0 left-0 w-8 h-8 bg-white/30" style={{ borderRadius: "0 12px 0 0" }} />
-                </div>
-              </div>
-              <p className="text-gray-400 text-lg font-medium leading-relaxed mt-6 max-w-sm italic">
+              <p className="text-gray-400 text-lg font-medium leading-relaxed max-w-sm italic lg:pb-4">
                 &ldquo;Every service we offer is designed to solve real problems — not just look good on paper.&rdquo;
               </p>
             </div>
 
-            {/* Right: Service Cards Grid */}
-            <div className="w-full lg:w-[65%] grid grid-cols-1 md:grid-cols-2 gap-5">
+            {/* Bottom: Service Cards Grid */}
+            <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 items-start">
               {services.map((svc, idx) => (
                 <div
                   key={idx}
-                  className={`relative bg-white border-2 rounded-[24px] p-7 cursor-pointer transition-all duration-300 hover:-translate-y-1 group ${
+                  className={`relative bg-white border-2 rounded-[24px] p-7 cursor-pointer transition-all duration-300 hover:-translate-y-1 group h-auto ${
                     activeService === idx ? "border-[#D9E061] shadow-[0_8px_32px_rgba(217,224,97,0.25)]" : "border-gray-100 shadow-sm hover:border-gray-200 hover:shadow-md"
                   }`}
                   onClick={() => setActiveService(idx)}
@@ -260,17 +336,29 @@ export default function LayananPage() {
                   <h3 className="text-[#16232A] font-black text-xl mb-3 tracking-tight">{svc.title}</h3>
                   <p className="text-gray-500 text-sm leading-relaxed mb-4">{svc.desc}</p>
 
-                  {/* Expanded features */}
-                  {activeService === idx && (
-                    <div className="grid grid-cols-2 gap-2 mt-4 border-t border-gray-100 pt-4">
-                      {svc.features.map((f, fi) => (
-                        <div key={fi} className="flex items-center gap-2 text-sm text-gray-600 font-medium">
-                          <Check className="w-4 h-4 text-[#D9E061] flex-shrink-0" />
-                          {f}
+                  {/* Expanded features (Accordion) */}
+                  <div
+                    className="grid grid-cols-1 gap-4 overflow-hidden transition-all duration-300 ease-in-out"
+                    style={{
+                      maxHeight: activeService === idx ? "700px" : "0px",
+                      opacity: activeService === idx ? 1 : 0,
+                      marginTop: activeService === idx ? "1rem" : "0",
+                      paddingTop: activeService === idx ? "1.5rem" : "0",
+                      borderTop: activeService === idx ? "1px solid #f3f4f6" : "0px solid transparent"
+                    }}
+                  >
+                    {svc.features.map((f, fi) => (
+                      <div key={fi} className="flex items-start gap-4">
+                        <div className="p-1 rounded-full bg-[#D9E061]/20 flex-shrink-0 mt-0.5">
+                          <Check className="w-3.5 h-3.5 text-[#16232A]" strokeWidth={3} />
                         </div>
-                      ))}
-                    </div>
-                  )}
+                        <div>
+                          <p className="text-[#16232A] font-bold text-sm leading-none mb-1.5">{f.title}</p>
+                          <p className="text-gray-500 text-xs leading-relaxed">{f.desc}</p>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
 
                   {/* Sticky note corner fold */}
                   <div className="absolute bottom-0 right-0 w-8 h-8 opacity-60" style={{ background: `linear-gradient(225deg, ${svc.iconColor}30, transparent 70%)`, borderRadius: "0 0 20px 0" }} />
