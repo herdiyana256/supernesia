@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 import SupernesiaChatbot from "@/components/supernesia-chatbot";
@@ -143,6 +143,13 @@ const addressRegion = "DKI Jakarta";
 const postalCode = "12920";
 const addressCountry = "ID";
 
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  viewportFit: "cover",
+  themeColor: "#CDFF00",
+};
+
 export const metadata: Metadata = {
   // --- Core Metadata ---
   metadataBase: new URL(siteUrl), // Crucial for resolving relative URLs
@@ -178,13 +185,13 @@ export const metadata: Metadata = {
       { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
     ],
     shortcut: "/favicon.ico",
-    apple: "/apple-touch-icon.png",
+    apple: "/icons/icon-192x192.png",
     // other: [
     //   { rel: 'mask-icon', url: '/safari-pinned-tab.svg', color: '#5bbad5' }, // <<< Add if you have a mask icon
     // ],
   },
   // --- Manifest ---
-  manifest: "/site.webmanifest", // <<< Ensure you have this file
+  manifest: "/manifest.json",
   // --- Open Graph (Facebook, LinkedIn, etc.) ---
   openGraph: {
     title: siteTitle,
@@ -275,8 +282,6 @@ export default function RootLayout({
       className={`${plusJakartaSans.variable} scroll-smooth`}
     >
       <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-        <meta name="theme-color" content="#CDFF00" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
         <meta name="apple-mobile-web-app-title" content="Supernesia" />
@@ -299,7 +304,7 @@ export default function RootLayout({
         {/* Example Preload: <link rel="preload" as="image" href="/images/hero-banner.webp"> */}
       </head>
       {/* Added basic light/dark mode classes example - adapt to your styling system */}
-      <body className="font-sans text-base leading-relaxed font-body bg-brand-dark text-white">
+      <body className="font-sans text-base leading-relaxed font-body bg-brand-dark text-white overflow-x-hidden">
         {/* Consider adding Skip to Content link for accessibility */}
         {/* <a href="#main-content" className="sr-only focus:not-sr-only">Skip to main content</a> */}
 

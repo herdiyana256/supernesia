@@ -106,7 +106,7 @@
 
 /* ===== BASE MOBILE FIRST ===== */
 :root {
-  --navbar-height: 64px;
+  --navbar-height: 86px;
   --container-px: 16px;
   --section-py: 48px;
 }
@@ -225,7 +225,8 @@
   display: flex;
   flex-direction: column;
   gap: 32px;
-  z-index: 99;
+  z-index: 9999;
+  overflow-y: auto;
   animation: slideDown 0.2s ease;
 }
 

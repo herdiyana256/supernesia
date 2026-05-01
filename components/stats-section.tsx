@@ -48,7 +48,7 @@ const stats = [
 
 export default function StatsSection() {
   return (
-    <section className="bg-[#16232A] py-20 px-6 md:px-12 lg:px-20 relative overflow-hidden font-sans">
+    <section className="bg-[#16232A] py-20 px-6 md:px-12 lg:px-20 relative overflow-hidden font-sans" style={{ isolation: 'isolate' }}>
       {/* Subtle background glow */}
       <div className="absolute inset-0 pointer-events-none">
         <div

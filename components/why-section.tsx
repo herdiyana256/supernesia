@@ -8,7 +8,7 @@ const whyItems = [
     title: "Clear Pricing. Real Value",
     desc: "Transparent pricing, zero surprise cost. Semua biaya jelas sejak awal.",
     highlight: "Transparent pricing, zero surprise cost.",
-    highlightColor: "#EC5B70",
+    highlightColor: "#16232A",
   },
   {
     title: "On-Time Execution",
@@ -32,7 +32,7 @@ const whyItems = [
     title: "After Launch?",
     desc: "Project selesai bukan akhir dari kolaborasi. Kami memastikan sistem tetap stabil, performa terjaga, dan bisnis Anda terus tumbuh tanpa hambatan teknis.",
     highlight: "Kami memastikan sistem tetap stabil, performa terjaga, dan bisnis Anda terus tumbuh tanpa hambatan teknis.",
-    highlightColor: "#EC5B70",
+    highlightColor: "#16232A",
   },
   {
     title: "Quality Driven Impact",
@@ -89,7 +89,7 @@ export default function WhySection() {
           <div className="w-full lg:w-[38%] flex flex-col items-start">
 
             {/* "why us?" sticky note */}
-            <div className="relative inline-block transform rotate-[-1deg] hover:rotate-0 transition-transform duration-500 mb-10">
+            <div className="relative inline-block transform rotate-[-1deg] hover:rotate-0 transition-transform duration-500 mb-0">
               <div
                 className="text-[#16232A] px-10 py-7 shadow-xl relative inline-block"
                 style={{
@@ -114,13 +114,21 @@ export default function WhySection() {
               </div>
             </div>
 
+            {/* Filler image between sticky note and photo */}
+            <div className="relative w-full max-w-[380px] h-[180px] sm:h-[220px] mx-auto lg:mx-0 rounded-[20px] overflow-hidden shadow-lg mt-6">
+              <Image
+                src="/test.png"
+                alt="Supernesia"
+                fill
+                className="object-cover grayscale"
+              />
+            </div>
+
             {/* Grayscale person photo with Motion & Parallax */}
             <div 
-              className="relative w-full max-w-[380px] h-[420px] md:h-[520px] mx-auto lg:mx-0 group cursor-default z-10"
+              className="relative w-full max-w-[380px] h-[360px] sm:h-[420px] md:h-[520px] mx-auto lg:mx-0 group cursor-default z-10 overflow-hidden rounded-[24px] mt-6"
               onMouseMove={handleMouseMove}
             >
-              <div className="absolute inset-0 bg-[#EC5B70]/15 blur-[60px] rounded-full scale-75 mt-10 z-0" />
-              
               <div 
                 className="relative w-full h-full transition-transform duration-700 ease-out z-10"
                 style={{ transform: parallax }}
@@ -134,27 +142,17 @@ export default function WhySection() {
                     src="/bagian-lain.jpg"
                     alt="Why Supernesia"
                     fill
-                    className="object-contain object-bottom drop-shadow-[0_20px_60px_rgba(0,0,0,0.5)] rounded-[32px] grayscale contrast-[1.1] transition-all duration-700 ease-out group-hover:scale-105 group-hover:grayscale-0"
+                    className="object-cover grayscale contrast-[1.1] transition-all duration-700 ease-out group-hover:scale-105 group-hover:grayscale-0"
                   />
                 </motion.div>
               </div>
-              {/* Pink bolt decoration */}
-              <motion.div 
-                className="absolute bottom-[20%] right-[-20px] text-[#EC5B70] z-20"
-                animate={{ y: [0, -8, 0], rotate: [0, -5, 0] }}
-                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-              >
-                <svg width="44" height="64" viewBox="0 0 24 40" fill="currentColor">
-                  <path d="M14 2L4 22h9l-3 16 14-22h-10l3-14z" />
-                </svg>
-              </motion.div>
             </div>
           </div>
 
           {/* Right: Feature Cards Grid */}
           <div className="w-full lg:w-[62%]">
             {/* Lightning bolt decorative top right */}
-            <div className="flex justify-end mb-4 hidden md:flex">
+            <div className="hidden md:flex justify-end mb-4">
               <div className="text-[#EC5B70] rotate-[-8deg]">
                 <svg width="36" height="52" viewBox="0 0 24 40" fill="currentColor">
                   <path d="M14 2L4 22h9l-3 16 14-22h-10l3-14z" />
@@ -171,7 +169,7 @@ export default function WhySection() {
               {whyItems.map((item, idx) => (
                 <div
                   key={idx}
-                  className="bg-white border border-gray-100 rounded-[24px] px-7 py-6 shadow-[0_4px_24px_rgba(0,0,0,0.06)] hover:shadow-[0_8px_32px_rgba(0,0,0,0.12)] hover:-translate-y-1 transition-all duration-300 group cursor-default"
+                  className="bg-white border border-gray-100 rounded-[24px] px-7 py-6 shadow-[0_4px_24px_rgba(0,0,0,0.06)] hover:shadow-[0_8px_32px_rgba(217,224,97,0.25)] hover:-translate-y-1 hover:bg-[#D9E061]/10 hover:border-[#D9E061]/40 transition-all duration-300 group cursor-default"
                 >
                   <h3 className="text-[#16232A] font-black text-lg md:text-xl mb-3 tracking-tight group-hover:text-[#16232A]">
                     {item.title}

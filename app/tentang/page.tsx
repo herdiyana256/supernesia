@@ -83,19 +83,19 @@ export default function TentangPage() {
           </svg>
         </div>
 
-        <div className="max-w-[1440px] mx-auto w-full px-6 md:px-12 lg:px-20 pt-28 pb-20 flex flex-col items-center text-center relative z-10">
+        <div className="max-w-[1440px] mx-auto w-full px-4 sm:px-6 md:px-8 lg:px-12 xl:px-20 pt-28 md:pt-32 pb-16 flex flex-col items-center text-center relative z-10 overflow-hidden">
           {/* "hello" sticky note */}
-          <div className="relative inline-block transform -rotate-1 hover:rotate-0 transition-transform duration-500 mb-6">
+          <div className="relative inline-block transform -rotate-1 hover:rotate-0 transition-transform duration-500 mb-6 max-w-full">
             <div
-              className="text-[#16232A] px-10 py-5 text-[2.5rem] md:text-[3.5rem] font-black tracking-tighter lowercase shadow-xl relative"
-              style={{ background: "linear-gradient(225deg, transparent 28px, #D9E061 0)", borderRadius: "24px 0 24px 24px" }}
+              className="text-[#16232A] px-6 sm:px-8 md:px-10 py-3 sm:py-4 md:py-5 text-4xl sm:text-5xl md:text-6xl font-black tracking-tighter lowercase shadow-xl relative"
+              style={{ background: "linear-gradient(225deg, transparent 24px, #D9E061 0)", borderRadius: "20px 0 20px 20px" }}
             >
               hello,
-              <div className="absolute top-0 right-0 w-8 h-8 bg-white/50" style={{ borderRadius: "0 0 0 12px" }} />
+              <div className="absolute top-0 right-0 w-6 h-6 sm:w-8 sm:h-8 bg-white/50" style={{ borderRadius: "0 0 0 16px" }} />
             </div>
           </div>
 
-          <h1 className="text-[3.5rem] md:text-[6rem] lg:text-[8rem] font-black text-white tracking-tighter leading-none lowercase mb-8">
+          <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-black text-white tracking-tighter leading-none lowercase mb-8 break-words max-w-full">
             we are supernesia.
           </h1>
 
@@ -114,31 +114,31 @@ export default function TentangPage() {
       </section>
 
       {/* ── OUR STORY ── White */}
-      <section className="bg-white py-20 md:py-28 px-6 md:px-12 lg:px-20 relative overflow-hidden">
+      <section className="bg-white py-12 md:py-16 lg:py-20 px-4 sm:px-6 md:px-8 lg:px-12 xl:px-20 relative overflow-hidden">
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-col lg:flex-row gap-16 items-start">
 
             {/* Left: Stacked sticky notes */}
-            <div className="w-full lg:w-[35%] flex flex-col items-start">
-              <div className="flex flex-col items-start gap-2 mb-10">
-                <div className="relative inline-block transform -rotate-2 hover:rotate-0 transition-transform duration-500">
+            <div className="w-full lg:w-[35%] flex flex-col items-start w-full">
+              <div className="flex flex-col items-start gap-2 mb-10 w-full max-w-full">
+                <div className="relative inline-block transform -rotate-2 hover:rotate-0 transition-transform duration-500 max-w-full">
                   <div
-                    className="text-[#16232A] px-8 py-5 text-[2.5rem] md:text-[3.5rem] font-black tracking-tighter lowercase shadow-xl relative"
-                    style={{ background: "linear-gradient(225deg, transparent 28px, #D9E061 0)", borderRadius: "20px 0 20px 20px" }}
+                    className="text-[#16232A] px-6 sm:px-8 py-3 sm:py-5 text-4xl sm:text-5xl md:text-6xl font-black tracking-tighter lowercase shadow-xl relative"
+                    style={{ background: "linear-gradient(225deg, transparent 24px, #D9E061 0)", borderRadius: "20px 0 20px 20px" }}
                   >
                     our
-                    <svg className="w-14 h-3 mt-1 stroke-[#16232A]" viewBox="0 0 100 10" fill="none"><path d="M0,5 Q10,0 20,5 T40,5 T60,5 Q70,10 80,5 T100,5" strokeWidth="4" strokeLinecap="round" /></svg>
-                    <div className="absolute top-0 right-0 w-8 h-8 bg-white/50" style={{ borderRadius: "0 0 0 12px" }} />
+                    <svg className="w-12 sm:w-14 h-3 mt-1 stroke-[#16232A]" viewBox="0 0 100 10" fill="none"><path d="M0,5 Q10,0 20,5 T40,5 T60,5 Q70,10 80,5 T100,5" strokeWidth="4" strokeLinecap="round" /></svg>
+                    <div className="absolute top-0 right-0 w-6 h-6 sm:w-8 sm:h-8 bg-white/50" style={{ borderRadius: "0 0 0 12px" }} />
                   </div>
                 </div>
-                <div className="relative inline-block transform rotate-1 hover:rotate-0 transition-transform duration-500 -mt-2 ml-8">
+                <div className="relative inline-block transform rotate-1 hover:rotate-0 transition-transform duration-500 -mt-2 ml-4 sm:ml-8 max-w-full">
                   <div
-                    className="text-white px-8 py-5 text-[2.5rem] md:text-[3.5rem] font-black tracking-tighter lowercase shadow-xl relative"
-                    style={{ background: "linear-gradient(45deg, transparent 28px, #EC5B70 0)", borderRadius: "20px 20px 20px 0" }}
+                    className="text-white px-6 sm:px-8 py-3 sm:py-5 text-4xl sm:text-5xl md:text-6xl font-black tracking-tighter lowercase shadow-xl relative"
+                    style={{ background: "linear-gradient(45deg, transparent 24px, #EC5B70 0)", borderRadius: "20px 20px 20px 0" }}
                   >
                     story
-                    <svg className="w-20 h-3 mt-1 stroke-white" viewBox="0 0 100 10" fill="none"><path d="M0,5 Q10,0 20,5 T40,5 T60,5 Q70,10 80,5 T100,5" strokeWidth="4" strokeLinecap="round" /></svg>
-                    <div className="absolute bottom-0 left-0 w-8 h-8 bg-white/30" style={{ borderRadius: "0 12px 0 0" }} />
+                    <svg className="w-16 sm:w-20 h-3 mt-1 stroke-white" viewBox="0 0 100 10" fill="none"><path d="M0,5 Q10,0 20,5 T40,5 T60,5 Q70,10 80,5 T100,5" strokeWidth="4" strokeLinecap="round" /></svg>
+                    <div className="absolute bottom-0 left-0 w-6 h-6 sm:w-8 sm:h-8 bg-white/30" style={{ borderRadius: "0 12px 0 0" }} />
                   </div>
                 </div>
               </div>
@@ -203,7 +203,7 @@ export default function TentangPage() {
       </section>
 
       {/* ── OUR JOURNEY / TIMELINE ── */}
-      <section className="bg-gray-50 py-20 px-6 md:px-12 lg:px-20 border-t border-gray-100">
+      <section className="bg-gray-50 py-12 md:py-16 lg:py-20 px-4 sm:px-6 md:px-8 lg:px-12 xl:px-20 border-t border-gray-100">
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-14">
             <h2 className="text-[#16232A] font-black text-3xl md:text-4xl mb-4 lowercase tracking-tight">our journey</h2>
@@ -265,7 +265,7 @@ export default function TentangPage() {
       </section>
 
       {/* ── TEAM ── Yellow-tinted cards */}
-      <section className="bg-white py-20 px-6 md:px-12 lg:px-20 border-t border-gray-100">
+      <section className="bg-white py-12 md:py-16 lg:py-20 px-4 sm:px-6 md:px-8 lg:px-12 xl:px-20 border-t border-gray-100">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-14">
             <p className="text-gray-400 text-sm font-semibold uppercase tracking-widest mb-3">The Team</p>
@@ -342,39 +342,39 @@ export default function TentangPage() {
       </section>
 
       {/* ── CTA ── */}
-      <section className="bg-white py-20 px-6 md:px-12 lg:px-20 border-t border-gray-100">
+      <section className="bg-white py-12 md:py-16 lg:py-20 px-4 sm:px-6 md:px-8 lg:px-12 xl:px-20 border-t border-gray-100">
         <div className="max-w-4xl mx-auto flex flex-col items-center text-center">
-          <div className="flex flex-wrap justify-center gap-4 mb-10">
-            <div className="relative inline-block transform -rotate-1 hover:rotate-0 transition-transform duration-500">
+          <div className="flex flex-wrap justify-center gap-2 sm:gap-4 mb-10 w-full">
+            <div className="relative inline-block transform -rotate-1 hover:rotate-0 transition-transform duration-500 max-w-full">
               <div
-                className="text-[#16232A] px-8 py-5 text-[2rem] md:text-[3.5rem] font-black tracking-tighter lowercase shadow-xl relative"
-                style={{ background: "linear-gradient(225deg, transparent 28px, #D9E061 0)", borderRadius: "20px 0 20px 20px" }}
+                className="text-[#16232A] px-6 sm:px-8 py-3 sm:py-5 text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black tracking-tighter lowercase shadow-xl relative"
+                style={{ background: "linear-gradient(225deg, transparent 24px, #D9E061 0)", borderRadius: "20px 0 20px 20px" }}
               >
                 make it
-                <div className="absolute top-0 right-0 w-9 h-9 bg-white/50" style={{ borderRadius: "0 0 0 14px" }} />
+                <div className="absolute top-0 right-0 w-6 h-6 sm:w-8 sm:h-8 bg-white/50" style={{ borderRadius: "0 0 0 14px" }} />
               </div>
             </div>
-            <div className="relative inline-block transform rotate-2 hover:rotate-0 transition-transform duration-500">
+            <div className="relative inline-block transform rotate-2 hover:rotate-0 transition-transform duration-500 max-w-full">
               <div
-                className="text-white px-8 py-5 text-[2rem] md:text-[3.5rem] font-black tracking-tighter lowercase shadow-xl relative"
-                style={{ background: "linear-gradient(45deg, transparent 28px, #EC5B70 0)", borderRadius: "20px 20px 20px 0" }}
+                className="text-white px-6 sm:px-8 py-3 sm:py-5 text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black tracking-tighter lowercase shadow-xl relative"
+                style={{ background: "linear-gradient(45deg, transparent 24px, #EC5B70 0)", borderRadius: "20px 20px 20px 0" }}
               >
                 real.
-                <div className="absolute bottom-0 left-0 w-9 h-9 bg-white/30" style={{ borderRadius: "0 14px 0 0" }} />
+                <div className="absolute bottom-0 left-0 w-6 h-6 sm:w-8 sm:h-8 bg-white/30" style={{ borderRadius: "0 14px 0 0" }} />
               </div>
             </div>
           </div>
-          <div className="relative inline-block group">
+          <div className="relative inline-block group w-full sm:w-auto">
             <div className="absolute -top-3 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center">
               <div className="w-5 h-5 bg-[#EC5B70] rounded-full shadow-md" />
               <div className="w-[2px] h-4 bg-[#c0394e]" />
             </div>
             <Link
               href="/kontak"
-              className="mt-4 inline-flex items-center gap-3 text-[#16232A] font-black text-xl px-12 py-5 rounded-full border-2 border-[#16232A] hover:bg-[#16232A] hover:text-white transition-all duration-300 shadow-lg hover:scale-105"
+              className="w-full sm:w-auto inline-flex justify-center items-center gap-3 text-[#16232A] font-black text-lg sm:text-xl px-8 sm:px-12 py-4 sm:py-5 rounded-full border-2 border-[#16232A] hover:bg-[#16232A] hover:text-white transition-all duration-300 shadow-lg hover:scale-105"
             >
               Hubungi Kami
-              <ArrowUpRight className="w-5 h-5" />
+              <ArrowUpRight className="w-5 h-5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
             </Link>
           </div>
         </div>

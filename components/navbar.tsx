@@ -27,10 +27,10 @@ export default function Navbar() {
 
   return (
     <header
-      className={`fixed top-0 left-0 z-50 w-full px-6 sm:px-10 lg:px-[6%] h-[72px] flex items-center font-sans transition-all duration-500 ${
+      className={`fixed top-0 left-0 z-[10000] w-full px-6 sm:px-10 lg:px-[6%] h-[86px] flex items-center font-sans transition-all duration-500 border-b border-white/5 ${
         scrolled
-          ? "bg-[#16232A]/95 backdrop-blur-xl shadow-[0_4px_30px_rgba(0,0,0,0.4)]"
-          : "bg-transparent"
+          ? "bg-[#16232A]/95 backdrop-blur-xl shadow-[0_4px_30px_rgba(0,0,0,0.4)] border-white/10"
+          : "bg-transparent border-transparent"
       }`}
     >
       <div className="w-full flex items-center justify-between">
@@ -52,9 +52,9 @@ export default function Navbar() {
               <Image
                 src="/SUPERNESIA_LOGOS_MODE_DARK.png"
                 alt="Supernesia"
-                width={140}
-                height={48}
-                className="h-[36px] md:h-[44px] w-auto max-h-[44px] object-contain transition-transform duration-300 hover:scale-105"
+                width={220}
+                height={72}
+                className="h-14 md:h-16 w-auto object-contain transition-transform duration-300 hover:scale-105"
                 style={{ objectFit: 'contain' }}
                 priority
               />
@@ -78,14 +78,14 @@ export default function Navbar() {
           ))}
         </div>
 
-        {/* Mobile Menu Icon */}
-        <div className="md:hidden navbar-hamburger flex-1 flex justify-end items-center">
+        {/* Mobile Menu Icon - same size as Get In Touch */}
+        <div className="flex md:hidden navbar-hamburger flex-1 justify-end items-center">
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="text-white hover:text-[#D9E061] transition-colors p-2"
+            className="bg-white/10 hover:bg-[#D9E061] hover:text-[#16232A] text-white font-bold px-4 py-3 rounded-full transition-all duration-300 text-sm tracking-wide shadow-lg flex items-center gap-1.5"
             aria-label="Toggle menu"
           >
-            {isMenuOpen ? <X className="h-7 w-7" /> : <Menu className="h-7 w-7" />}
+            {isMenuOpen ? <X className="h-4 w-4" /> : <Menu className="h-4 w-4" />}
           </button>
         </div>
       </div>
@@ -93,12 +93,12 @@ export default function Navbar() {
       {/* Mobile Menu Content */}
       {isMenuOpen && (
         <div className="mobile-drawer">
-          <nav className="flex flex-col gap-6">
+          <nav className="flex flex-col gap-3">
             {navigationItems.map(({ href, label }) => (
               <Link
                 key={href}
                 href={href}
-                className={`text-3xl font-black transition-colors ${isActive(href) ? "text-[#D9E061]" : "text-white hover:text-[#D9E061]"}`}
+                className={`text-base font-bold transition-colors ${isActive(href) ? "text-[#D9E061]" : "text-white hover:text-[#D9E061]"}`}
                 onClick={() => setIsMenuOpen(false)}
               >
                 {label}
@@ -107,7 +107,7 @@ export default function Navbar() {
           </nav>
           <Link
             href="/kontak"
-            className="bg-[#D9E061] text-[#16232A] px-10 py-4 rounded-full font-bold text-center text-xl hover:bg-[#e8ef6a] transition-colors mt-auto mb-4"
+            className="bg-[#D9E061] text-[#16232A] px-6 py-2.5 rounded-full font-bold text-center text-sm hover:bg-[#e8ef6a] transition-colors mt-auto mb-4"
             onClick={() => setIsMenuOpen(false)}
           >
             Get In Touch

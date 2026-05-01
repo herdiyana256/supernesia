@@ -20,7 +20,7 @@ export default function HeroSection() {
   return (
     <section
       id="home"
-      className="relative w-full min-h-screen bg-[#16232A] flex flex-col overflow-hidden font-sans"
+      className="relative w-full min-h-[100svh] md:min-h-screen bg-[#16232A] flex flex-col overflow-hidden font-sans"
       style={{
         backgroundImage: `radial-gradient(circle at 80% 20%, rgba(217,224,97,0.04) 0%, transparent 50%),
           radial-gradient(circle at 20% 80%, rgba(236,91,112,0.04) 0%, transparent 50%)`,
@@ -74,110 +74,109 @@ export default function HeroSection() {
       </div>
 
       {/* Main content */}
-      <div className="flex-1 flex flex-col md:flex-row items-center max-w-[1440px] mx-auto w-full px-6 md:px-12 lg:px-20 pt-28 md:pt-32 pb-16 relative z-10">
+      <div className="flex-1 flex flex-col md:flex-row items-center max-w-[1440px] mx-auto w-full px-4 sm:px-6 md:px-8 lg:px-12 xl:px-20 pt-24 md:pt-32 pb-8 md:pb-16 relative z-10 overflow-hidden">
 
         {/* Left: Text */}
         <div className="w-full md:w-[60%] flex flex-col items-start justify-center">
 
           {/* Headline */}
-          <div className="flex flex-col items-start leading-none">
-            <span className="text-2xl md:text-3xl lg:text-4xl font-light italic text-white/80 tracking-wide ml-1 mb-1">
+          <div className="flex flex-col items-start leading-none w-full">
+            <span className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-light italic text-white/80 tracking-wide ml-1 mb-1">
               /turn your
             </span>
 
-            <h1 className="text-[3.5rem] md:text-[5.5rem] lg:text-[7rem] font-black text-white tracking-[-0.04em] leading-none lowercase">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-white tracking-[-0.04em] leading-none lowercase break-words">
               digital idea
             </h1>
 
             {/* "into reality" row */}
-            <div className="flex items-center gap-4 mt-3">
-              <span className="text-[3.5rem] md:text-[5.5rem] lg:text-[7rem] font-black text-white tracking-[-0.04em] leading-none lowercase">
+            <div className="flex flex-wrap items-center gap-2 sm:gap-4 mt-3">
+              <span className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-white tracking-[-0.04em] leading-none lowercase">
                 into
               </span>
               {/* Sticky note: reality */}
-              <div className="relative inline-block transform -rotate-[1.5deg] hover:rotate-0 transition-transform duration-500 cursor-default">
+              <div className="relative inline-block transform -rotate-[1.5deg] hover:rotate-0 transition-transform duration-500 cursor-default max-w-full">
                 <div
-                  className="text-[#16232A] px-8 md:px-10 py-4 md:py-5 text-[3rem] md:text-[4.5rem] lg:text-[5.5rem] font-black tracking-[-0.04em] leading-none lowercase shadow-[0_20px_60px_rgba(217,224,97,0.35)]"
+                  className="text-[#16232A] px-4 sm:px-6 md:px-10 py-2 sm:py-3 md:py-5 text-[2rem] sm:text-4xl md:text-5xl lg:text-6xl font-black tracking-[-0.04em] leading-none lowercase shadow-[0_20px_60px_rgba(217,224,97,0.35)]"
                   style={{
-                    background: "linear-gradient(225deg, transparent 36px, #D9E061 0)",
-                    borderRadius: "28px 0 28px 28px",
+                    background: "linear-gradient(225deg, transparent 20px, #D9E061 0)",
+                    borderRadius: "20px 0 20px 20px",
                   }}
                 >
                   reality
                   {/* fold flap */}
-                  <div className="absolute top-0 right-0 w-10 h-10 bg-white/50 shadow-md" style={{ borderRadius: "0 0 0 18px" }} />
+                  <div className="absolute top-0 right-0 w-6 h-6 sm:w-7 sm:h-7 bg-white/50 shadow-md" style={{ borderRadius: "0 0 0 16px" }} />
                 </div>
               </div>
             </div>
 
             {/* "make it  real." row */}
-            <div className="flex flex-wrap items-center gap-3 mt-4">
+            <div className="flex flex-wrap items-center gap-2 sm:gap-3 mt-4">
               {/* Sticky note: make it */}
-              <div className="relative inline-block transform rotate-[1.5deg] hover:rotate-0 transition-transform duration-500 cursor-default">
+              <div className="relative inline-block transform rotate-[1.5deg] hover:rotate-0 transition-transform duration-500 cursor-default max-w-full">
                 <div
-                  className="text-[#16232A] px-8 md:px-10 py-4 md:py-5 text-[3rem] md:text-[4.5rem] lg:text-[5.5rem] font-black tracking-[-0.04em] leading-none lowercase shadow-[0_20px_60px_rgba(217,224,97,0.25)]"
+                  className="text-[#16232A] px-4 sm:px-6 md:px-10 py-2 sm:py-3 md:py-5 text-[2rem] sm:text-4xl md:text-5xl lg:text-6xl font-black tracking-[-0.04em] leading-none lowercase shadow-[0_20px_60px_rgba(217,224,97,0.25)]"
                   style={{
-                    background: "linear-gradient(45deg, transparent 36px, #D9E061 0)",
-                    borderRadius: "28px 28px 28px 0",
+                    background: "linear-gradient(45deg, transparent 20px, #D9E061 0)",
+                    borderRadius: "20px 20px 20px 0",
                   }}
                 >
                   make it
                   {/* fold flap */}
-                  <div className="absolute bottom-0 left-0 w-10 h-10 bg-white/50 shadow-md" style={{ borderRadius: "0 18px 0 0" }} />
+                  <div className="absolute bottom-0 left-0 w-6 h-6 sm:w-7 sm:h-7 bg-white/50 shadow-md" style={{ borderRadius: "0 16px 0 0" }} />
                 </div>
               </div>
               {/* Sticky note: real. */}
-              <div className="relative inline-block transform -rotate-[1.5deg] hover:rotate-0 transition-transform duration-500 cursor-default">
+              <div className="relative inline-block transform -rotate-[1.5deg] hover:rotate-0 transition-transform duration-500 cursor-default max-w-full">
                 <div
-                  className="text-white px-8 md:px-10 py-4 md:py-5 text-[3rem] md:text-[4.5rem] lg:text-[5.5rem] font-black tracking-[-0.04em] leading-none lowercase shadow-[0_20px_60px_rgba(236,91,112,0.4)]"
+                  className="text-white px-4 sm:px-6 md:px-10 py-2 sm:py-3 md:py-5 text-[2rem] sm:text-4xl md:text-5xl lg:text-6xl font-black tracking-[-0.04em] leading-none lowercase shadow-[0_20px_60px_rgba(236,91,112,0.4)]"
                   style={{
-                    background: "linear-gradient(225deg, transparent 36px, #EC5B70 0)",
-                    borderRadius: "28px 0 28px 28px",
+                    background: "linear-gradient(225deg, transparent 20px, #EC5B70 0)",
+                    borderRadius: "20px 0 20px 20px",
                   }}
                 >
                   real.
                   {/* fold flap */}
-                  <div className="absolute top-0 right-0 w-10 h-10 bg-white/40 shadow-md" style={{ borderRadius: "0 0 0 18px" }} />
+                  <div className="absolute top-0 right-0 w-6 h-6 sm:w-7 sm:h-7 bg-white/40 shadow-md" style={{ borderRadius: "0 0 0 16px" }} />
                 </div>
               </div>
             </div>
           </div>
 
           {/* Description */}
-          <p className="text-white/65 text-base md:text-lg font-medium leading-relaxed mt-10 max-w-lg tracking-wide">
+          <p className="text-white/65 text-sm sm:text-base md:text-lg font-medium leading-relaxed mt-8 md:mt-10 max-w-lg tracking-wide">
             All-in-One Tech Services: Web Development, Mobile & Desktop Apps, Custom Software, UI/UX, Maintenance & Support.
             Kami rancang untuk memberikan dampak nyata bagi mitra kami.
           </p>
 
           {/* CTA Button */}
-          <div className="mt-8 relative inline-block group">
+          <div className="mt-6 sm:mt-8 flex flex-col sm:flex-row items-start sm:items-center w-full sm:w-auto relative group">
             <Link
               href="/kontak"
-              className="relative bg-white text-[#16232A] font-black tracking-wide text-base px-9 py-4 rounded-full hover:bg-white/90 transition-all shadow-xl hover:shadow-2xl hover:scale-105 inline-flex items-center gap-2"
+              className="relative w-full sm:w-auto text-center bg-white text-[#16232A] font-black tracking-wide text-sm sm:text-base px-6 sm:px-9 py-3 sm:py-4 rounded-full hover:bg-white/90 transition-all shadow-xl hover:shadow-2xl hover:scale-105 inline-flex justify-center items-center gap-2"
             >
               Start a Project
             </Link>
             {/* Red pin */}
-            <div className="absolute -top-2 -right-2 w-5 h-5 bg-[#EC5B70] rounded-full shadow-md z-20" />
-            <div className="absolute -top-3 right-0 w-[2px] h-4 bg-[#c0394e] z-10 rotate-45" />
+            <div className="absolute -top-2 -right-2 sm:-right-2 w-4 h-4 sm:w-5 sm:h-5 bg-[#EC5B70] rounded-full shadow-md z-20 hidden sm:block" />
+            <div className="absolute -top-3 right-0 sm:right-0 w-[2px] h-4 bg-[#c0394e] z-10 rotate-45 hidden sm:block" />
           </div>
         </div>
 
         {/* Right: Girl Image with Motion & Parallax */}
         <div 
-          className="w-full md:w-[40%] flex justify-center md:justify-end items-end relative mt-12 md:mt-0 hero-image-wrapper" 
-          style={{ minHeight: 480 }}
+          className="w-full md:w-[40%] flex justify-center md:justify-end items-center md:items-end relative mt-12 md:mt-0 hero-image-wrapper" 
           onMouseMove={handleMouseMove}
         >
           {/* Custom blur blob background request! */}
-          <div className="absolute w-80 h-80 bg-[#D9E061] blur-[70px] rounded-full opacity-20 top-[10%] z-0" />
+          <div className="absolute w-60 h-60 md:w-80 md:h-80 bg-[#D9E061] blur-[50px] md:blur-[70px] rounded-full opacity-20 top-[10%] z-0" />
           
           <div 
-            className="relative w-full h-[480px] md:h-[600px] lg:h-[680px] hover:scale-[1.02] transition-transform duration-700 ease-out z-10" 
+            className="relative w-full h-[240px] sm:h-[360px] md:h-[600px] lg:h-[680px] hover:scale-[1.02] transition-transform duration-700 ease-out z-10" 
             style={{ transform: parallax }}
           >
             <motion.div
-              animate={{ y: [0, -15, 0] }}
+              animate={{ y: [0, -10, 0] }}
               transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
               className="relative w-full h-full"
             >
@@ -185,7 +184,7 @@ export default function HeroSection() {
                     src="/hero-menu.jpg"
                     alt="Supernesia Creative Tech"
                     fill
-                    className="object-cover object-center drop-shadow-[0_20px_60px_rgba(0,0,0,0.5)] rounded-[32px]"
+                    className="object-cover object-center drop-shadow-[0_20px_60px_rgba(0,0,0,0.5)] rounded-[24px] md:rounded-[32px]"
                     priority
                   />
             </motion.div>

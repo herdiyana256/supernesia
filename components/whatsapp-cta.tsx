@@ -213,7 +213,7 @@ export default function WhatsappCTA() {
   }
 
   return (
-    <section className="py-20 px-4 md:px-12 lg:px-20 bg-gradient-to-br from-gray-50 to-white dark:from-gray-900 dark:to-gray-800 relative overflow-hidden">
+    <section className="py-20 px-4 md:px-12 lg:px-20 bg-gradient-to-br from-gray-50 to-white dark:from-gray-900 dark:to-gray-800 relative overflow-hidden" style={{ contain: 'layout' }}>
       {/* Animated Background Pattern */}
       <motion.div
         className="absolute inset-0 opacity-5 dark:opacity-10"

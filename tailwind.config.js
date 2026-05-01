@@ -10,11 +10,13 @@ module.exports = {
   ],
   theme: {
     screens: {
-      // Mobile
+      // Mobile & Standard Tailwind
       'xs':  '320px',   // iPhone SE, Galaxy A series kecil
-      'sm':  '375px',   // iPhone 12/13/14 standard
-      'md':  '390px',   // iPhone 14 Pro, 15
-      'lg':  '414px',   // iPhone Plus/Max, Galaxy S series
+      'sm':  '640px',
+      'md':  '768px',
+      'lg':  '1024px',
+      'xl':  '1280px',
+      '2xl': '1536px',
 
       // Tablet
       'tab-sm':  '600px',   // Tab kecil, iPad Mini portrait
@@ -106,3 +108,4 @@ module.exports = {
   },
   plugins: [require("tailwindcss-animate")],
 }
+// Force Tailwind Rebuild

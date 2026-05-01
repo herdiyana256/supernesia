@@ -156,7 +156,7 @@ export default function LayananPage() {
       <Navbar />
 
       {/* ── HERO ── */}
-      <section className="relative min-h-screen bg-[#16232A] flex flex-col overflow-hidden pt-24">
+      <section className="relative w-full min-h-[500px] md:min-h-screen bg-[#16232A] flex flex-col overflow-hidden pt-24">
         {/* Decorative bolts */}
         <div className="absolute inset-0 pointer-events-none z-0">
           <div className="absolute top-[20%] right-[30%] text-[#D9E061] opacity-70 rotate-12">
@@ -167,42 +167,42 @@ export default function LayananPage() {
           </div>
         </div>
 
-        <div className="flex-1 max-w-[1440px] mx-auto w-full px-6 md:px-12 lg:px-20 flex flex-col md:flex-row items-center gap-12 py-16 relative z-10">
+        <div className="flex-1 max-w-[1440px] mx-auto w-full px-4 sm:px-6 md:px-8 lg:px-12 xl:px-20 flex flex-col md:flex-row items-center gap-8 md:gap-12 py-12 md:py-16 relative z-10 overflow-hidden">
           {/* Left text */}
-          <div className="w-full md:w-[60%] flex flex-col">
-            <p className="text-white/60 text-2xl md:text-3xl font-light italic mb-2">/level up your</p>
-            <h1 className="text-[3.5rem] md:text-[6rem] lg:text-[7rem] font-black text-white tracking-tighter leading-none lowercase mb-4">
+          <div className="w-full md:w-[60%] flex flex-col min-w-0">
+            <p className="text-white/60 text-xl sm:text-2xl md:text-3xl font-light italic mb-2">/level up your</p>
+            <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-black text-white tracking-tighter leading-none lowercase mb-4 break-words">
               digital impact
             </h1>
             {/* "today." sticky note */}
-            <div className="relative inline-block transform -rotate-1 hover:rotate-0 transition-transform duration-500 mb-8 self-start">
+            <div className="relative inline-block transform -rotate-1 hover:rotate-0 transition-transform duration-500 mb-8 self-start max-w-full">
               <div
-                className="text-[#16232A] px-10 py-5 text-[3rem] md:text-[4.5rem] font-black tracking-tighter lowercase shadow-[0_20px_50px_rgba(217,224,97,0.4)]"
-                style={{ background: "linear-gradient(225deg, transparent 32px, #D9E061 0)", borderRadius: "24px 0 24px 24px" }}
+                className="text-[#16232A] px-6 sm:px-8 md:px-10 py-3 sm:py-4 md:py-5 text-4xl sm:text-5xl md:text-6xl font-black tracking-tighter lowercase shadow-[0_20px_50px_rgba(217,224,97,0.4)]"
+                style={{ background: "linear-gradient(225deg, transparent 24px, #D9E061 0)", borderRadius: "20px 0 20px 20px" }}
               >
                 today.
-                <div className="absolute top-0 right-0 w-9 h-9 bg-white/50 shadow-md" style={{ borderRadius: "0 0 0 14px" }} />
+                <div className="absolute top-0 right-0 w-8 h-8 bg-white/50 shadow-md" style={{ borderRadius: "0 0 0 16px" }} />
               </div>
             </div>
 
-            <p className="text-white/60 text-base md:text-lg leading-relaxed max-w-lg mb-8">
+            <p className="text-white/60 text-sm sm:text-base md:text-lg leading-relaxed max-w-lg mb-8">
               Supernesia Creative Tech adalah perusahaan teknologi yang berfokus pada solusi digital untuk pertumbuhan bisnis, mulai dari Website, Apps Development, Custom Software, AI, hingga strategi digital.
             </p>
 
-            <div className="relative inline-block self-start">
+            <div className="relative inline-block self-start w-full sm:w-auto">
               <Link
                 href="/kontak"
-                className="bg-white text-[#16232A] font-black px-9 py-4 rounded-full inline-flex items-center gap-2 hover:bg-white/90 transition-all shadow-xl hover:scale-105"
+                className="w-full sm:w-auto text-center bg-white text-[#16232A] font-black px-6 sm:px-9 py-3 sm:py-4 rounded-full inline-flex justify-center items-center gap-2 hover:bg-white/90 transition-all shadow-xl hover:scale-105"
               >
                 Start a Project
               </Link>
-              <div className="absolute -top-2 -right-2 w-5 h-5 bg-[#EC5B70] rounded-full shadow-md z-20" />
+              <div className="absolute -top-2 -right-2 w-4 h-4 sm:w-5 sm:h-5 bg-[#EC5B70] rounded-full shadow-md z-20 hidden sm:block" />
             </div>
           </div>
 
           {/* Right: person image with Motion & Parallax */}
           <div 
-            className="w-full md:w-[40%] relative h-[400px] md:h-[560px] group cursor-default"
+            className="w-full md:w-[40%] relative h-[280px] sm:h-[360px] md:h-[500px] lg:h-[560px] group cursor-default mt-8 md:mt-0"
             onMouseMove={handleMouseMove}
           >
             {/* Glow Depth background */}
@@ -259,7 +259,7 @@ export default function LayananPage() {
       </section>
 
       {/* ── SUPER SERVICE ── */}
-      <section className="bg-white py-20 md:py-28 px-6 md:px-12 lg:px-20 relative overflow-hidden">
+      <section className="bg-white py-12 md:py-16 lg:py-20 px-4 sm:px-6 md:px-8 lg:px-12 xl:px-20 relative overflow-hidden">
         {/* Decorative bubble icons left */}
         <div className="absolute left-[3%] top-1/2 -translate-y-1/2 flex flex-col gap-6 pointer-events-none hidden lg:flex">
           {[
@@ -288,22 +288,22 @@ export default function LayananPage() {
               <div className="flex flex-col items-start gap-2">
                 <div className="relative inline-block transform -rotate-2 hover:rotate-0 transition-transform duration-500">
                   <div
-                    className="text-[#16232A] px-8 py-5 text-[3rem] md:text-[4rem] font-black tracking-tighter lowercase shadow-xl relative"
-                    style={{ background: "linear-gradient(225deg, transparent 28px, #D9E061 0)", borderRadius: "20px 0 20px 20px" }}
+                    className="text-[#16232A] px-6 sm:px-8 py-3 sm:py-5 text-4xl sm:text-5xl md:text-6xl font-black tracking-tighter lowercase shadow-xl relative"
+                    style={{ background: "linear-gradient(225deg, transparent 24px, #D9E061 0)", borderRadius: "20px 0 20px 20px" }}
                   >
                     super
-                    <svg className="w-24 h-3 mt-1 stroke-[#16232A]" viewBox="0 0 100 10" fill="none"><path d="M0,5 Q10,0 20,5 T40,5 T60,5 Q70,10 80,5 T100,5" strokeWidth="4" strokeLinecap="round" /></svg>
-                    <div className="absolute top-0 right-0 w-8 h-8 bg-white/50" style={{ borderRadius: "0 0 0 12px" }} />
+                    <svg className="w-16 sm:w-20 md:w-24 h-3 mt-1 stroke-[#16232A]" viewBox="0 0 100 10" fill="none"><path d="M0,5 Q10,0 20,5 T40,5 T60,5 Q70,10 80,5 T100,5" strokeWidth="4" strokeLinecap="round" /></svg>
+                    <div className="absolute top-0 right-0 w-6 h-6 sm:w-8 sm:h-8 bg-white/50" style={{ borderRadius: "0 0 0 12px" }} />
                   </div>
                 </div>
-                <div className="relative inline-block transform rotate-1 hover:rotate-0 transition-transform duration-500 -mt-2 ml-6">
+                <div className="relative inline-block transform rotate-1 hover:rotate-0 transition-transform duration-500 -mt-2 ml-4 sm:ml-6">
                   <div
-                    className="text-white px-8 py-5 text-[3rem] md:text-[4rem] font-black tracking-tighter lowercase shadow-xl relative"
-                    style={{ background: "linear-gradient(45deg, transparent 28px, #EC5B70 0)", borderRadius: "20px 20px 20px 0" }}
+                    className="text-white px-6 sm:px-8 py-3 sm:py-5 text-4xl sm:text-5xl md:text-6xl font-black tracking-tighter lowercase shadow-xl relative"
+                    style={{ background: "linear-gradient(45deg, transparent 24px, #EC5B70 0)", borderRadius: "20px 20px 20px 0" }}
                   >
                     service
-                    <svg className="w-28 h-3 mt-1 stroke-white" viewBox="0 0 100 10" fill="none"><path d="M0,5 Q10,0 20,5 T40,5 T60,5 Q70,10 80,5 T100,5" strokeWidth="4" strokeLinecap="round" /></svg>
-                    <div className="absolute bottom-0 left-0 w-8 h-8 bg-white/30" style={{ borderRadius: "0 12px 0 0" }} />
+                    <svg className="w-20 sm:w-24 md:w-28 h-3 mt-1 stroke-white" viewBox="0 0 100 10" fill="none"><path d="M0,5 Q10,0 20,5 T40,5 T60,5 Q70,10 80,5 T100,5" strokeWidth="4" strokeLinecap="round" /></svg>
+                    <div className="absolute bottom-0 left-0 w-6 h-6 sm:w-8 sm:h-8 bg-white/30" style={{ borderRadius: "0 12px 0 0" }} />
                   </div>
                 </div>
               </div>
@@ -313,7 +313,7 @@ export default function LayananPage() {
             </div>
 
             {/* Bottom: Service Cards Grid */}
-            <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 items-start">
+            <div className="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6 lg:gap-8 items-start">
               {services.map((svc, idx) => (
                 <div
                   key={idx}
@@ -370,31 +370,31 @@ export default function LayananPage() {
       </section>
 
       {/* ── HOW WE WORK ── */}
-      <section className="bg-white py-20 md:py-28 px-6 md:px-12 lg:px-20 relative overflow-hidden border-t border-gray-100">
+      <section className="bg-white py-12 md:py-16 lg:py-20 px-4 sm:px-6 md:px-8 lg:px-12 xl:px-20 relative overflow-hidden border-t border-gray-100">
         <div className="max-w-7xl mx-auto">
-          <div className="flex flex-col lg:flex-row gap-16 items-start">
+          <div className="flex flex-col lg:flex-row gap-12 lg:gap-16 items-start">
 
             {/* Left: Sticky note titles + floating service icons */}
-            <div className="w-full lg:w-[35%] sticky top-28">
-              <div className="flex flex-col items-start gap-2 mb-10">
-                <div className="relative inline-block transform -rotate-1 hover:rotate-0 transition-transform duration-500">
+            <div className="w-full lg:w-[35%] lg:sticky lg:top-28">
+              <div className="flex flex-col items-start gap-2 mb-10 w-full">
+                <div className="relative inline-block transform -rotate-1 hover:rotate-0 transition-transform duration-500 max-w-full">
                   <div
-                    className="text-[#16232A] px-8 py-5 text-[2.5rem] md:text-[3.5rem] font-black tracking-tighter lowercase shadow-xl relative"
-                    style={{ background: "linear-gradient(225deg, transparent 28px, #D9E061 0)", borderRadius: "20px 0 20px 20px" }}
+                    className="text-[#16232A] px-6 sm:px-8 py-3 sm:py-5 text-4xl sm:text-5xl md:text-6xl font-black tracking-tighter lowercase shadow-xl relative"
+                    style={{ background: "linear-gradient(225deg, transparent 24px, #D9E061 0)", borderRadius: "20px 0 20px 20px" }}
                   >
                     how
-                    <svg className="w-16 h-3 mt-1 stroke-[#16232A]" viewBox="0 0 100 10" fill="none"><path d="M0,5 Q10,0 20,5 T40,5 T60,5 Q70,10 80,5 T100,5" strokeWidth="4" strokeLinecap="round" /></svg>
-                    <div className="absolute top-0 right-0 w-8 h-8 bg-white/50" style={{ borderRadius: "0 0 0 12px" }} />
+                    <svg className="w-12 sm:w-16 h-3 mt-1 stroke-[#16232A]" viewBox="0 0 100 10" fill="none"><path d="M0,5 Q10,0 20,5 T40,5 T60,5 Q70,10 80,5 T100,5" strokeWidth="4" strokeLinecap="round" /></svg>
+                    <div className="absolute top-0 right-0 w-6 h-6 sm:w-8 sm:h-8 bg-white/50" style={{ borderRadius: "0 0 0 12px" }} />
                   </div>
                 </div>
-                <div className="relative inline-block transform rotate-1 hover:rotate-0 transition-transform duration-500 -mt-1 ml-8">
+                <div className="relative inline-block transform rotate-1 hover:rotate-0 transition-transform duration-500 -mt-1 ml-4 sm:ml-8 max-w-full">
                   <div
-                    className="text-white px-8 py-5 text-[2.5rem] md:text-[3.5rem] font-black tracking-tighter lowercase shadow-xl relative"
-                    style={{ background: "linear-gradient(45deg, transparent 28px, #EC5B70 0)", borderRadius: "20px 20px 20px 0" }}
+                    className="text-white px-6 sm:px-8 py-3 sm:py-5 text-4xl sm:text-5xl md:text-6xl font-black tracking-tighter lowercase shadow-xl relative"
+                    style={{ background: "linear-gradient(45deg, transparent 24px, #EC5B70 0)", borderRadius: "20px 20px 20px 0" }}
                   >
                     we work
-                    <svg className="w-24 h-3 mt-1 stroke-white" viewBox="0 0 100 10" fill="none"><path d="M0,5 Q10,0 20,5 T40,5 T60,5 Q70,10 80,5 T100,5" strokeWidth="4" strokeLinecap="round" /></svg>
-                    <div className="absolute bottom-0 left-0 w-8 h-8 bg-white/30" style={{ borderRadius: "0 12px 0 0" }} />
+                    <svg className="w-16 sm:w-20 md:w-24 h-3 mt-1 stroke-white" viewBox="0 0 100 10" fill="none"><path d="M0,5 Q10,0 20,5 T40,5 T60,5 Q70,10 80,5 T100,5" strokeWidth="4" strokeLinecap="round" /></svg>
+                    <div className="absolute bottom-0 left-0 w-6 h-6 sm:w-8 sm:h-8 bg-white/30" style={{ borderRadius: "0 12px 0 0" }} />
                   </div>
                 </div>
               </div>
@@ -454,26 +454,26 @@ export default function LayananPage() {
       </section>
 
       {/* ── CTA ── */}
-      <section className="bg-white py-20 px-6 md:px-12 lg:px-20 relative overflow-hidden border-t border-gray-100">
+      <section className="bg-white py-12 md:py-16 lg:py-20 px-4 sm:px-6 md:px-8 lg:px-12 xl:px-20 relative overflow-hidden border-t border-gray-100">
         <div className="max-w-5xl mx-auto flex flex-col items-center text-center">
           {/* "the best part" stacked */}
-          <div className="flex flex-wrap justify-center gap-3 mb-12">
-            <div className="relative inline-block transform -rotate-1 hover:rotate-0 transition-transform duration-500">
+          <div className="flex flex-wrap justify-center gap-2 sm:gap-3 mb-8 sm:mb-12">
+            <div className="relative inline-block transform -rotate-1 hover:rotate-0 transition-transform duration-500 max-w-full">
               <div
-                className="text-[#16232A] px-10 py-5 text-[2.5rem] md:text-[4rem] font-black tracking-tighter lowercase shadow-xl relative"
-                style={{ background: "linear-gradient(225deg, transparent 28px, #D9E061 0)", borderRadius: "20px 0 20px 20px" }}
+                className="text-[#16232A] px-6 sm:px-8 md:px-10 py-3 sm:py-4 md:py-5 text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black tracking-tighter lowercase shadow-xl relative"
+                style={{ background: "linear-gradient(225deg, transparent 24px, #D9E061 0)", borderRadius: "20px 0 20px 20px" }}
               >
                 the best
-                <div className="absolute top-0 right-0 w-9 h-9 bg-white/50" style={{ borderRadius: "0 0 0 14px" }} />
+                <div className="absolute top-0 right-0 w-6 h-6 sm:w-8 sm:h-8 bg-white/50" style={{ borderRadius: "0 0 0 14px" }} />
               </div>
             </div>
-            <div className="relative inline-block transform rotate-2 hover:rotate-0 transition-transform duration-500">
+            <div className="relative inline-block transform rotate-2 hover:rotate-0 transition-transform duration-500 max-w-full">
               <div
-                className="text-white px-10 py-5 text-[2.5rem] md:text-[4rem] font-black tracking-tighter lowercase shadow-xl relative"
-                style={{ background: "linear-gradient(45deg, transparent 28px, #EC5B70 0)", borderRadius: "20px 20px 20px 0" }}
+                className="text-white px-6 sm:px-8 md:px-10 py-3 sm:py-4 md:py-5 text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black tracking-tighter lowercase shadow-xl relative"
+                style={{ background: "linear-gradient(45deg, transparent 24px, #EC5B70 0)", borderRadius: "20px 20px 20px 0" }}
               >
                 part
-                <div className="absolute bottom-0 left-0 w-9 h-9 bg-white/30" style={{ borderRadius: "0 14px 0 0" }} />
+                <div className="absolute bottom-0 left-0 w-6 h-6 sm:w-8 sm:h-8 bg-white/30" style={{ borderRadius: "0 14px 0 0" }} />
               </div>
             </div>
           </div>
@@ -482,14 +482,14 @@ export default function LayananPage() {
             Setiap project yang kami selesaikan bukan hanya menghasilkan produk digital — tapi juga pertumbuhan nyata bagi bisnis kamu. Siap mulai?
           </p>
 
-          <div className="relative inline-block group">
+          <div className="relative inline-block group w-full sm:w-auto mt-4 sm:mt-0">
             <div className="absolute -top-3 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center">
               <div className="w-5 h-5 bg-[#EC5B70] rounded-full shadow-md" />
               <div className="w-[2px] h-4 bg-[#c0394e]" />
             </div>
             <Link
               href="/kontak"
-              className="mt-4 inline-flex items-center gap-3 text-[#16232A] font-black text-xl px-12 py-5 rounded-full border-2 border-[#16232A] hover:bg-[#16232A] hover:text-white transition-all duration-300 shadow-lg hover:shadow-2xl hover:scale-105"
+              className="w-full sm:w-auto inline-flex justify-center items-center gap-3 text-[#16232A] font-black text-lg sm:text-xl px-8 sm:px-12 py-4 sm:py-5 rounded-full border-2 border-[#16232A] hover:bg-[#16232A] hover:text-white transition-all duration-300 shadow-lg hover:shadow-2xl hover:scale-105"
             >
               Mulai Project Sekarang
               <ArrowUpRight className="w-5 h-5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />

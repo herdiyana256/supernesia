@@ -6,7 +6,7 @@ export default function CTASection() {
   return (
     <section
       id="cta"
-      className="bg-white py-24 md:py-32 px-6 md:px-12 lg:px-20 font-sans relative overflow-hidden"
+      className="bg-white py-16 md:py-24 lg:py-32 px-4 md:px-12 lg:px-20 font-sans relative overflow-hidden"
     >
       {/* Large decorative curve bottom left */}
       <div className="absolute bottom-0 left-0 w-[500px] h-[400px] pointer-events-none opacity-20 hidden lg:block">
@@ -33,12 +33,12 @@ export default function CTASection() {
       <div className="max-w-5xl mx-auto relative flex flex-col items-center text-center">
 
         {/* Main sticky note CTA — big centered */}
-        <div className="flex flex-wrap justify-center items-center gap-4 md:gap-6 mb-14">
+        <div className="flex flex-wrap justify-center items-center gap-3 md:gap-4 lg:gap-6 mb-10 md:mb-14 w-full">
 
           {/* "make it" yellow sticky note */}
           <div className="relative inline-block transform -rotate-[2deg] hover:rotate-0 transition-transform duration-500 cursor-default">
             <div
-              className="text-[#16232A] px-10 md:px-14 py-5 md:py-7 text-[3rem] md:text-[5rem] lg:text-[6.5rem] font-black tracking-tighter lowercase shadow-[0_20px_60px_rgba(217,224,97,0.35)]"
+              className="text-[#16232A] px-6 sm:px-10 md:px-14 py-4 sm:py-5 md:py-7 text-[2rem] sm:text-[3rem] md:text-[5rem] lg:text-[6.5rem] font-black tracking-tighter lowercase shadow-[0_20px_60px_rgba(217,224,97,0.35)]"
               style={{
                 background: "linear-gradient(225deg, transparent 40px, #D9E061 0)",
                 borderRadius: "28px 0 28px 28px",
@@ -56,7 +56,7 @@ export default function CTASection() {
           {/* "real." pink sticky note */}
           <div className="relative inline-block transform rotate-[2deg] hover:rotate-0 transition-transform duration-500 cursor-default">
             <div
-              className="text-white px-10 md:px-14 py-5 md:py-7 text-[3rem] md:text-[5rem] lg:text-[6.5rem] font-black tracking-tighter lowercase shadow-[0_20px_60px_rgba(236,91,112,0.4)]"
+              className="text-white px-6 sm:px-10 md:px-14 py-4 sm:py-5 md:py-7 text-[2rem] sm:text-[3rem] md:text-[5rem] lg:text-[6.5rem] font-black tracking-tighter lowercase shadow-[0_20px_60px_rgba(236,91,112,0.4)]"
               style={{
                 background: "linear-gradient(45deg, transparent 40px, #EC5B70 0)",
                 borderRadius: "28px 28px 28px 0",
@@ -82,7 +82,7 @@ export default function CTASection() {
 
           <Link
             href="/kontak"
-            className="relative mt-4 inline-flex items-center gap-3 text-[#16232A] font-black text-xl md:text-2xl px-12 py-5 rounded-full bg-transparent border-2 border-[#16232A] hover:bg-[#16232A] hover:text-white transition-all duration-400 shadow-lg hover:shadow-2xl hover:scale-105 group"
+            className="relative mt-4 inline-flex items-center gap-3 text-[#16232A] font-black text-lg md:text-2xl px-8 md:px-12 py-4 md:py-5 rounded-full bg-transparent border-2 border-[#16232A] hover:bg-[#16232A] hover:text-white transition-all duration-400 shadow-lg hover:shadow-2xl hover:scale-105 group"
           >
             Hubungi Kami
             <svg
