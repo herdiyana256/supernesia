@@ -8,7 +8,7 @@ const testimonials = [
     name: "Rizky Firmansyah",
     role: "Founder, Kreasi Digital — Jakarta",
     quote: "Supernesia benar-benar mengubah cara kami beroperasi secara digital. Platform e-commerce yang mereka bangun sangat responsif dan UI-nya memanjakan mata. Traffic kami meningkat 40% dalam bulan pertama!",
-    image: "/avatar.png",
+    image: "/headshots/rizky.png",
     stars: 5,
     result: "Traffic meningkat +40%",
     impact: "Penjualan Q1 melonjak progresif",
@@ -18,7 +18,7 @@ const testimonials = [
     name: "Dewi Savitri",
     role: "Operational Manager, LogisHub — Surabaya",
     quote: "Tim Supernesia sangat profesional. Kami membutuhkan custom software untuk sistem tracking logistik yang cukup kompleks, dan mereka berhasil men-deliver tepat waktu.",
-    image: "/avatar.png",
+    image: "/headshots/dewi.png",
     stars: 5,
     result: "Efisiensi operasional 3x Lipat",
     impact: "Sistem tracking logistik seamless",
@@ -28,7 +28,7 @@ const testimonials = [
     name: "Ahmad Faisal",
     role: "CEO, FinSmart — Bandung",
     quote: "Proses komunikasi mereka sangat transparan. Dari desain awal hingga deployment benar-benar rapi. Tidak ada cost tersembunyi. Mobile app kami kini mendapatkan rating 4.8 di PlayStore berkat optimasi mereka.",
-    image: "/avatar.png",
+    image: "/headshots/ahmad.png",
     stars: 5,
     result: "Rating 4.8 di PlayStore",
     impact: "User satisfaction meningkat",
@@ -38,7 +38,7 @@ const testimonials = [
     name: "Sarah Wijaya",
     role: "Marketing Director, Bloom Beauty — Bali",
     quote: "Kami minta desain yang 'vibrant' namun elegan, dan Supernesia deliver lebih dari ekspektasi. Website baru kami sangat merefleksikan brand identity kami yang premium.",
-    image: "/avatar.png",
+    image: "/headshots/sarah.png",
     stars: 5,
     result: "Re-branding Sukses Besar",
     impact: "Konversi ads naik 25%",
@@ -48,7 +48,7 @@ const testimonials = [
     name: "Budi Santoso",
     role: "Head of IT, EduNesia — Yogyakarta",
     quote: "Selain coding yang clean, mereka memahami bagaimana membangun arsitektur yang scalable. Sistem admin dashboard kami kini berjalan lebih cepat 3x lipat. Sangat direkomendasikan!",
-    image: "/avatar.png",
+    image: "/headshots/budi.png",
     stars: 5,
     result: "Performa Aplikasi 300% Lebih Cepat",
     impact: "Server backend optimal & stabil",
@@ -58,7 +58,7 @@ const testimonials = [
     name: "Nina Maharani",
     role: "Owner, Kopi Kawan — Semarang",
     quote: "Awalnya saya ragu karena kami hanya UMKM, tapi tim Supernesia tetap memberikan pelayanan VIP. Sistem Point of Sale yang dibangun sangat mudah digunakan oleh kasir kami.",
-    image: "/avatar.png",
+    image: "/headshots/nina.png",
     stars: 5,
     result: "Transaksi Kasir Jadi 2x Lebih Cepat",
     impact: "Mengurangi human error data",
@@ -85,18 +85,18 @@ export default function TestimonialSection() {
         {/* Section title */}
         <div className="relative inline-block transform rotate-[1deg] hover:rotate-0 transition-transform duration-500 mb-16">
           <div
-            className="text-[#16232A] px-10 py-7 shadow-xl relative inline-block"
+            className="text-[#16232A] px-8 py-5 shadow-xl relative inline-block"
             style={{
-              background: "linear-gradient(225deg, transparent 32px, #D9E061 0)",
+              background: "linear-gradient(225deg, transparent 28px, #D9E061 0)",
               borderRadius: "24px 0 24px 24px",
             }}
           >
-            <div className="absolute top-4 left-4 w-4 h-4 bg-[#16232A] rounded-full z-20" />
-            <h2 className="text-[3rem] md:text-[4rem] font-black tracking-tighter lowercase mt-2 text-[#16232A]">testimoni</h2>
-            <svg className="w-28 h-4 mt-2 stroke-[#16232A]" viewBox="0 0 100 10" fill="none">
+            <div className="absolute top-4 left-4 w-3 h-3 bg-[#16232A] rounded-full z-20" />
+            <h2 className="text-[2rem] md:text-[2.5rem] font-black tracking-tighter lowercase mt-2 text-[#16232A]">client success</h2>
+            <svg className="w-24 h-3 mt-1.5 stroke-[#16232A]" viewBox="0 0 100 10" fill="none">
               <path d="M0,5 Q10,0 20,5 T40,5 T60,5 Q70,10 80,5 T100,5" strokeWidth="4" strokeLinecap="round" />
             </svg>
-            <div className="absolute top-0 right-0 w-9 h-9 bg-white/60 shadow-md" style={{ borderRadius: "0 0 0 14px" }} />
+            <div className="absolute top-0 right-0 w-8 h-8 bg-white/60 shadow-md" style={{ borderRadius: "0 0 0 14px" }} />
           </div>
         </div>
 
@@ -108,27 +108,30 @@ export default function TestimonialSection() {
             
             {/* Main featured card */}
             <div className="bg-white rounded-[36px] p-8 md:p-10 shadow-2xl flex flex-col hover:shadow-[0_30px_80px_rgba(0,0,0,0.25)] transition-shadow">
-              {/* Photo Area (Compact Height) */}
-              <div className="w-full h-[180px] bg-gray-100 rounded-[24px] mb-6 relative overflow-hidden">
-                <Image
-                  src={testimonials[active].image}
-                  alt={testimonials[active].name}
-                  fill
-                  className="object-cover object-top"
-                />
-                <div className="absolute top-4 right-4 w-8 h-8 bg-[#D9E061] rounded-full shadow-inner" />
+              {/* Photo Area — headshot portrait */}
+              <div className="flex items-center gap-4 mb-6">
+                <div className="w-[72px] h-[72px] rounded-2xl bg-gray-100 relative overflow-hidden flex-shrink-0 shadow-lg">
+                  <Image
+                    src={testimonials[active].image}
+                    alt={testimonials[active].name}
+                    fill
+                    className="object-cover object-top"
+                  />
+                </div>
+                <div>
+                  <h3 className="text-[#16232A] font-black text-xl mb-0.5">{testimonials[active].name}</h3>
+                  <p className="text-gray-400 font-semibold text-xs">{testimonials[active].role}</p>
+                </div>
               </div>
 
               {/* Content */}
               <div className="flex flex-col">
                 <div className="flex gap-1 mb-4">
                   {Array.from({ length: testimonials[active].stars }).map((_, i) => (
-                    <Star key={i} className="w-5 h-5 fill-[#D9E061] stroke-none" />
+                    <Star key={i} className="w-4 h-4 fill-[#D9E061] stroke-none" />
                   ))}
                 </div>
-                <h3 className="text-[#16232A] font-black text-2xl md:text-3xl mb-1">{testimonials[active].name}</h3>
-                <p className="text-gray-400 font-semibold text-sm mb-6">{testimonials[active].role}</p>
-                <p className="text-gray-600 font-medium text-lg leading-relaxed italic">
+                <p className="text-gray-600 font-medium text-base leading-relaxed italic">
                   &ldquo;{testimonials[active].quote}&rdquo;
                 </p>
               </div>

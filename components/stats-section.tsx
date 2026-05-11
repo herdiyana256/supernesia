@@ -59,7 +59,12 @@ export default function StatsSection() {
 
       <div className="max-w-7xl mx-auto relative">
         {/* Client logos ticker first */}
-        <div className="overflow-hidden mb-16">
+        <div className="mb-16">
+          {/* Trusted by label */}
+          <p className="text-white/40 text-xs font-semibold uppercase tracking-[0.2em] text-center mb-6">
+            Trusted by Growing Companies
+          </p>
+          <div className="overflow-hidden">
           <div className="flex items-center gap-12 md:gap-20 animate-[ticker_30s_linear_infinite] whitespace-nowrap">
             {["beyond_cover", "hideki", "hidekipacks", "nfc11", "sisca", "beyond_cover", "hideki", "hidekipacks", "nfc11", "sisca"].map((c, i) => (
               <div key={i} className="flex-shrink-0 w-28 md:w-36 h-12 relative hover:scale-105 transition-transform duration-300">
