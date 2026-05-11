@@ -60,7 +60,7 @@ export default function BlogPage() {
       <section className="py-16 px-6 md:px-12 lg:px-20">
         <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {blogPosts.map((post, idx) => (
-            <Link href={\`/blog/\${post.slug}\`} key={idx} className="group flex flex-col bg-white border border-gray-200 rounded-[24px] overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+            <Link href={`/blog/${post.slug}`} key={idx} className="group flex flex-col bg-white border border-gray-200 rounded-[24px] overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
               {/* Image Placeholder */}
               <div className="w-full h-48 bg-gray-100 flex items-center justify-center relative overflow-hidden">
                 <div className="absolute inset-0 bg-gradient-to-tr from-[#D9E061]/20 to-[#EC5B70]/20 group-hover:scale-105 transition-transform duration-500" />
