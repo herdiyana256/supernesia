@@ -1,7 +1,6 @@
 "use client"
-import React, { useState } from "react"
+import React from "react"
 import Image from "next/image"
-import { motion } from "framer-motion"
 
 const whyItems = [
   {
@@ -55,13 +54,6 @@ const whyItems = [
 ]
 
 export default function WhySection() {
-  const [parallax, setParallax] = useState("translate(0px, 0px)")
-
-  const handleMouseMove = (e: React.MouseEvent) => {
-    const x = (e.clientX / window.innerWidth - 0.5) * 15
-    const y = (e.clientY / window.innerHeight - 0.5) * 15
-    setParallax(`translate(${x}px, ${y}px)`)
-  }
 
   return (
     <section
@@ -85,11 +77,11 @@ export default function WhySection() {
       <div className="max-w-7xl mx-auto relative">
         <div className="flex flex-col lg:flex-row gap-12 lg:gap-20 items-start">
 
-          {/* Left: Sticky title + photo */}
-          <div className="w-full lg:w-[38%] flex flex-col items-start">
+          {/* Left: Sticky title only */}
+          <div className="w-full lg:w-[30%] flex flex-col items-start lg:sticky lg:top-28 self-start">
 
             {/* "why us?" sticky note */}
-            <div className="relative inline-block transform rotate-[-1deg] hover:rotate-0 transition-transform duration-500 mb-0">
+            <div className="relative inline-block transform rotate-[-1deg] hover:rotate-0 transition-transform duration-500">
               <div
                 className="text-[#16232A] px-10 py-7 shadow-xl relative inline-block"
                 style={{
@@ -114,43 +106,14 @@ export default function WhySection() {
               </div>
             </div>
 
-            {/* Filler image between sticky note and photo */}
-            <div className="relative w-full max-w-[380px] h-[180px] sm:h-[220px] mx-auto lg:mx-0 rounded-[20px] overflow-hidden shadow-lg mt-6">
-              <Image
-                src="/test.png"
-                alt="Supernesia"
-                fill
-                className="object-cover grayscale"
-              />
-            </div>
-
-            {/* Grayscale person photo with Motion & Parallax */}
-            <div 
-              className="relative w-full max-w-[380px] h-[360px] sm:h-[420px] md:h-[520px] mx-auto lg:mx-0 group cursor-default z-10 overflow-hidden rounded-[24px] mt-6"
-              onMouseMove={handleMouseMove}
-            >
-              <div 
-                className="relative w-full h-full transition-transform duration-700 ease-out z-10"
-                style={{ transform: parallax }}
-              >
-                <motion.div
-                  animate={{ y: [0, -10, 0] }}
-                  transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut" }}
-                  className="relative w-full h-full"
-                >
-                  <Image
-                    src="/bagian-lain.jpg"
-                    alt="Why Supernesia"
-                    fill
-                    className="object-cover grayscale contrast-[1.1] transition-all duration-700 ease-out group-hover:scale-105 group-hover:grayscale-0"
-                  />
-                </motion.div>
-              </div>
-            </div>
+            {/* Sub-label */}
+            <p className="text-gray-400 text-sm font-medium mt-6 leading-relaxed max-w-[260px]">
+              Inilah alasan ratusan bisnis memilih Supernesia sebagai mitra teknologi mereka.
+            </p>
           </div>
 
           {/* Right: Feature Cards Grid */}
-          <div className="w-full lg:w-[62%]">
+          <div className="w-full lg:w-[70%]">
             {/* Lightning bolt decorative top right */}
             <div className="hidden md:flex justify-end mb-4">
               <div className="text-[#EC5B70] rotate-[-8deg]">
