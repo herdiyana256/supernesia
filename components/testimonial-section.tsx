@@ -68,6 +68,7 @@ const testimonials = [
 
 export default function TestimonialSection() {
   const [active, setActive] = useState(0)
+  const [expanded, setExpanded] = useState<number | null>(null)
 
   return (
     <section
@@ -166,38 +167,82 @@ export default function TestimonialSection() {
           </div>
 
           {/* Right stacked cards */}
-          <div className="flex flex-col gap-5">
+          <div className="flex flex-col gap-4">
             {testimonials.map((t, idx) => (
               idx !== active && (
-                <button
+                <div
                   key={idx}
-                  onClick={() => setActive(idx)}
-                  className="bg-white/5 hover:bg-white/10 border border-white/10 hover:border-[#D9E061]/30 rounded-[28px] p-6 flex gap-5 items-start text-left transition-all duration-300 group"
+                  className={`border rounded-[24px] p-5 text-left transition-all duration-300 cursor-pointer ${
+                    expanded === idx
+                      ? "bg-white/10 border-[#D9E061]/40 shadow-lg"
+                      : "bg-white/5 hover:bg-white/8 border-white/10 hover:border-white/20"
+                  }`}
                 >
-                  <div className="w-[70px] h-[70px] rounded-[18px] bg-gray-700 flex-shrink-0 overflow-hidden relative">
-                    <Image src={t.image} alt={t.name} fill className="object-cover object-top grayscale group-hover:grayscale-0 transition-all" />
+                  {/* Header — klik untuk set active di kiri */}
+                  <div
+                    className="flex gap-4 items-center group"
+                    onClick={() => { setActive(idx); setExpanded(null) }}
+                  >
+                    <div className="w-[56px] h-[56px] rounded-[14px] bg-gray-700 flex-shrink-0 overflow-hidden relative">
+                      <Image src={t.image} alt={t.name} fill className="object-cover object-top grayscale group-hover:grayscale-0 transition-all" />
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <h4 className="text-white font-black text-sm mb-0.5 truncate">{t.name}</h4>
+                      <p className="text-white/50 font-semibold text-xs truncate">{t.role}</p>
+                    </div>
                   </div>
-                  <div className="flex-1">
-                    <h4 className="text-white font-black text-base mb-0.5">{t.name}</h4>
-                    <p className="text-white/50 font-semibold text-xs mb-3">{t.role}</p>
-                    <p className="text-white/60 text-sm leading-relaxed line-clamp-2">
-                      &ldquo;{t.quote}&rdquo;
-                    </p>
-                    <span className="inline-block mt-3 text-[#D9E061] text-xs font-bold bg-[#D9E061]/10 px-4 py-1.5 rounded-full group-hover:bg-[#D9E061]/20 transition-colors">
-                      Read More
-                    </span>
-                  </div>
-                </button>
+
+                  {/* Quote preview — selalu tampil */}
+                  <p className={`text-white/60 text-xs leading-relaxed mt-3 ${
+                    expanded === idx ? "" : "line-clamp-2"
+                  }`}>
+                    &ldquo;{t.quote}&rdquo;
+                  </p>
+
+                  {/* Expanded content */}
+                  {expanded === idx && (
+                    <div className="mt-4 space-y-3 animate-[fadeIn_0.3s_ease]">
+                      <div className="bg-[#D9E061]/10 border border-[#D9E061]/20 rounded-[14px] p-4">
+                        <p className="text-[#D9E061] text-[10px] font-black uppercase tracking-widest mb-1">Result</p>
+                        <p className="text-white font-bold text-sm">{t.result}</p>
+                        <p className="text-white/50 text-xs mt-0.5">{t.impact}</p>
+                      </div>
+                      <p className="text-white/60 text-xs leading-relaxed">{t.detail}</p>
+                    </div>
+                  )}
+
+                  {/* Read More / Collapse button */}
+                  <button
+                    onClick={(e) => { e.stopPropagation(); setExpanded(expanded === idx ? null : idx) }}
+                    className={`inline-flex items-center gap-1.5 mt-3 text-[#D9E061] text-xs font-bold px-3 py-1.5 rounded-full transition-all duration-200 ${
+                      expanded === idx
+                        ? "bg-[#D9E061]/20 hover:bg-[#D9E061]/30"
+                        : "bg-[#D9E061]/10 hover:bg-[#D9E061]/20"
+                    }`}
+                  >
+                    {expanded === idx ? (
+                      <>
+                        <svg className="w-3 h-3" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M5 15l7-7 7 7" /></svg>
+                        Collapse
+                      </>
+                    ) : (
+                      <>
+                        <svg className="w-3 h-3" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" /></svg>
+                        Read More
+                      </>
+                    )}
+                  </button>
+                </div>
               )
             ))}
 
             {/* Pagination dots */}
-            <div className="flex flex-col items-center mt-auto pt-6 w-full max-w-[300px] mx-auto">
+            <div className="flex flex-col items-center mt-2 pt-4 w-full max-w-[300px] mx-auto">
               <div className="flex justify-between w-full text-center mb-3">
                 {testimonials.map((_, i) => (
                   <button
                     key={i}
-                    onClick={() => setActive(i)}
+                    onClick={() => { setActive(i); setExpanded(null) }}
                     className={`font-black text-xl w-1/3 transition-colors ${active === i ? "text-[#D9E061]" : "text-white/30 hover:text-white/60"}`}
                   >
                     {String(i + 1).padStart(2, "0")}
@@ -219,6 +264,13 @@ export default function TestimonialSection() {
           <Image src="/asaf sdag.png" alt="" width={80} height={24} className="object-contain" />
         </div>
       </div>
+
+      <style>{`
+        @keyframes fadeIn {
+          from { opacity: 0; transform: translateY(-6px); }
+          to   { opacity: 1; transform: translateY(0); }
+        }
+      `}</style>
     </section>
   )
 }
