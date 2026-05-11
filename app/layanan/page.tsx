@@ -169,13 +169,13 @@ export default function LayananPage() {
 
         <div className="flex-1 max-w-[1440px] mx-auto w-full px-4 sm:px-6 md:px-8 lg:px-12 xl:px-20 flex flex-col md:flex-row items-center gap-8 md:gap-12 py-12 md:py-16 relative z-10 overflow-hidden">
           {/* Left text */}
-          <div className="w-full md:w-[60%] flex flex-col min-w-0">
-            <p className="text-white/60 text-xl sm:text-2xl md:text-3xl font-light italic mb-2">/level up your</p>
-            <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-black text-white tracking-tighter leading-none lowercase mb-4 break-words">
+          <div className="w-full md:w-[60%] flex flex-col items-center md:items-start min-w-0">
+            <p className="text-white/60 text-xl sm:text-2xl md:text-3xl font-light italic mb-2 text-center md:text-left">/level up your</p>
+            <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-black text-white tracking-tighter leading-none lowercase mb-4 break-words text-center md:text-left">
               digital impact
             </h1>
             {/* "today." sticky note */}
-            <div className="relative inline-block transform -rotate-1 hover:rotate-0 transition-transform duration-500 mb-8 self-start max-w-full">
+            <div className="relative inline-block transform -rotate-1 hover:rotate-0 transition-transform duration-500 mb-8 self-center md:self-start max-w-full">
               <div
                 className="text-[#16232A] px-6 sm:px-8 md:px-10 py-3 sm:py-4 md:py-5 text-4xl sm:text-5xl md:text-6xl font-black tracking-tighter lowercase shadow-[0_20px_50px_rgba(217,224,97,0.4)]"
                 style={{ background: "linear-gradient(225deg, transparent 24px, #D9E061 0)", borderRadius: "20px 0 20px 20px" }}
@@ -185,11 +185,11 @@ export default function LayananPage() {
               </div>
             </div>
 
-            <p className="text-white/60 text-sm sm:text-base md:text-lg leading-relaxed max-w-lg mb-8">
+            <p className="text-white/60 text-sm sm:text-base md:text-lg leading-relaxed max-w-lg mb-8 text-center md:text-left">
               Supernesia Creative Tech adalah perusahaan teknologi yang berfokus pada solusi digital untuk pertumbuhan bisnis, mulai dari Website, Apps Development, Custom Software, AI, hingga strategi digital.
             </p>
 
-            <div className="relative inline-block self-start w-full sm:w-auto">
+            <div className="relative inline-block self-center md:self-start w-full sm:w-auto">
               <Link
                 href="/kontak"
                 className="w-full sm:w-auto text-center bg-white text-[#16232A] font-black px-6 sm:px-9 py-3 sm:py-4 rounded-full inline-flex justify-center items-center gap-2 hover:bg-white/90 transition-all shadow-xl hover:scale-105"

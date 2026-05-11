@@ -77,20 +77,20 @@ export default function HeroSection() {
       <div className="flex-1 flex flex-col md:flex-row items-center max-w-[1440px] mx-auto w-full px-4 sm:px-6 md:px-8 lg:px-12 xl:px-20 pt-24 md:pt-32 pb-8 md:pb-16 relative z-10 overflow-hidden">
 
         {/* Left: Text */}
-        <div className="w-full md:w-[60%] flex flex-col items-start justify-center">
+        <div className="w-full md:w-[60%] flex flex-col items-center md:items-start justify-center">
 
           {/* Headline */}
-          <div className="flex flex-col items-start leading-none w-full">
-            <span className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-light italic text-white/80 tracking-wide ml-1 mb-1">
+          <div className="flex flex-col items-center md:items-start leading-none w-full">
+            <span className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-light italic text-white/80 tracking-wide ml-1 mb-1 text-center md:text-left">
               /turn your
             </span>
 
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-white tracking-[-0.04em] leading-none lowercase break-words">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-white tracking-[-0.04em] leading-none lowercase break-words text-center md:text-left w-full">
               digital idea
             </h1>
 
             {/* "into reality" row */}
-            <div className="flex flex-wrap items-center gap-2 sm:gap-4 mt-3">
+            <div className="flex flex-wrap items-center justify-center md:justify-start gap-2 sm:gap-4 mt-3">
               <span className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-white tracking-[-0.04em] leading-none lowercase">
                 into
               </span>
@@ -111,7 +111,7 @@ export default function HeroSection() {
             </div>
 
             {/* "make it  real." row */}
-            <div className="flex flex-wrap items-center gap-2 sm:gap-3 mt-4">
+            <div className="flex flex-wrap items-center justify-center md:justify-start gap-2 sm:gap-3 mt-4">
               {/* Sticky note: make it */}
               <div className="relative inline-block transform rotate-[1.5deg] hover:rotate-0 transition-transform duration-500 cursor-default max-w-full">
                 <div
@@ -144,13 +144,13 @@ export default function HeroSection() {
           </div>
 
           {/* Description */}
-          <p className="text-white/65 text-sm sm:text-base md:text-lg font-medium leading-relaxed mt-8 md:mt-10 max-w-lg tracking-wide">
+          <p className="text-white/65 text-sm sm:text-base md:text-lg font-medium leading-relaxed mt-8 md:mt-10 max-w-lg tracking-wide text-center md:text-left">
             All-in-One Tech Services: Web Development, Mobile & Desktop Apps, Custom Software, UI/UX, Maintenance & Support.
             Kami rancang untuk memberikan dampak nyata bagi mitra kami.
           </p>
 
           {/* CTA Button */}
-          <div className="mt-6 sm:mt-8 flex flex-col sm:flex-row items-start sm:items-center w-full sm:w-auto relative group">
+          <div className="mt-6 sm:mt-8 flex flex-col sm:flex-row items-center md:items-start w-full sm:w-auto relative group">
             <Link
               href="/kontak"
               className="relative w-full sm:w-auto text-center bg-white text-[#16232A] font-black tracking-wide text-sm sm:text-base px-6 sm:px-9 py-3 sm:py-4 rounded-full hover:bg-white/90 transition-all shadow-xl hover:shadow-2xl hover:scale-105 inline-flex justify-center items-center gap-2"

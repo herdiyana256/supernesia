@@ -15,14 +15,14 @@ const plusJakartaSans = Plus_Jakarta_Sans({
 // !!! IMPORTANT: Replace placeholder values below with your actual information !!!
 const siteUrl = "https://supernesia.id"; // <<< CORRECTED: Removed www.
 const siteName = "Supernesia Creative Technology";
-const siteTitle = "Supernesia Creative Technology : Jasa Website & Aplikasi Profesional, Solusi Digital UMKM Indonesia"; // Optimized Title
-const siteDescription = "Supernesia Creative Technology : Jasa pembuatan website profesional & aplikasi mobile custom untuk UMKM/Bisnis di Indonesia. Tingkatkan bisnis Anda dengan solusi digital & transformasi digital terpercaya."; // Optimized Description
+const siteTitle = "Supernesia Creative Technology | Jasa Website & Software Custom Terbaik 2026"; // Optimized Title
+const siteDescription = "Supernesia Creative Technology : Jasa pembuatan website profesional, aplikasi mobile custom, dan software enterprise untuk UMKM & Bisnis di Indonesia tahun 2026. Solusi digital terpercaya Mei 2026."; // Optimized Description
 const siteKeywords = [
   // 1. Core Services - Web Development (20 keywords)
-  "jasa pembuatan website no 1",
-  "jasa pembuatan website terbaik",
-  "jasa pembuatan website murah",
-  "jasa pembuatan website profesional",
+  "jasa pembuatan website 2026",
+  "jasa pembuatan website terbaik mei 2026",
+  "jasa web development terpercaya",
+  "bikin website profesional 2026",
   "web development indonesia",
   "website company profile",
   "website responsif mobile",

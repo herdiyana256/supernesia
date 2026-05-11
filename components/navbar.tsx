@@ -93,12 +93,17 @@ export default function Navbar() {
       {/* Mobile Menu Content */}
       {isMenuOpen && (
         <div className="mobile-drawer">
-          <nav className="flex flex-col gap-3">
+          <nav>
             {navigationItems.map(({ href, label }) => (
               <Link
                 key={href}
                 href={href}
-                className={`text-base font-bold transition-colors ${isActive(href) ? "text-[#D9E061]" : "text-white hover:text-[#D9E061]"}`}
+                style={{ fontStyle: 'normal' }}
+                className={`block not-italic text-center font-semibold text-sm transition-colors ${
+                  isActive(href)
+                    ? "text-[#D9E061]"
+                    : "text-white/90 hover:text-[#D9E061]"
+                }`}
                 onClick={() => setIsMenuOpen(false)}
               >
                 {label}
@@ -107,7 +112,8 @@ export default function Navbar() {
           </nav>
           <Link
             href="/kontak"
-            className="bg-[#D9E061] text-[#16232A] px-6 py-2.5 rounded-full font-bold text-center text-sm hover:bg-[#e8ef6a] transition-colors mt-auto mb-4"
+            style={{ fontStyle: 'normal' }}
+            className="not-italic bg-[#D9E061] text-[#16232A] px-6 py-2 rounded-full font-bold text-center text-sm hover:bg-[#e8ef6a] transition-colors"
             onClick={() => setIsMenuOpen(false)}
           >
             Get In Touch
