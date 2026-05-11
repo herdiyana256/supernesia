@@ -65,13 +65,14 @@ export default function StatsSection() {
             Trusted by Growing Companies
           </p>
           <div className="overflow-hidden">
-          <div className="flex items-center gap-12 md:gap-20 animate-[ticker_30s_linear_infinite] whitespace-nowrap">
-            {["beyond_cover", "hideki", "hidekipacks", "nfc11", "sisca", "beyond_cover", "hideki", "hidekipacks", "nfc11", "sisca"].map((c, i) => (
-              <div key={i} className="flex-shrink-0 w-28 md:w-36 h-12 relative hover:scale-105 transition-transform duration-300">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={`/client/${c}.png`} alt={`${c} logo`} className="h-full w-full object-contain" />
-              </div>
-            ))}
+            <div className="flex items-center gap-12 md:gap-20 animate-[ticker_30s_linear_infinite] whitespace-nowrap">
+              {["beyond_cover", "hideki", "hidekipacks", "nfc11", "sisca", "beyond_cover", "hideki", "hidekipacks", "nfc11", "sisca"].map((c, i) => (
+                <div key={i} className="flex-shrink-0 w-28 md:w-36 h-12 relative hover:scale-105 transition-transform duration-300">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src={`/client/${c}.png`} alt={`${c} logo`} className="h-full w-full object-contain" />
+                </div>
+              ))}
+            </div>
           </div>
         </div>
 
