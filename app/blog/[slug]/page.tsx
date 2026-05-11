@@ -5,11 +5,10 @@ import Footer from "@/components/footer"
 import { ArrowLeft, Calendar, User } from "lucide-react"
 
 export async function generateMetadata({ params }: { params: { slug: string } }) {
-  // Mock metadata based on slug
-  const title = params.slug.replace(/-/g, " ").replace(/\\b\\w/g, l => l.toUpperCase())
+  const title = params.slug.replace(/-/g, " ").replace(/\b\w/g, l => l.toUpperCase())
   return {
-    title: \`\${title} | Supernesia Blog\`,
-    description: \`Artikel lengkap mengenai \${title} dari tim ahli Supernesia Creative Technology (Update Mei 2026).\`,
+    title: `${title} | Supernesia Blog`,
+    description: `Artikel lengkap mengenai ${title} dari tim ahli Supernesia Creative Technology (Update Mei 2026).`,
     keywords: [
       params.slug.replace(/-/g, " "),
       "jasa pembuatan website 2026",
@@ -21,7 +20,7 @@ export async function generateMetadata({ params }: { params: { slug: string } })
 }
 
 export default function BlogPostPage({ params }: { params: { slug: string } }) {
-  const title = params.slug.replace(/-/g, " ").replace(/\\b\\w/g, l => l.toUpperCase())
+  const title = params.slug.replace(/-/g, " ").replace(/\b\w/g, l => l.toUpperCase())
 
   return (
     <div className="min-h-screen font-sans bg-white">
