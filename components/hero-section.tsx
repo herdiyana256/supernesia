@@ -149,17 +149,14 @@ export default function HeroSection() {
             Kami rancang untuk memberikan dampak nyata bagi mitra kami.
           </p>
 
-          {/* CTA Button */}
-          <div className="mt-6 sm:mt-8 flex flex-col sm:flex-row items-center md:items-start w-full sm:w-auto relative group">
+          {/* CTA Button — no pink pin */}
+          <div className="mt-6 sm:mt-8 flex flex-col sm:flex-row items-center md:items-start w-full sm:w-auto">
             <Link
               href="/kontak"
               className="relative w-full sm:w-auto text-center bg-white text-[#16232A] font-black tracking-wide text-sm sm:text-base px-6 sm:px-9 py-3 sm:py-4 rounded-full hover:bg-white/90 transition-all shadow-xl hover:shadow-2xl hover:scale-105 inline-flex justify-center items-center gap-2"
             >
               Start a Project
             </Link>
-            {/* Red pin */}
-            <div className="absolute -top-2 -right-2 sm:-right-2 w-4 h-4 sm:w-5 sm:h-5 bg-[#EC5B70] rounded-full shadow-md z-20 hidden sm:block" />
-            <div className="absolute -top-3 right-0 sm:right-0 w-[2px] h-4 bg-[#c0394e] z-10 rotate-45 hidden sm:block" />
           </div>
         </div>
 
@@ -181,10 +178,10 @@ export default function HeroSection() {
               className="relative w-full h-full"
             >
                   <Image
-                    src="/hero-menu.jpg"
+                    src="/orang-home-hero.png"
                     alt="Supernesia Creative Tech"
                     fill
-                    className="object-cover object-center drop-shadow-[0_20px_60px_rgba(0,0,0,0.5)] rounded-[24px] md:rounded-[32px]"
+                    className="object-contain object-bottom drop-shadow-[0_20px_60px_rgba(0,0,0,0.5)] rounded-[24px] md:rounded-[32px]"
                     priority
                   />
             </motion.div>

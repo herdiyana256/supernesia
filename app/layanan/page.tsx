@@ -218,7 +218,7 @@ export default function LayananPage() {
                 className="relative w-full h-full"
               >
                 <Image 
-                  src="/hero-layanan.jpg" 
+                  src="/orang-layanan-hero.png" 
                   alt="Supernesia Services" 
                   fill 
                   className="object-contain object-bottom drop-shadow-[0_20px_60px_rgba(0,0,0,0.5)] rounded-[32px] group-hover:scale-[1.02] transition-transform duration-500" 
