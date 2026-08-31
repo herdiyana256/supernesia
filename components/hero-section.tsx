@@ -163,7 +163,7 @@ export default function HeroSection() {
 
       {/* Hero Person Image — absolute to section, full height */}
       <div 
-        className="hidden md:flex absolute right-0 bottom-0 top-0 w-[45%] lg:w-[42%] items-center justify-end z-10 pr-4 lg:pr-8 xl:pr-16 pointer-events-none overflow-visible"
+        className="hidden md:flex absolute right-0 bottom-0 top-0 w-[50%] lg:w-[48%] items-center justify-end z-10 pr-4 lg:pr-8 xl:pr-16 pointer-events-none overflow-visible"
       >
         <div className="absolute w-[500px] h-[500px] bg-[#D9E061] blur-[120px] rounded-full opacity-15 bottom-[10%] right-[10%] z-0" />
         
@@ -177,7 +177,7 @@ export default function HeroSection() {
             alt="Supernesia Creative Tech"
             width={900}
             height={1100}
-            className="w-auto h-[115%] object-contain object-center drop-shadow-[0_20px_80px_rgba(0,0,0,0.6)]"
+            className="w-auto h-[140%] object-contain object-center drop-shadow-[0_20px_80px_rgba(0,0,0,0.6)]"
             priority
           />
         </motion.div>
