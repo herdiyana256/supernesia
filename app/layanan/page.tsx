@@ -196,35 +196,31 @@ export default function LayananPage() {
               >
                 Start a Project
               </Link>
-              <div className="absolute -top-2 -right-2 w-4 h-4 sm:w-5 sm:h-5 bg-[#EC5B70] rounded-full shadow-md z-20 hidden sm:block" />
             </div>
           </div>
 
-          {/* Right: person image with Motion & Parallax */}
+          {/* Right: person image — full size */}
           <div 
-            className="w-full md:w-[40%] relative h-[280px] sm:h-[360px] md:h-[500px] lg:h-[560px] group cursor-default mt-8 md:mt-0"
+            className="w-full md:w-[40%] relative flex items-end justify-center md:justify-end mt-8 md:mt-0"
             onMouseMove={handleMouseMove}
           >
-            {/* Glow Depth background */}
-            <div className="absolute inset-0 bg-[#EC5B70]/20 blur-[80px] rounded-full scale-75 z-0" />
+            {/* Glow */}
+            <div className="absolute w-72 h-72 md:w-[450px] md:h-[450px] bg-[#EC5B70] blur-[80px] md:blur-[100px] rounded-full opacity-15 bottom-0 right-0 z-0" />
 
-            <div 
-              className="relative w-full h-full transition-transform duration-700 ease-out z-10"
+            <motion.div
+              animate={{ y: [0, -12, 0] }}
+              transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut" }}
+              className="relative z-10 w-full"
               style={{ transform: parallax }}
             >
-              <motion.div
-                animate={{ y: [0, -12, 0] }}
-                transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut" }}
-                className="relative w-full h-full"
-              >
-                <Image 
-                  src="/orang-layanan-hero.png" 
-                  alt="Supernesia Services" 
-                  fill 
-                  className="object-contain object-bottom drop-shadow-[0_20px_60px_rgba(0,0,0,0.5)] rounded-[32px] group-hover:scale-[1.02] transition-transform duration-500" 
-                />
-              </motion.div>
-            </div>
+              <Image 
+                src="/orang-layanan-hero.png" 
+                alt="Supernesia Services" 
+                width={700}
+                height={860}
+                className="w-full h-auto max-h-[85vh] object-contain object-bottom drop-shadow-[0_20px_80px_rgba(0,0,0,0.6)]"
+              />
+            </motion.div>
           </div>
         </div>
 

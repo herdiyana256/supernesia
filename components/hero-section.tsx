@@ -20,7 +20,7 @@ export default function HeroSection() {
   return (
     <section
       id="home"
-      className="relative w-full min-h-[100svh] md:min-h-screen bg-[#16232A] flex flex-col overflow-hidden font-sans"
+      className="relative w-full min-h-[100svh] md:min-h-screen bg-[#16232A] flex flex-col font-sans"
       style={{
         backgroundImage: `radial-gradient(circle at 80% 20%, rgba(217,224,97,0.04) 0%, transparent 50%),
           radial-gradient(circle at 20% 80%, rgba(236,91,112,0.04) 0%, transparent 50%)`,
@@ -74,7 +74,7 @@ export default function HeroSection() {
       </div>
 
       {/* Main content */}
-      <div className="flex-1 flex flex-col md:flex-row items-center max-w-[1440px] mx-auto w-full px-4 sm:px-6 md:px-8 lg:px-12 xl:px-20 pt-24 md:pt-32 pb-8 md:pb-16 relative z-10 overflow-hidden">
+      <div className="flex-1 flex flex-col md:flex-row items-center max-w-[1440px] mx-auto w-full px-4 sm:px-6 md:px-8 lg:px-12 xl:px-20 pt-24 md:pt-32 pb-8 md:pb-16 relative z-10">
 
         {/* Left: Text */}
         <div className="w-full md:w-[52%] flex flex-col items-center md:items-start justify-center">
@@ -160,32 +160,29 @@ export default function HeroSection() {
           </div>
         </div>
 
-        {/* Right: Girl Image with Motion & Parallax */}
+        {/* Right: Hero Image — full height, absolute from bottom */}
         <div 
-          className="w-full md:w-[48%] flex justify-center md:justify-end items-end relative mt-8 md:mt-0 hero-image-wrapper" 
+          className="w-full md:w-[48%] relative flex items-end justify-center md:justify-end mt-10 md:mt-0" 
           onMouseMove={handleMouseMove}
         >
-          {/* Custom blur blob background request! */}
-          <div className="absolute w-60 h-60 md:w-80 md:h-80 bg-[#D9E061] blur-[50px] md:blur-[70px] rounded-full opacity-20 top-[10%] z-0" />
+          {/* Glow blob */}
+          <div className="absolute w-72 h-72 md:w-[500px] md:h-[500px] bg-[#D9E061] blur-[80px] md:blur-[120px] rounded-full opacity-15 bottom-0 right-0 z-0" />
           
-          <div 
-            className="relative w-full h-[320px] sm:h-[480px] md:h-[650px] lg:h-[720px] hover:scale-[1.02] transition-transform duration-700 ease-out z-10" 
+          <motion.div
+            animate={{ y: [0, -12, 0] }}
+            transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+            className="relative z-10 w-full"
             style={{ transform: parallax }}
           >
-            <motion.div
-              animate={{ y: [0, -10, 0] }}
-              transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-              className="relative w-full h-full"
-            >
-                  <Image
-                    src="/orang-home-hero.png"
-                    alt="Supernesia Creative Tech"
-                    fill
-                    className="object-contain object-bottom drop-shadow-[0_20px_60px_rgba(0,0,0,0.5)] rounded-[24px] md:rounded-[32px]"
-                    priority
-                  />
-            </motion.div>
-          </div>
+            <Image
+              src="/orang-home-hero.png"
+              alt="Supernesia Creative Tech"
+              width={700}
+              height={860}
+              className="w-full h-auto max-h-[85vh] object-contain object-bottom drop-shadow-[0_20px_80px_rgba(0,0,0,0.6)]"
+              priority
+            />
+          </motion.div>
         </div>
       </div>
 
