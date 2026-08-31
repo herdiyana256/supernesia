@@ -159,31 +159,40 @@ export default function HeroSection() {
             </Link>
           </div>
         </div>
+      </div>
 
-        {/* Right: Hero Image — full hero height */}
-        <div 
-          className="w-full md:w-[48%] relative flex items-end justify-center md:justify-end mt-10 md:mt-0 md:absolute md:right-0 md:bottom-0 md:top-0 md:pr-8 lg:pr-12 xl:pr-20" 
-          onMouseMove={handleMouseMove}
+      {/* Hero Person Image — absolute to section, full height */}
+      <div 
+        className="hidden md:flex absolute right-0 bottom-0 top-0 w-[45%] lg:w-[42%] items-end justify-end z-10 pr-4 lg:pr-8 xl:pr-16 pointer-events-none"
+      >
+        <div className="absolute w-[500px] h-[500px] bg-[#D9E061] blur-[120px] rounded-full opacity-15 bottom-[10%] right-[10%] z-0" />
+        
+        <motion.div
+          animate={{ y: [0, -12, 0] }}
+          transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+          className="relative z-10 flex items-end justify-end h-full w-full"
         >
-          {/* Glow blob */}
-          <div className="absolute w-72 h-72 md:w-[500px] md:h-[500px] bg-[#D9E061] blur-[80px] md:blur-[120px] rounded-full opacity-15 bottom-[10%] right-[10%] z-0" />
-          
-          <motion.div
-            animate={{ y: [0, -12, 0] }}
-            transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-            className="relative z-10 flex items-end justify-center md:justify-end h-full w-full"
-            style={{ transform: parallax }}
-          >
-            <Image
-              src="/orang-home-hero.png"
-              alt="Supernesia Creative Tech"
-              width={800}
-              height={1000}
-              className="w-auto h-[50vh] sm:h-[60vh] md:h-[90%] lg:h-[95%] object-contain object-bottom drop-shadow-[0_20px_80px_rgba(0,0,0,0.6)]"
-              priority
-            />
-          </motion.div>
-        </div>
+          <Image
+            src="/orang-home-hero.png"
+            alt="Supernesia Creative Tech"
+            width={900}
+            height={1100}
+            className="w-auto h-[100%] object-contain object-bottom drop-shadow-[0_20px_80px_rgba(0,0,0,0.6)]"
+            priority
+          />
+        </motion.div>
+      </div>
+
+      {/* Mobile hero image */}
+      <div className="flex md:hidden justify-center items-end w-full px-4 -mt-4 relative z-10">
+        <Image
+          src="/orang-home-hero.png"
+          alt="Supernesia Creative Tech"
+          width={500}
+          height={600}
+          className="w-[80%] h-auto object-contain drop-shadow-[0_10px_40px_rgba(0,0,0,0.5)]"
+          priority
+        />
       </div>
 
       {/* Scrolling Ticker — Yellow Banner */}
