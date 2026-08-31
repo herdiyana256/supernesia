@@ -77,7 +77,7 @@ export default function HeroSection() {
       <div className="flex-1 flex flex-col md:flex-row items-center max-w-[1440px] mx-auto w-full px-4 sm:px-6 md:px-8 lg:px-12 xl:px-20 pt-24 md:pt-32 pb-8 md:pb-16 relative z-10 overflow-hidden">
 
         {/* Left: Text */}
-        <div className="w-full md:w-[60%] flex flex-col items-center md:items-start justify-center">
+        <div className="w-full md:w-[52%] flex flex-col items-center md:items-start justify-center">
 
           {/* Headline */}
           <div className="flex flex-col items-center md:items-start leading-none w-full">
@@ -162,14 +162,14 @@ export default function HeroSection() {
 
         {/* Right: Girl Image with Motion & Parallax */}
         <div 
-          className="w-full md:w-[40%] flex justify-center md:justify-end items-center md:items-end relative mt-12 md:mt-0 hero-image-wrapper" 
+          className="w-full md:w-[48%] flex justify-center md:justify-end items-end relative mt-8 md:mt-0 hero-image-wrapper" 
           onMouseMove={handleMouseMove}
         >
           {/* Custom blur blob background request! */}
           <div className="absolute w-60 h-60 md:w-80 md:h-80 bg-[#D9E061] blur-[50px] md:blur-[70px] rounded-full opacity-20 top-[10%] z-0" />
           
           <div 
-            className="relative w-full h-[240px] sm:h-[360px] md:h-[600px] lg:h-[680px] hover:scale-[1.02] transition-transform duration-700 ease-out z-10" 
+            className="relative w-full h-[320px] sm:h-[480px] md:h-[650px] lg:h-[720px] hover:scale-[1.02] transition-transform duration-700 ease-out z-10" 
             style={{ transform: parallax }}
           >
             <motion.div
