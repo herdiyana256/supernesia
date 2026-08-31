@@ -160,26 +160,26 @@ export default function HeroSection() {
           </div>
         </div>
 
-        {/* Right: Hero Image — full height, absolute from bottom */}
+        {/* Right: Hero Image — full hero height */}
         <div 
-          className="w-full md:w-[48%] relative flex items-end justify-center md:justify-end mt-10 md:mt-0" 
+          className="w-full md:w-[48%] relative flex items-end justify-center md:justify-end mt-10 md:mt-0 md:absolute md:right-0 md:bottom-0 md:top-0 md:pr-8 lg:pr-12 xl:pr-20" 
           onMouseMove={handleMouseMove}
         >
           {/* Glow blob */}
-          <div className="absolute w-72 h-72 md:w-[500px] md:h-[500px] bg-[#D9E061] blur-[80px] md:blur-[120px] rounded-full opacity-15 bottom-0 right-0 z-0" />
+          <div className="absolute w-72 h-72 md:w-[500px] md:h-[500px] bg-[#D9E061] blur-[80px] md:blur-[120px] rounded-full opacity-15 bottom-[10%] right-[10%] z-0" />
           
           <motion.div
             animate={{ y: [0, -12, 0] }}
             transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-            className="relative z-10 w-full"
+            className="relative z-10 flex items-end justify-center md:justify-end h-full w-full"
             style={{ transform: parallax }}
           >
             <Image
               src="/orang-home-hero.png"
               alt="Supernesia Creative Tech"
-              width={700}
-              height={860}
-              className="w-full h-auto max-h-[85vh] object-contain object-bottom drop-shadow-[0_20px_80px_rgba(0,0,0,0.6)]"
+              width={800}
+              height={1000}
+              className="w-auto h-[50vh] sm:h-[60vh] md:h-[90%] lg:h-[95%] object-contain object-bottom drop-shadow-[0_20px_80px_rgba(0,0,0,0.6)]"
               priority
             />
           </motion.div>
