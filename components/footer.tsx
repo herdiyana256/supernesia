@@ -8,30 +8,30 @@ export default function Footer() {
   return (
     <footer className="w-full font-sans bg-[#16232A]">
 
-      {/* Newsletter Banner — yellow card floating above footer */}
-      <div className="w-full px-4 md:px-12 lg:px-20 pt-0 z-20 relative">
+      {/* Newsletter Banner — yellow card, flush to footer top, not overlapping white bg */}
+      <div className="w-full px-4 md:px-8 lg:px-16 pt-12 z-20 relative">
         <div
-          className="rounded-[24px] md:rounded-[32px] p-6 md:p-12 shadow-[0_32px_80px_rgba(217,224,97,0.25)] flex flex-col lg:flex-row items-center justify-between gap-6 md:gap-8 hover:-translate-y-1 transition-transform duration-500"
+          className="max-w-5xl mx-auto rounded-[20px] md:rounded-[28px] p-6 md:p-10 shadow-[0_32px_80px_rgba(217,224,97,0.25)] flex flex-col lg:flex-row items-center justify-between gap-6 md:gap-8 hover:-translate-y-1 transition-transform duration-500"
           style={{ background: "linear-gradient(135deg, #D9E061 0%, #e8ef6a 100%)" }}
         >
-          <div className="flex flex-col text-center lg:text-left">
-            <h2 className="text-2xl md:text-4xl lg:text-5xl font-black text-[#16232A] mb-1 md:mb-2 tracking-tighter">
+          <div className="flex flex-col text-center lg:text-left flex-shrink-0">
+            <h2 className="text-2xl md:text-3xl lg:text-4xl font-black text-[#16232A] mb-1 tracking-tighter">
               Ingin Berlangganan?
             </h2>
-            <p className="text-[#16232A]/70 text-sm md:text-xl font-bold italic">
+            <p className="text-[#16232A]/70 text-sm md:text-base font-bold italic">
               Tetap up-date perkembangan kami.
             </p>
           </div>
 
           {/* Email input */}
-          <div className="w-full lg:w-1/2 bg-white/25 border border-white/30 p-1.5 rounded-full flex shadow-inner backdrop-blur-sm">
+          <div className="w-full lg:w-auto lg:flex-1 lg:max-w-md bg-white/30 border-2 border-white/50 p-1.5 rounded-full flex shadow-inner">
             <input
               type="email"
               placeholder="Masukan Email..."
-              className="w-full bg-transparent px-4 md:px-6 py-2.5 md:py-3 placeholder-[#16232A]/50 text-[#16232A] font-semibold outline-none rounded-l-full text-sm md:text-base min-w-0"
+              className="w-full bg-transparent px-4 md:px-5 py-2.5 placeholder-[#16232A]/50 text-[#16232A] font-semibold outline-none rounded-l-full text-sm md:text-base min-w-0"
             />
-            <button className="bg-[#EC5B70] text-white px-4 md:px-7 py-2.5 md:py-3 rounded-full font-black flex items-center gap-1 md:gap-2 hover:bg-[#d94a5f] transition-all shadow-lg hover:scale-105 flex-shrink-0 group text-sm md:text-base">
-              Submit <ArrowRight className="w-4 h-4 md:w-5 md:h-5 group-hover:translate-x-1 transition-transform" />
+            <button className="bg-[#16232A] text-[#D9E061] px-4 md:px-6 py-2.5 rounded-full font-black flex items-center gap-1 md:gap-2 hover:bg-[#EC5B70] hover:text-white transition-all shadow-lg hover:scale-105 flex-shrink-0 group text-sm md:text-base">
+              Submit <ArrowRight className="w-4 h-4 md:w-4 md:h-4 group-hover:translate-x-1 transition-transform" />
             </button>
           </div>
         </div>

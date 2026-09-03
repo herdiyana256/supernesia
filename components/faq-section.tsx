@@ -71,13 +71,6 @@ export default function FAQSection() {
             <p className="text-gray-500 text-base md:text-lg font-medium leading-relaxed max-w-sm">
               Supernesia adalah partner transformasi digital terpercaya untuk UMKM, bisnis rintisan, dan perusahaan menengah. Kami menyediakan layanan: Web Development, Custom Software Development, Mobile & Desktop Apps, Konsultasi Digital & Teknologi.
             </p>
-
-            {/* Decorative lightning bolt */}
-            <div className="mt-10 opacity-60 hidden md:block">
-              <svg width="56" height="80" viewBox="0 0 24 40" fill="#EC5B70">
-                <path d="M14 2L4 22h9l-3 16 14-22h-10l3-14z" />
-              </svg>
-            </div>
           </div>
 
           {/* Right: Accordion */}

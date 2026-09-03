@@ -23,14 +23,7 @@ export default function CTASection() {
         </svg>
       </div>
 
-      {/* Left scribble */}
-      <div className="absolute left-[6%] top-[50%] opacity-40 -translate-y-1/2 hidden md:block">
-        <svg className="stroke-[#EC5B70] w-20 h-7" viewBox="0 0 100 20" fill="none">
-          <path d="M0,10 Q15,2 30,10 T60,10 T90,18" strokeWidth="3" strokeLinecap="round" />
-        </svg>
-      </div>
-
-      <div className="max-w-5xl mx-auto relative flex flex-col items-center text-center">
+      <div className="max-w-4xl mx-auto relative flex flex-col items-center text-center">
 
         {/* Main sticky note CTA — big centered */}
         <div className="flex flex-wrap justify-center items-center gap-3 md:gap-4 lg:gap-6 mb-10 md:mb-14 w-full">

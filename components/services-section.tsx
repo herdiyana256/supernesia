@@ -118,8 +118,8 @@ export default function ServicesSection() {
           </div>
         </div>
 
-        {/* Desktop: floating nodes */}
-        <div className="relative hidden lg:block" style={{ minHeight: 500 }}>
+        {/* Floating Nodes — Desktop */}
+        <div className="relative hidden lg:block" style={{ minHeight: 340 }}>
           {services.map((svc, idx) => (
             <Link
               key={idx}

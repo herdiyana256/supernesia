@@ -638,7 +638,7 @@ export default function SupernesiaChatbot() {
         {/* ── Chat Window ── */}
         {isOpen && (
           <div
-            className="sn-chat absolute bottom-16 right-0 w-[340px] md:w-[390px] rounded-2xl shadow-2xl overflow-hidden flex flex-col"
+            className="sn-chat fixed bottom-[88px] right-3 left-3 sm:left-auto sm:right-6 sm:w-[370px] md:w-[400px] z-50 rounded-2xl shadow-2xl overflow-hidden flex flex-col"
             style={{
               background: "#16232A",
               maxHeight: "82vh",
