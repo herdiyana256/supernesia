@@ -121,11 +121,11 @@ export default function PortfolioSection() {
         {/* Modal */}
         {selectedProject && (
           <div
-            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm"
+            className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/60 backdrop-blur-sm"
             onClick={() => setSelectedProject(null)}
           >
             <div
-              className="bg-white rounded-[24px] max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-2xl relative"
+              className="bg-white rounded-[24px] max-w-xl w-full max-h-[88vh] overflow-y-auto shadow-2xl relative"
               onClick={e => e.stopPropagation()}
             >
               <button
@@ -137,19 +137,19 @@ export default function PortfolioSection() {
               <div className="w-full aspect-video overflow-hidden rounded-t-[24px]">
                 <img src={selectedProject.image} alt={selectedProject.title} className="w-full h-full object-cover" />
               </div>
-              <div className="p-8">
-                <h2 className="text-3xl font-black text-[#16232A] leading-tight mb-3">{selectedProject.title}</h2>
-                <p className="text-gray-600 text-base leading-relaxed mb-6">{selectedProject.description}</p>
-                <div className="flex flex-wrap gap-2 mb-6">
+              <div className="p-5 md:p-8">
+                <h2 className="text-2xl md:text-3xl font-black text-[#16232A] leading-tight mb-3">{selectedProject.title}</h2>
+                <p className="text-gray-600 text-sm md:text-base leading-relaxed mb-5">{selectedProject.description}</p>
+                <div className="flex flex-wrap gap-2 mb-5">
                   {selectedProject.tech.map(t => (
-                    <span key={t} className="px-4 py-1.5 bg-gray-100 text-gray-700 rounded-full text-sm font-semibold border border-gray-200">{t}</span>
+                    <span key={t} className="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-xs md:text-sm font-semibold border border-gray-200">{t}</span>
                   ))}
                 </div>
-                <div className="bg-[#D9E061]/20 border border-[#D9E061] rounded-[16px] p-5 flex items-start gap-4">
-                  <div className="text-2xl">🚀</div>
+                <div className="bg-[#D9E061]/20 border border-[#D9E061] rounded-[14px] p-4 flex items-start gap-3">
+                  <div className="text-xl">🚀</div>
                   <div>
                     <p className="text-xs font-black text-gray-400 uppercase tracking-widest mb-1">Hasil</p>
-                    <p className="text-[#16232A] font-bold text-lg leading-tight">{selectedProject.results}</p>
+                    <p className="text-[#16232A] font-bold text-base leading-tight">{selectedProject.results}</p>
                   </div>
                 </div>
               </div>
