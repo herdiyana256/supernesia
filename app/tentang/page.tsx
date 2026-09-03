@@ -264,83 +264,6 @@ export default function TentangPage() {
         </div>
       </section>
 
-      {/* ── TEAM ── Yellow-tinted cards */}
-      <section className="bg-white py-12 md:py-16 lg:py-20 px-4 sm:px-6 md:px-8 lg:px-12 xl:px-20 border-t border-gray-100">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-14">
-            <p className="text-gray-400 text-sm font-semibold uppercase tracking-widest mb-3">The Team</p>
-            <p className="text-gray-500 text-lg max-w-xl mx-auto">
-              Temui para profesional berpengalaman yang memimpin visi dan operasi strategis Supernesia.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-            {teamMembers.map((member, idx) => (
-              <div
-                key={idx}
-                className="group flex flex-col rounded-[24px] overflow-hidden bg-white border-2 border-gray-100 hover:border-[#D9E061] transition-all duration-300 hover:shadow-xl hover:-translate-y-1 relative"
-              >
-                {/* Photo Header */}
-                <div className="w-full bg-[#16232A] pt-10 pb-4 px-6 flex flex-col items-center relative overflow-hidden">
-                  <div className="absolute top-0 right-0 w-32 h-32 bg-[#D9E061] opacity-10 rounded-full -translate-y-1/2 translate-x-1/3" />
-                  <div className="absolute bottom-0 left-0 w-24 h-24 bg-[#EC5B70] opacity-10 rounded-full translate-y-1/2 -translate-x-1/2" />
-                  <div className="w-28 h-28 rounded-full border-4 border-white/10 overflow-hidden relative mb-4 z-10 shadow-xl bg-gray-200">
-                    <Image
-                      src={member.image}
-                      alt={member.name}
-                      fill
-                      className="object-cover"
-                    />
-                  </div>
-                  <h4 className="text-white font-black text-xl leading-tight mb-1 text-center relative z-10">{member.name}</h4>
-                  <span className="inline-block bg-[#D9E061] text-[#16232A] px-3 py-1 rounded-full text-xs font-bold relative z-10">{member.role}</span>
-                </div>
-
-                {/* Details Wrapper */}
-                <div className="flex-1 p-6 flex flex-col">
-                  {/* Description */}
-                  <p className="text-gray-500 text-sm leading-relaxed text-center mb-6">{member.desc}</p>
-
-                  <div className="grid grid-cols-1 grid-rows-[0fr] opacity-0 group-hover:grid-rows-[1fr] group-hover:opacity-100 transition-all duration-500 ease-in-out">
-                    <div className="overflow-hidden">
-                      <div className="border-t border-gray-100 pt-5">
-                        {/* Expertise dots */}
-                        <ul className="mb-5 grid grid-cols-1 gap-1.5">
-                          {member.expertise.map((e, ei) => (
-                            <li key={ei} className="text-xs text-gray-500 flex items-center gap-2">
-                              <div className="w-1.5 h-1.5 rounded-full bg-[#D9E061]" />
-                              {e}
-                            </li>
-                          ))}
-                        </ul>
-
-                        {/* Stats row */}
-                        <div className="grid grid-cols-3 gap-2 text-center isolate">
-                          {member.stats.map((s, si) => (
-                            <div key={si} className="flex flex-col">
-                              <strong className="text-[#16232A] font-black text-base">{s.value}</strong>
-                              <span className="text-gray-400 text-[10px] uppercase font-bold tracking-wider">{s.label}</span>
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="mt-auto pt-6 border-t border-transparent group-hover:border-gray-50 transition-colors">
-                    {/* LinkedIn button */}
-                    <a href={member.linkedin} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2 px-6 py-2.5 border border-gray-200 rounded-full text-sm font-bold text-[#0A66C2] mx-auto w-fit hover:bg-[#0A66C2] hover:text-white hover:border-[#0A66C2] transition-colors duration-300">
-                      <Linkedin size={16} />
-                      LinkedIn
-                    </a>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* ── CTA ── */}
       <section className="bg-white py-12 md:py-16 lg:py-20 px-4 sm:px-6 md:px-8 lg:px-12 xl:px-20 border-t border-gray-100">
         <div className="max-w-4xl mx-auto flex flex-col items-center text-center">
@@ -365,10 +288,6 @@ export default function TentangPage() {
             </div>
           </div>
           <div className="relative inline-block group w-full sm:w-auto">
-            <div className="absolute -top-3 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center">
-              <div className="w-5 h-5 bg-[#EC5B70] rounded-full shadow-md" />
-              <div className="w-[2px] h-4 bg-[#c0394e]" />
-            </div>
             <Link
               href="/kontak"
               className="w-full sm:w-auto inline-flex justify-center items-center gap-3 text-[#16232A] font-black text-lg sm:text-xl px-8 sm:px-12 py-4 sm:py-5 rounded-full border-2 border-[#16232A] hover:bg-[#16232A] hover:text-white transition-all duration-300 shadow-lg hover:scale-105"
