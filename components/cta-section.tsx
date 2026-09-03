@@ -65,18 +65,14 @@ export default function CTASection() {
           </div>
         </div>
 
-        {/* CTA Button with pin */}
+        {/* CTA Button */}
         <div className="relative inline-block group">
-          {/* Red decorative pin */}
-          <div className="absolute -top-3 left-1/2 -translate-x-1/2 flex flex-col items-center z-20">
-            <div className="w-5 h-5 bg-[#EC5B70] rounded-full shadow-[0_2px_8px_rgba(236,91,112,0.6)]" />
-            <div className="w-[2px] h-4 bg-[#c0394e]" />
-          </div>
 
           <Link
             href="/kontak"
-            className="relative mt-4 inline-flex items-center gap-3 text-[#16232A] font-black text-lg md:text-2xl px-8 md:px-12 py-4 md:py-5 rounded-full bg-transparent border-2 border-[#16232A] hover:bg-[#16232A] hover:text-white transition-all duration-400 shadow-lg hover:shadow-2xl hover:scale-105 group"
+            className="relative inline-flex items-center gap-3 text-[#16232A] font-black text-lg md:text-2xl px-8 md:px-12 py-4 md:py-5 rounded-full bg-transparent border-2 border-[#16232A] hover:bg-[#16232A] hover:text-white transition-all duration-400 shadow-lg hover:shadow-2xl hover:scale-105 group"
           >
+
             Hubungi Kami
             <svg
               className="w-5 h-5 group-hover:translate-x-1 transition-transform"
