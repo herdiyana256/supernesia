@@ -3,6 +3,8 @@ User-agent: *
 Allow: /
 Disallow: /admin
 Disallow: /api/
+Disallow: /blog
+Disallow: /blog/
 
 # Host
 Host: https://supernesia.id

@@ -129,7 +129,8 @@ const siteKeywords = [
   "Supernesia technology partner"
 ]; // Total 100 Keywords
 const siteAuthor = "Supernesia Creative Technology";
-const googleVerification = "rDv4azVm7pImPiuru4Q-YvU6yrYRuVHpUzLaUTTb1Ho"; // Keep existing or update if changed
+// Google Search Console verification removed (property deleted)
+const googleVerification = "";
 const ogImageUrl = `${siteUrl}/images/og-image.png`; // <<< REPLACE with actual OG image URL (e.g., /images/og-supernesia.png)
 const logoUrl = `${siteUrl}/images/logo.png`; // <<< REPLACE with actual Logo URL
 const twitterHandle = "@supernesia_id"; // <<< REPLACE with actual Twitter handle (optional)
@@ -220,12 +221,7 @@ export const metadata: Metadata = {
   },
   // --- Verification ---
   verification: {
-    google: googleVerification,
-    // Add other verifications if needed (e.g., Yandex, Bing)
-    // yandex: '...',
-    // other: {
-    //   me: [contactEmail, siteUrl],
-    // },
+    // Google Search Console property deleted — verification removed
   },
   // --- Other --- 
   // alternates: { // Add alternate languages if applicable
