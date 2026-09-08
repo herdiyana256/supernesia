@@ -439,13 +439,11 @@ export default function LayananPage() {
                     </div>
 
                     {/* Content card */}
-                    <div className={`flex-1 rounded-[20px] p-6 border-2 transition-all duration-300 group-hover:-translate-y-0.5 group-hover:shadow-lg ${
-                      idx === 0 ? "bg-[#D9E061] border-[#D9E061]" : "bg-white border-gray-100 group-hover:border-gray-200"
-                    }`}>
-                      <h3 className={`font-black text-xl mb-2 ${idx === 0 ? "text-[#16232A]" : "text-[#16232A]"}`}>
+                    <div className="flex-1 rounded-[20px] p-6 border-2 border-[#D9E061] bg-[#D9E061] transition-all duration-300 group-hover:-translate-y-0.5 group-hover:shadow-[0_8px_32px_rgba(217,224,97,0.4)]">
+                      <h3 className="font-black text-xl mb-2 text-[#16232A]">
                         {step.title}
                       </h3>
-                      <p className={`text-sm leading-relaxed ${idx === 0 ? "text-[#16232A]/75" : "text-gray-500"}`}>
+                      <p className="text-sm leading-relaxed text-[#16232A]/75">
                         {step.desc}
                       </p>
                     </div>
