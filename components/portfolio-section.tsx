@@ -72,11 +72,11 @@ export default function PortfolioSection() {
   const [selectedProject, setSelectedProject] = useState<typeof portfolios[0] | null>(null)
 
   return (
-    <section id="portfolio" className="bg-[#f9fafb] py-20 px-6 md:px-12 lg:px-20 font-sans relative">
+    <section id="portfolio" className="bg-[#f9fafb] pt-10 pb-20 px-6 md:px-12 lg:px-20 font-sans relative">
       <div className="max-w-7xl mx-auto">
 
         {/* Title */}
-        <div className="relative inline-block transform -rotate-[1deg] hover:rotate-0 transition-transform duration-500 mb-14">
+        <div className="relative inline-block transform -rotate-[1deg] hover:rotate-0 transition-transform duration-500 mb-10">
           <div
             className="text-[#16232A] px-10 py-7 shadow-xl relative inline-block"
             style={{
