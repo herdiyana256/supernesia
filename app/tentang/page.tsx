@@ -168,7 +168,7 @@ export default function TentangPage() {
                     Menjadi studio teknologi paling dipercaya di Indonesia — tempat bisnis dari semua skala bisa datang dengan masalah nyata dan pulang dengan solusi yang benar-benar berjalan.
                   </p>
                 </div>
-                <div className="group relative bg-white border border-gray-100 rounded-[24px] p-8 shadow-sm hover:bg-[#D9E061] hover:border-[#D9E061] hover:shadow-[0_20px_40px_rgba(217,224,97,0.3)] transition-all duration-300 hover:-translate-y-1.5 overflow-hidden z-10">
+                <div className="group relative bg-white border border-gray-100 rounded-[24px] p-8 shadow-sm [@media(hover:hover)]:hover:bg-[#D9E061] [@media(hover:hover)]:hover:border-[#D9E061] [@media(hover:hover)]:hover:shadow-[0_20px_40px_rgba(217,224,97,0.3)] [@media(hover:hover)]:hover:-translate-y-1.5 active:bg-[#D9E061] active:border-[#D9E061] transition-all duration-300 overflow-hidden z-10">
                   <div className="absolute bottom-0 right-0 w-32 h-32 bg-gradient-to-tl from-[#16232A] to-transparent opacity-0 group-hover:opacity-10 rounded-full translate-y-1/2 translate-x-1/3 group-hover:scale-[2] transition-all duration-500 ease-out" />
                   <h3 className="text-[#16232A] font-black text-2xl mb-5 relative z-10">Misi</h3>
                   <ul className="space-y-4 text-gray-500 group-hover:text-[#16232A]/80 text-sm leading-relaxed relative z-10 transition-colors duration-300">
@@ -184,7 +184,7 @@ export default function TentangPage() {
                 <h3 className="text-[#16232A] font-black text-2xl mb-6">Our Values</h3>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                   {values.map((v, i) => (
-                    <div key={i} className="group relative bg-white border border-gray-100 rounded-[20px] p-6 shadow-sm hover:bg-[#D9E061] hover:border-[#D9E061] hover:shadow-[0_8px_32px_rgba(217,224,97,0.3)] hover:-translate-y-1 transition-all duration-300 overflow-hidden cursor-default">
+                    <div key={i} className="group relative bg-white border border-gray-100 rounded-[20px] p-6 shadow-sm [@media(hover:hover)]:hover:bg-[#D9E061] [@media(hover:hover)]:hover:border-[#D9E061] [@media(hover:hover)]:hover:shadow-[0_8px_32px_rgba(217,224,97,0.3)] [@media(hover:hover)]:hover:-translate-y-1 active:bg-[#D9E061] active:border-[#D9E061] active:scale-[0.98] transition-all duration-300 overflow-hidden cursor-default">
                       {/* Accent left border */}
                       <div className="absolute left-0 top-0 bottom-0 w-1.5 rounded-l-[20px] transition-all duration-300" style={{ background: v.color }} />
                       
