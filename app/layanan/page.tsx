@@ -439,11 +439,11 @@ export default function LayananPage() {
                     </div>
 
                     {/* Content card */}
-                    <div className="flex-1 rounded-[20px] p-6 border-2 border-[#D9E061] bg-[#D9E061] transition-all duration-300 group-hover:-translate-y-0.5 group-hover:shadow-[0_8px_32px_rgba(217,224,97,0.4)]">
+                    <div className="flex-1 rounded-[20px] p-6 border-2 border-gray-100 bg-white shadow-sm group-hover:bg-[#D9E061] group-hover:border-[#D9E061] group-hover:shadow-[0_8px_32px_rgba(217,224,97,0.3)] transition-all duration-300 group-hover:-translate-y-0.5">
                       <h3 className="font-black text-xl mb-2 text-[#16232A]">
                         {step.title}
                       </h3>
-                      <p className="text-sm leading-relaxed text-[#16232A]/75">
+                      <p className="text-sm leading-relaxed text-gray-500 group-hover:text-[#16232A]/75 transition-colors duration-300">
                         {step.desc}
                       </p>
                     </div>

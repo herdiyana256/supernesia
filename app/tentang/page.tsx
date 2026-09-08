@@ -168,11 +168,11 @@ export default function TentangPage() {
                     Menjadi studio teknologi paling dipercaya di Indonesia — tempat bisnis dari semua skala bisa datang dengan masalah nyata dan pulang dengan solusi yang benar-benar berjalan.
                   </p>
                 </div>
-                <div className="group relative bg-[#D9E061] border border-[#D9E061] rounded-[24px] p-8 hover:shadow-[0_20px_40px_rgba(217,224,97,0.4)] transition-all duration-500 hover:-translate-y-1.5 overflow-hidden z-10">
-                  <div className="absolute bottom-0 right-0 w-32 h-32 bg-gradient-to-tl from-[#16232A] to-transparent opacity-10 rounded-full translate-y-1/2 translate-x-1/3 group-hover:scale-[2] transition-transform duration-700 ease-out" />
+                <div className="group relative bg-white border border-gray-100 rounded-[24px] p-8 shadow-sm hover:bg-[#D9E061] hover:border-[#D9E061] hover:shadow-[0_20px_40px_rgba(217,224,97,0.3)] transition-all duration-300 hover:-translate-y-1.5 overflow-hidden z-10">
+                  <div className="absolute bottom-0 right-0 w-32 h-32 bg-gradient-to-tl from-[#16232A] to-transparent opacity-0 group-hover:opacity-10 rounded-full translate-y-1/2 translate-x-1/3 group-hover:scale-[2] transition-all duration-500 ease-out" />
                   <h3 className="text-[#16232A] font-black text-2xl mb-5 relative z-10">Misi</h3>
-                  <ul className="space-y-4 text-[#16232A]/80 text-sm leading-relaxed relative z-10">
-                    <li className="flex items-start gap-4"><div className="w-2 h-2 bg-[#16232A] rounded-full mt-1.5 shrink-0" />Deliver solusi digital yang menghasilkan pertumbuhan nyata, bukan sekadar produk yang &quot;selesai dibuat&quot;</li>
+                  <ul className="space-y-4 text-gray-500 group-hover:text-[#16232A]/80 text-sm leading-relaxed relative z-10 transition-colors duration-300">
+                    <li className="flex items-start gap-4"><div className="w-2 h-2 bg-[#D9E061] group-hover:bg-[#16232A] rounded-full mt-1.5 shrink-0 transition-colors duration-300" />Deliver solusi digital yang menghasilkan pertumbuhan nyata, bukan sekadar produk yang &quot;selesai dibuat&quot;</li>
                     <li className="flex items-start gap-4"><div className="w-2 h-2 bg-[#EC5B70] rounded-full mt-1.5 shrink-0 shadow-[0_0_6px_#EC5B70]" />Menjadi partner jangka panjang yang tumbuh bersama klien, bukan vendor yang hilang setelah project selesai</li>
                     <li className="flex items-start gap-4"><div className="w-2 h-2 bg-[#2D8CFF] rounded-full mt-1.5 shrink-0 shadow-[0_0_6px_#2D8CFF]" />Membuat teknologi canggih lebih accessible untuk UMKM dan bisnis Indonesia</li>
                   </ul>
@@ -184,13 +184,13 @@ export default function TentangPage() {
                 <h3 className="text-[#16232A] font-black text-2xl mb-6">Our Values</h3>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                   {values.map((v, i) => (
-                    <div key={i} className="group relative bg-[#D9E061] border border-[#D9E061] rounded-[20px] p-6 hover:shadow-[0_8px_32px_rgba(217,224,97,0.4)] hover:-translate-y-1 transition-all duration-300 overflow-hidden cursor-default">
+                    <div key={i} className="group relative bg-white border border-gray-100 rounded-[20px] p-6 shadow-sm hover:bg-[#D9E061] hover:border-[#D9E061] hover:shadow-[0_8px_32px_rgba(217,224,97,0.3)] hover:-translate-y-1 transition-all duration-300 overflow-hidden cursor-default">
                       {/* Accent left border */}
-                      <div className="absolute left-0 top-0 bottom-0 w-1.5 rounded-l-[20px]" style={{ background: v.color }} />
+                      <div className="absolute left-0 top-0 bottom-0 w-1.5 rounded-l-[20px] transition-all duration-300" style={{ background: v.color }} />
                       
                       <div className="relative z-10 pl-3">
                         <h4 className="text-[#16232A] font-black text-lg mb-2 group-hover:tracking-wide transition-all duration-300">{v.label}</h4>
-                        <p className="text-[#16232A]/70 text-sm leading-relaxed">{v.desc}</p>
+                        <p className="text-gray-500 group-hover:text-[#16232A]/70 text-sm leading-relaxed transition-colors duration-300">{v.desc}</p>
                       </div>
                     </div>
                   ))}
