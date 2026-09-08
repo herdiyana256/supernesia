@@ -64,7 +64,7 @@ export default function ServicesSection() {
   return (
     <section
       id="services"
-      className="bg-[#16232A] border-b-2 border-[#2D8CFF] py-16 md:py-20 px-6 md:px-12 lg:px-20 font-sans relative overflow-hidden"
+      className="bg-[#16232A] border-b-2 border-[#2D8CFF] pt-16 md:pt-20 pb-8 md:pb-10 px-6 md:px-12 lg:px-20 font-sans relative overflow-hidden"
     >
       {/* Background scribbles */}
       <div className="absolute inset-0 pointer-events-none opacity-20 hidden md:block z-0">
@@ -119,7 +119,7 @@ export default function ServicesSection() {
         </div>
 
         {/* Floating Nodes — Desktop */}
-        <div className="relative hidden lg:block" style={{ minHeight: 340 }}>
+        <div className="relative hidden lg:block" style={{ minHeight: 260 }}>
           {services.map((svc, idx) => (
             <Link
               key={idx}
