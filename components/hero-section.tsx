@@ -20,7 +20,7 @@ export default function HeroSection() {
   return (
     <section
       id="home"
-      className="relative w-full min-h-[100svh] md:min-h-screen bg-[#16232A] flex flex-col font-sans"
+      className="relative w-full md:min-h-screen bg-[#16232A] flex flex-col font-sans"
       style={{
         backgroundImage: `radial-gradient(circle at 80% 20%, rgba(217,224,97,0.04) 0%, transparent 50%),
           radial-gradient(circle at 20% 80%, rgba(236,91,112,0.04) 0%, transparent 50%)`,
