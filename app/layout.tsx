@@ -1,7 +1,8 @@
 import type { Metadata, Viewport } from "next";
 import { Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
-import Script from 'next/script'; // Import Script component for JSON-LD
+import Script from 'next/script';
+import WhatsappCTA from "@/components/whatsapp-cta";
 
 // Fonts
 const plusJakartaSans = Plus_Jakarta_Sans({
@@ -319,6 +320,8 @@ export default function RootLayout({
 
         {/* <footer> Footer Content / Links </footer> */}
 
+        {/* WhatsApp floating button */}
+        <WhatsappCTA />
       </body>
     </html>
   );
