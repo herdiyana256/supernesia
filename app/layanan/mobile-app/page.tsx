@@ -7,7 +7,6 @@ import { motion, useInView } from "framer-motion"
 import { useRef } from "react"
 import Navbar from "@/components/navbar"
 import Footer from "@/components/footer"
-import SupernesiaChatbot from "@/components/supernesia-chatbot"
 import {
   GitBranch,
   GitCommit,
@@ -585,7 +584,6 @@ export default function MobileAppPage() {
         </div>
       </section>
 
-      <SupernesiaChatbot />
       <Footer />
     </main>
   )

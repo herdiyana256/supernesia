@@ -5,7 +5,6 @@ import Image from "next/image"
 import Link from "next/link"
 import Navbar from "@/components/navbar"
 import Footer from "@/components/footer"
-import SupernesiaChatbot from "@/components/supernesia-chatbot"
 import { motion, useInView } from "framer-motion"
 import {
   ArrowUpRight,
@@ -814,7 +813,6 @@ export default function WebDevelopmentPage() {
         </motion.div>
       </section>
 
-      <SupernesiaChatbot />
       <Footer />
     </main>
   )

@@ -1,7 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
-import SupernesiaChatbot from "@/components/supernesia-chatbot";
 import Script from 'next/script'; // Import Script component for JSON-LD
 
 // Fonts
@@ -320,7 +319,6 @@ export default function RootLayout({
 
         {/* <footer> Footer Content / Links </footer> */}
 
-        <SupernesiaChatbot />
       </body>
     </html>
   );
