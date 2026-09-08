@@ -216,8 +216,7 @@ export default function LayananPage() {
               alt="Supernesia Services" 
               width={900}
               height={1100}
-              className="w-auto h-[155%] object-contain object-bottom"
-              style={{ mixBlendMode: 'multiply' }}
+              className="w-auto h-[155%] object-contain object-bottom drop-shadow-[0_20px_80px_rgba(0,0,0,0.5)]"
             />
           </motion.div>
         </div>
