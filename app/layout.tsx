@@ -182,14 +182,15 @@ export const metadata: Metadata = {
   icons: {
     icon: [
       { url: "/favicon.ico", sizes: "any", type: "image/x-icon" },
-      { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
-      { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
+      { url: "/favicon_16.png", sizes: "16x16", type: "image/png" },
+      { url: "/favicon_32.png", sizes: "32x32", type: "image/png" },
+      { url: "/icons/icon-192x192.png", sizes: "192x192", type: "image/png" },
+      { url: "/icons/icon-512x512.png", sizes: "512x512", type: "image/png" },
     ],
     shortcut: "/favicon.ico",
-    apple: "/icons/icon-192x192.png",
-    // other: [
-    //   { rel: 'mask-icon', url: '/safari-pinned-tab.svg', color: '#5bbad5' }, // <<< Add if you have a mask icon
-    // ],
+    apple: [
+      { url: "/icons/icon-192x192.png", sizes: "192x192", type: "image/png" },
+    ],
   },
   // --- Manifest ---
   manifest: "/manifest.json",
@@ -281,9 +282,15 @@ export default function RootLayout({
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
         <meta name="apple-mobile-web-app-title" content="Supernesia" />
+        <meta name="mobile-web-app-capable" content="yes" />
+        <meta name="application-name" content="Supernesia" />
+        <meta name="msapplication-TileColor" content="#CDFF00" />
+        <meta name="msapplication-TileImage" content="/icons/icon-192x192.png" />
 
-        {/* Apple touch icons */}
+        {/* Apple touch icons — iOS PWA */}
         <link rel="apple-touch-icon" sizes="180x180" href="/icons/icon-192x192.png" />
+        <link rel="apple-touch-icon" sizes="192x192" href="/icons/icon-192x192.png" />
+        <link rel="apple-touch-icon" sizes="512x512" href="/icons/icon-512x512.png" />
 
         {/* Manifest */}
         <link rel="manifest" href="/manifest.json" />

@@ -3,25 +3,42 @@
   "short_name": "Supernesia",
   "description": "All-in-One Digital Tech Services — Web, Mobile, AI, Custom Software",
   "start_url": "/",
+  "scope": "/",
   "display": "standalone",
-  "background_color": "#0D1117",
+  "display_override": ["standalone", "minimal-ui", "browser"],
+  "background_color": "#16232A",
   "theme_color": "#CDFF00",
   "orientation": "portrait-primary",
+  "lang": "id",
+  "dir": "ltr",
+  "categories": ["technology", "business", "productivity"],
+  "screenshots": [
+    {
+      "src": "/SUPERNESIA_LOGOS.png",
+      "type": "image/png",
+      "sizes": "512x512",
+      "form_factor": "wide",
+      "label": "Supernesia Homepage"
+    }
+  ],
   "icons": [
     {
       "src": "/icons/icon-72x72.png",
       "sizes": "72x72",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any"
     },
     {
       "src": "/icons/icon-96x96.png",
       "sizes": "96x96",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any"
     },
     {
       "src": "/icons/icon-128x128.png",
       "sizes": "128x128",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any"
     },
     {
       "src": "/icons/icon-192x192.png",
@@ -46,6 +63,22 @@
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Layanan",
+      "short_name": "Layanan",
+      "description": "Lihat semua layanan Supernesia",
+      "url": "/layanan",
+      "icons": [{ "src": "/icons/icon-96x96.png", "sizes": "96x96" }]
+    },
+    {
+      "name": "Hubungi Kami",
+      "short_name": "Kontak",
+      "description": "Konsultasi gratis dengan tim Supernesia",
+      "url": "/kontak",
+      "icons": [{ "src": "/icons/icon-96x96.png", "sizes": "96x96" }]
     }
   ]
 }
