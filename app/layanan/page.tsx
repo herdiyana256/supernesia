@@ -216,7 +216,7 @@ export default function LayananPage() {
               alt="Supernesia Services" 
               width={900}
               height={1100}
-              className="w-auto h-[90%] object-contain object-center drop-shadow-[0_20px_80px_rgba(0,0,0,0.6)]"
+              className="w-auto h-[140%] object-contain object-center drop-shadow-[0_20px_80px_rgba(0,0,0,0.6)]"
             />
           </motion.div>
         </div>
