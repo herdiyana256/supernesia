@@ -2,7 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 import Script from 'next/script';
-import WhatsappCTA from "@/components/whatsapp-cta";
+import SupernesiaChatbot from "@/components/supernesia-chatbot";
 
 // Fonts
 const plusJakartaSans = Plus_Jakarta_Sans({
@@ -321,7 +321,7 @@ export default function RootLayout({
         {/* <footer> Footer Content / Links </footer> */}
 
         {/* WhatsApp floating button */}
-        <WhatsappCTA />
+        <SupernesiaChatbot />
       </body>
     </html>
   );
