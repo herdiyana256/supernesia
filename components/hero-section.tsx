@@ -183,17 +183,7 @@ export default function HeroSection() {
         </motion.div>
       </div>
 
-      {/* Mobile hero image */}
-      <div className="flex md:hidden justify-center items-end w-full px-4 -mt-4 relative z-10">
-        <Image
-          src="/orang-home-hero.png"
-          alt="Supernesia Creative Tech"
-          width={500}
-          height={600}
-          className="w-[80%] h-auto object-contain drop-shadow-[0_10px_40px_rgba(0,0,0,0.5)]"
-          priority
-        />
-      </div>
+
 
       {/* Scrolling Ticker — Yellow Banner */}
       <div className="ticker-wrapper bg-[#D9E061] overflow-hidden py-3.5 relative z-20 mt-auto flex-shrink-0">
