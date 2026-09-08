@@ -487,10 +487,6 @@ export default function LayananPage() {
           </p>
 
           <div className="relative inline-block group w-full sm:w-auto mt-4 sm:mt-0">
-            <div className="absolute -top-3 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center">
-              <div className="w-5 h-5 bg-[#EC5B70] rounded-full shadow-md" />
-              <div className="w-[2px] h-4 bg-[#c0394e]" />
-            </div>
             <Link
               href="/kontak"
               className="w-full sm:w-auto inline-flex justify-center items-center gap-3 text-[#16232A] font-black text-lg sm:text-xl px-8 sm:px-12 py-4 sm:py-5 rounded-full border-2 border-[#16232A] hover:bg-[#16232A] hover:text-white transition-all duration-300 shadow-lg hover:shadow-2xl hover:scale-105"
