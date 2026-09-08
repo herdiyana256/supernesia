@@ -202,34 +202,24 @@ export default function LayananPage() {
 
         {/* Hero Person Image — absolute to section, full height */}
         <div 
-          className="hidden md:flex absolute right-0 bottom-0 top-0 w-[48%] lg:w-[45%] items-center justify-end z-10 pr-4 lg:pr-8 xl:pr-16 pointer-events-none overflow-visible"
+          className="hidden md:flex absolute right-0 bottom-0 top-0 w-[50%] lg:w-[48%] items-end justify-end z-10 pr-0 lg:pr-4 xl:pr-8 pointer-events-none overflow-visible"
         >
           <div className="absolute w-[450px] h-[450px] bg-[#EC5B70] blur-[100px] rounded-full opacity-15 bottom-[10%] right-[10%] z-0" />
 
           <motion.div
-            animate={{ y: [0, -12, 0] }}
+            animate={{ y: [0, -8, 0] }}
             transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut" }}
-            className="relative z-10 flex items-center justify-end h-full w-full"
+            className="relative z-10 flex items-end justify-end h-full w-full"
           >
             <Image 
-              src="/orang-layanan-hero.png" 
+              src="/foto_sn.png" 
               alt="Supernesia Services" 
               width={900}
               height={1100}
-              className="w-auto h-[140%] object-contain object-center drop-shadow-[0_20px_80px_rgba(0,0,0,0.6)]"
+              className="w-auto h-[155%] object-contain object-bottom"
+              style={{ mixBlendMode: 'multiply' }}
             />
           </motion.div>
-        </div>
-
-        {/* Mobile hero image */}
-        <div className="flex md:hidden justify-center items-end w-full px-4 -mt-4 relative z-10">
-          <Image
-            src="/orang-layanan-hero.png"
-            alt="Supernesia Services"
-            width={500}
-            height={600}
-            className="w-[80%] h-auto object-contain drop-shadow-[0_10px_40px_rgba(0,0,0,0.5)]"
-          />
         </div>
 
         {/* Pink ticker */}
