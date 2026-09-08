@@ -39,7 +39,7 @@ export default function Navbar() {
         <div className="flex-1 flex justify-start">
           <Link
             href="/kontak"
-            className="bg-[#D9E061] hover:bg-[#e8ef6a] font-bold px-7 py-3 rounded-full text-[#16232A] transition-all duration-300 text-sm tracking-wide shadow-lg hover:scale-105 hover:shadow-[0_0_20px_rgba(217,224,97,0.4)]"
+            className="bg-[#D9E061] hover:bg-[#e8ef6a] font-bold px-4 py-2.5 sm:px-7 sm:py-3 rounded-full text-[#16232A] transition-all duration-300 text-xs sm:text-sm tracking-wide shadow-lg hover:scale-105 hover:shadow-[0_0_20px_rgba(217,224,97,0.4)] whitespace-nowrap"
           >
             Get In Touch
           </Link>
